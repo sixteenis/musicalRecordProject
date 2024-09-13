@@ -23,7 +23,7 @@ struct HorizontalCalendarView: View {
                         )
                     )
                     .frame(height: 60)
-                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 7)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 10)
                     .overlay (
                         ZStack {
                             dayView
@@ -37,6 +37,7 @@ struct HorizontalCalendarView: View {
                 
             }
         }
+        .background(Color.asBackground)
     }
     private var monthView: some View {
         HStack(spacing: 10) {

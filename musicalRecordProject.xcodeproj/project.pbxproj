@@ -20,6 +20,7 @@
 		064245D12C92CDEB00C9134D /* SelectGenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064245D02C92CDEB00C9134D /* SelectGenreView.swift */; };
 		064245D42C92D01100C9134D /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064245D32C92D01100C9134D /* Color+.swift */; };
 		064245D72C92D20900C9134D /* SelectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064245D62C92D20900C9134D /* SelectType.swift */; };
+		067D495A2C935D1400C72463 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067D49592C935D1400C72463 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		064245D02C92CDEB00C9134D /* SelectGenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGenreView.swift; sourceTree = "<group>"; };
 		064245D32C92D01100C9134D /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		064245D62C92D20900C9134D /* SelectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectType.swift; sourceTree = "<group>"; };
+		067D49592C935D1400C72463 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				064245D52C92D1FB00C9134D /* Enum */,
 				064245C82C92C95300C9134D /* View */,
 				064245BC2C92C7D400C9134D /* MainView.swift */,
+				067D49592C935D1400C72463 /* TextView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				064245C22C92C86F00C9134D /* ButtonWrapper.swift in Sources */,
+				067D495A2C935D1400C72463 /* TextView.swift in Sources */,
 				064245D42C92D01100C9134D /* Color+.swift in Sources */,
 				064245C62C92C87900C9134D /* PrimaryText.swift in Sources */,
 				064245D72C92D20900C9134D /* SelectType.swift in Sources */,
