@@ -10,8 +10,8 @@ import SwiftUI
 struct MainView: View {
     @State var selectedDate: Date = Date()
     @State var selectedType: SelectType = .performance
-    @State var list = [1,2,3,4,5,6,7,8,9,10]
-    @State var selectedCell: Int? = 1
+    @State var list = [0,1,2,3,4,5,6,7,8,9,10]
+    @State var selectedCell: Int? = 0
     @State var isCalendarVisible: Bool = true
     @State var moveDetailView = false
     var body: some View {
@@ -66,13 +66,11 @@ private extension MainView {
         .frame(height: 100) // CalendarView 높이를 고정 (적절한 높이로 설정)
     }
     func cellList() -> some View {
-        
-        
         ScrollView {
             LazyVStack(spacing: 0) {
                 calendarViewWithGeometry()
-                
                 ForEach(list, id: \.self) { id in
+                    
                     cell(for: id)
                         .id(id)
                         .onTapGesture {
@@ -92,12 +90,14 @@ private extension MainView {
     func cell(for id: Int) -> some View {
         HStack {
             VStack(spacing:0) {
+                Spacer()
+                    .frame(height: 6)
                 Circle()
                     .fill(selectedCell == id ? .purple : .black)
                     .frame(width: 15)
-                    .padding(.top, 10)
+                    //.padding(.top, 10)
                 Spacer()
-                    .frame(height: 5)
+                    .frame(height: 6)
                 Rectangle()
                     .fill(.black)
                     .frame(width: 2)
@@ -106,17 +106,19 @@ private extension MainView {
             if selectedCell == id {
                 detailView()
                     .transition(.move(edge: .trailing).combined(with: .opacity))
-                    .padding([.bottom,.top], 5)
-                    
+                    .padding([.bottom,.top], 10)
+                
             } else {
                 defaultView()
                     .transition(AnyTransition.scale.animation(.easeInOut))
+                    .padding([.bottom,.top], 5)
             }
             
+            
         }
-        .frame(height: selectedCell == id ? 260 : 120)
+        .frame(height: selectedCell == id ? 280 : 120)
         .padding(.horizontal, 10)
-        .padding(.bottom, 5)
+        //.padding(.bottom, 5)
         .animation(.easeInOut, value: selectedCell) // 애니메이션 추가
     }
     // MARK: - 미선택한 뷰
@@ -165,11 +167,11 @@ private extension MainView {
                 actorProfileView()
                 actorProfileView()
                 //detailButton()
-                DetailButton()
+                detailButton()
                     .padding(.top)
-//                    .frame(height: 44)
-//                    .frame(maxWidth: .infinity)
-                    
+                //                    .frame(height: 44)
+                //                    .frame(maxWidth: .infinity)
+                
                 Spacer()
             }
         }
@@ -184,7 +186,7 @@ private extension MainView {
         .padding(.leading)
     }
     func detailButton() -> some View {
-        NavigationLink(destination: TextView(), isActive: $moveDetailView) {
+        NavigationLink(destination: TextView(int: list[selectedCell!])) {
             Text("자세히 보기 >")
                 .font(.caption)
                 .padding()
@@ -193,6 +195,11 @@ private extension MainView {
                 .cornerRadius(10)
                 .padding()
         }
+        //        NavigationLink(destination: TextView(), isActive: $moveDetailView) {
+        //            let _ = print(list[selectedCell!])
+        
+        
+        //        }
         
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct musicalRecordProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            TabBarView()
         }
     }
 }
