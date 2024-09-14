@@ -23,8 +23,9 @@
 		064862962C944671003B544E /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862952C944671003B544E /* TicketView.swift */; };
 		064862982C944677003B544E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862972C944677003B544E /* SettingView.swift */; };
 		0648629D2C9446A0003B544E /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648629C2C9446A0003B544E /* TabBarView.swift */; };
-		064862A02C94A4F5003B544E /* FrontTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648629F2C94A4F5003B544E /* FrontTicketView.swift */; };
-		064862A22C94A51E003B544E /* BackTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862A12C94A51E003B544E /* BackTicketView.swift */; };
+		064862A42C9562A8003B544E /* TicketStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862A32C9562A8003B544E /* TicketStorageView.swift */; };
+		064862A72C9581DC003B544E /* PerformancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862A62C9581DC003B544E /* PerformancePicker.swift */; };
+		064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862AA2C958515003B544E /* CustomSegmentedControl.swift */; };
 		067D495A2C935D1400C72463 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067D49592C935D1400C72463 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,8 +47,9 @@
 		064862952C944671003B544E /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		064862972C944677003B544E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		0648629C2C9446A0003B544E /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		0648629F2C94A4F5003B544E /* FrontTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontTicketView.swift; sourceTree = "<group>"; };
-		064862A12C94A51E003B544E /* BackTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackTicketView.swift; sourceTree = "<group>"; };
+		064862A32C9562A8003B544E /* TicketStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStorageView.swift; sourceTree = "<group>"; };
+		064862A62C9581DC003B544E /* PerformancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformancePicker.swift; sourceTree = "<group>"; };
+		064862AA2C958515003B544E /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		067D49592C935D1400C72463 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,8 +123,9 @@
 		064245BA2C92C7C500C9134D /* Ticket */ = {
 			isa = PBXGroup;
 			children = (
+				064862A52C9581B6003B544E /* Enum */,
 				0648629E2C94A4EC003B544E /* View */,
-				064862952C944671003B544E /* TicketView.swift */,
+				064862A32C9562A8003B544E /* TicketStorageView.swift */,
 			);
 			path = Ticket;
 			sourceTree = "<group>";
@@ -210,10 +213,18 @@
 		0648629E2C94A4EC003B544E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0648629F2C94A4F5003B544E /* FrontTicketView.swift */,
-				064862A12C94A51E003B544E /* BackTicketView.swift */,
+				064862952C944671003B544E /* TicketView.swift */,
+				064862AA2C958515003B544E /* CustomSegmentedControl.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		064862A52C9581B6003B544E /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				064862A62C9581DC003B544E /* PerformancePicker.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,21 +299,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				064245C22C92C86F00C9134D /* ButtonWrapper.swift in Sources */,
+				064862A42C9562A8003B544E /* TicketStorageView.swift in Sources */,
+				064862A72C9581DC003B544E /* PerformancePicker.swift in Sources */,
 				067D495A2C935D1400C72463 /* TextView.swift in Sources */,
 				0648629D2C9446A0003B544E /* TabBarView.swift in Sources */,
 				064245D42C92D01100C9134D /* Color+.swift in Sources */,
 				064245C62C92C87900C9134D /* PrimaryText.swift in Sources */,
 				064245D72C92D20900C9134D /* SelectType.swift in Sources */,
 				064245CD2C92CAD100C9134D /* ViewModeltype.swift in Sources */,
+				064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */,
 				064862962C944671003B544E /* TicketView.swift in Sources */,
 				064245CF2C92CBEB00C9134D /* HorizontalCalendarView.swift in Sources */,
 				064862982C944677003B544E /* SettingView.swift in Sources */,
 				064245D12C92CDEB00C9134D /* SelectGenreView.swift in Sources */,
-				064862A02C94A4F5003B544E /* FrontTicketView.swift in Sources */,
 				064245AC2C92C7B000C9134D /* musicalRecordProjectApp.swift in Sources */,
 				064245C32C92C86F00C9134D /* ForegroundWrapper.swift in Sources */,
 				064245BD2C92C7D400C9134D /* MainView.swift in Sources */,
-				064862A22C94A51E003B544E /* BackTicketView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
