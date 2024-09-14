@@ -26,6 +26,7 @@
 		064862A42C9562A8003B544E /* TicketStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862A32C9562A8003B544E /* TicketStorageView.swift */; };
 		064862A72C9581DC003B544E /* PerformancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862A62C9581DC003B544E /* PerformancePicker.swift */; };
 		064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862AA2C958515003B544E /* CustomSegmentedControl.swift */; };
+		064862AF2C959C68003B544E /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862AE2C959C68003B544E /* Image+.swift */; };
 		067D495A2C935D1400C72463 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067D49592C935D1400C72463 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		064862A32C9562A8003B544E /* TicketStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStorageView.swift; sourceTree = "<group>"; };
 		064862A62C9581DC003B544E /* PerformancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformancePicker.swift; sourceTree = "<group>"; };
 		064862AA2C958515003B544E /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
+		064862AE2C959C68003B544E /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		067D49592C935D1400C72463 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,8 +94,8 @@
 				064245C12C92C86F00C9134D /* Wrapper */,
 				064862992C94467D003B544E /* TabBar */,
 				064245BE2C92C80100C9134D /* CustomView */,
-				064245BA2C92C7C500C9134D /* Ticket */,
 				064862942C944656003B544E /* Setting */,
+				064245BA2C92C7C500C9134D /* Ticket */,
 				064245B92C92C7BF00C9134D /* Main */,
 				064245AF2C92C7B200C9134D /* Assets.xcassets */,
 				064245B12C92C7B200C9134D /* Preview Content */,
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				064245D32C92D01100C9134D /* Color+.swift */,
+				064862AE2C959C68003B544E /* Image+.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				064862962C944671003B544E /* TicketView.swift in Sources */,
 				064245CF2C92CBEB00C9134D /* HorizontalCalendarView.swift in Sources */,
 				064862982C944677003B544E /* SettingView.swift in Sources */,
+				064862AF2C959C68003B544E /* Image+.swift in Sources */,
 				064245D12C92CDEB00C9134D /* SelectGenreView.swift in Sources */,
 				064245AC2C92C7B000C9134D /* musicalRecordProjectApp.swift in Sources */,
 				064245C32C92C86F00C9134D /* ForegroundWrapper.swift in Sources */,

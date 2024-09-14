@@ -25,7 +25,7 @@ struct MainView: View {
                     SelectListView(selected: $selectedType)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Image(systemName: "magnifyingglass")
+                    Image.search
                 }
                 ToolbarItem(placement: .principal) {
                     // 캘린더가 보이지 않으면 네비게이션에 표시
@@ -75,11 +75,9 @@ private extension MainView {
                         .id(id)
                         .onTapGesture {
                             withAnimation {
-                                if selectedCell == id {
-                                    selectedCell = nil
-                                } else {
-                                    selectedCell = id
-                                }
+                                
+                                selectedCell = id
+                                
                             }
                         }
                 }
@@ -95,7 +93,7 @@ private extension MainView {
                 Circle()
                     .fill(selectedCell == id ? .purple : .black)
                     .frame(width: 15)
-                    //.padding(.top, 10)
+                //.padding(.top, 10)
                 Spacer()
                     .frame(height: 6)
                 Rectangle()
@@ -110,7 +108,7 @@ private extension MainView {
                 
             } else {
                 defaultView()
-                    .transition(AnyTransition.scale.animation(.easeInOut))
+                    .transition(AnyTransition.scale.animation(.bouncy))
                     .padding([.bottom,.top], 5)
             }
             
