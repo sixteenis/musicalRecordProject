@@ -34,6 +34,10 @@ struct MainView: View {
                     }
                 }
             }
+            .task {
+                print("123")
+                NetworkManager.shared.requestNetwork()
+            }
         } //:NAVIGATION
         
     }
