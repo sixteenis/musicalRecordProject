@@ -18,6 +18,7 @@ struct MainView: View {
         NavigationView {
             VStack(spacing: 10) {
                 cellList()
+                    
                 
             } //:VSTACK
             .toolbar {
@@ -35,8 +36,15 @@ struct MainView: View {
                 }
             }
             .task {
-                print("123")
-                NetworkManager.shared.requestNetwork()
+                do {
+                   let result =  try await NetworkManager.shared.requestPerformance(date: "20240918", genreType: .musical, page: "1")
+                    print(result)
+                } catch {
+                    print("에러발생!")
+                }
+//                NetworkManager.shared.requestDetailNetwork { respons in
+//                    print(respons)
+ //               }
             }
         } //:NAVIGATION
         
@@ -109,6 +117,7 @@ private extension MainView {
                 detailView()
                     .transition(.move(edge: .trailing).combined(with: .opacity))
                     .padding([.bottom,.top], 10)
+                    
                 
             } else {
                 defaultView()

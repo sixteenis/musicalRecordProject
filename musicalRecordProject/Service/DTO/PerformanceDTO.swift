@@ -7,7 +7,7 @@
 
 import Foundation
 // 공연 정보를 저장할 구조체
-struct Performance {
+struct PerformanceDTO {
     let mt20id: String // 공연 id
     let prfnm: String // 공연 이름
     let prfpdfrom: String // 시작 날짜
@@ -18,12 +18,14 @@ struct Performance {
     let genrenm: String // 공연 종류
     let openrun: String // ?
     let prfstate: String // 상태
+    
 }
 
+
 class XMLPerformanceParser: NSObject, XMLParserDelegate {
-    private var performances: [Performance] = []
+    private var performances: [PerformanceDTO] = []
     private var currentElement = ""
-    private var currentPerformance: Performance?
+    private var currentPerformance: PerformanceDTO?
     
     // 임시 변수들
     private var mt20id = ""
@@ -86,7 +88,7 @@ class XMLPerformanceParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "db" {
             // 공연 정보를 완성하고 배열에 추가
-            let performance = Performance(mt20id: mt20id, prfnm: prfnm, prfpdfrom: prfpdfrom, prfpdto: prfpdto, fcltynm: fcltynm, poster: poster, area: area, genrenm: genrenm, openrun: openrun, prfstate: prfstate)
+            let performance = PerformanceDTO(mt20id: mt20id, prfnm: prfnm, prfpdfrom: prfpdfrom, prfpdto: prfpdto, fcltynm: fcltynm, poster: poster, area: area, genrenm: genrenm, openrun: openrun, prfstate: prfstate)
             performances.append(performance)
         }
     }
@@ -105,9 +107,10 @@ class XMLPerformanceParser: NSObject, XMLParserDelegate {
     }
     
     // 파싱 시작 메서드
-    func parse(data: Data) {
+    func parse(data: Data) -> [PerformanceDTO]{
         let parser = XMLParser(data: data)
         parser.delegate = self
         parser.parse()
+        return performances
     }
 }

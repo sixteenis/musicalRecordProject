@@ -10,7 +10,10 @@ import SwiftUI
 struct TextView: View {
     var int: Int?
     var body: some View {
-        Text("\(int)")
+        HStack {
+            Text("\(int)")
+                .hTrailing()
+        }
     }
 }
 
