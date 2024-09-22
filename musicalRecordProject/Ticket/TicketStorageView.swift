@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct TicketStorageView: View {
-    @State private var isFlipped = false
     @State private var ticketWidth: CGFloat = 350
     @State private var ticketHeight: CGFloat = 150
-    @State private var selectPerformance = PerformancePicker.all
     @State private var searchViewShow = false
     @State private var searchText = ""
     
-    let picker = PerformancePicker.allCases
-    let testList = [1,2,3,4,5,6,7,8]
+    @StateObject private var vm = TicketStorageVM()
+    
     var body: some View {
         NavigationView {
             VStack {
-                CustomSegmentedControl(selected: $selectPerformance, width: 300)
+                CustomSegmentedControl(selected: $vm.output.selectPerformance, width: 300)
+                    .onChange(of: vm.output.selectPerformance) { newValue in
+                        vm.input.selectedPerformance.send(newValue)
+                    }
+                    
                 if searchViewShow {
                     searchView()
                 }
@@ -69,8 +71,8 @@ private extension TicketStorageView {
     func ticketList() -> some View {
         ScrollView {
             LazyVStack {
-                ForEach(testList, id: \.self) { _ in
-                    TicketView(isFlipped: $isFlipped, widthSize: $ticketWidth, heightSize: $ticketHeight)
+                ForEach($vm.output.ticketList) { ticket in
+                    TicketView(isFlipped: ticket.isBack, widthSize: $ticketWidth, heightSize: $ticketHeight)
                 }
             }
         }

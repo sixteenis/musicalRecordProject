@@ -32,7 +32,6 @@ final class MainVM: ViewModeltype {
             .sink { [weak self] date in
                 guard let self else { return }
                 self.output.setDate = date
-                print(date)
             }.store(in: &cancellables)
         input.showTypeSet
             .sink { [weak self] type in

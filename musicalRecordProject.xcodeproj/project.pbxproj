@@ -37,6 +37,8 @@
 		067030D52C9C508000190C92 /* FacilityDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030D42C9C508000190C92 /* FacilityDTO.swift */; };
 		067030D82C9E89AE00190C92 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 067030D72C9E89AE00190C92 /* RealmSwift */; };
 		067030DC2C9E89CE00190C92 /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DB2C9E89CE00190C92 /* MainVM.swift */; };
+		067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DD2CA019A300190C92 /* TicketStorageVM.swift */; };
+		067030E02CA01B1100190C92 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DF2CA01B1100190C92 /* TicketModel.swift */; };
 		067D495A2C935D1400C72463 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067D49592C935D1400C72463 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +74,8 @@
 		067030D22C9C4BD900190C92 /* FrameExtenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameExtenstion.swift; sourceTree = "<group>"; };
 		067030D42C9C508000190C92 /* FacilityDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDTO.swift; sourceTree = "<group>"; };
 		067030DB2C9E89CE00190C92 /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
+		067030DD2CA019A300190C92 /* TicketStorageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStorageVM.swift; sourceTree = "<group>"; };
+		067030DF2CA01B1100190C92 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		067D49592C935D1400C72463 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,8 @@
 				064862A52C9581B6003B544E /* Enum */,
 				0648629E2C94A4EC003B544E /* View */,
 				064862A32C9562A8003B544E /* TicketStorageView.swift */,
+				067030DD2CA019A300190C92 /* TicketStorageVM.swift */,
+				067030DF2CA01B1100190C92 /* TicketModel.swift */,
 			);
 			path = Ticket;
 			sourceTree = "<group>";
@@ -346,12 +352,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */,
 				067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */,
 				064245C22C92C86F00C9134D /* ButtonWrapper.swift in Sources */,
 				067030D52C9C508000190C92 /* FacilityDTO.swift in Sources */,
 				064862B12C95F461003B544E /* APIKey.swift in Sources */,
 				067030DC2C9E89CE00190C92 /* MainVM.swift in Sources */,
 				064862A42C9562A8003B544E /* TicketStorageView.swift in Sources */,
+				067030E02CA01B1100190C92 /* TicketModel.swift in Sources */,
 				067030CF2C9C3B3D00190C92 /* GenreType.swift in Sources */,
 				064862A72C9581DC003B544E /* PerformancePicker.swift in Sources */,
 				067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */,

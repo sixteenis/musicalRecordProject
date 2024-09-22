@@ -9,7 +9,7 @@ import SwiftUI
 struct CustomSegmentedControl: View {
     @Binding var selected: PerformancePicker
     let width: CGFloat
-    let selectList = PerformancePicker.allCases
+    private let selectList = PerformancePicker.allCases
     var body: some View {
         VStack(spacing: 0) {
             HStack {
