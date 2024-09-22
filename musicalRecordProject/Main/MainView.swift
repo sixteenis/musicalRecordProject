@@ -8,22 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var selectedDate: Date = Date()
-    @State var selectedType: SelectType = .performance
-    @State var list = [0,1,2,3,4,5,6,7,8,9,10]
-    @State var selectedCell: Int? = 0
-    @State var isCalendarVisible: Bool = true
-    @State var moveDetailView = false
+    @State private var isCalendarVisible: Bool = true
+    @StateObject private var vm = MainVM()
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
                 cellList()
-                    
-                
             } //:VSTACK
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    SelectListView(selected: $selectedType)
+                    SelectListView(selected: $vm.output.showType)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Image.search
@@ -31,20 +26,9 @@ struct MainView: View {
                 ToolbarItem(placement: .principal) {
                     // 캘린더가 보이지 않으면 네비게이션에 표시
                     if !isCalendarVisible {
-                        Text(selectedDate.formatted())
+                        Text(vm.output.setDate.formatted())
                     }
                 }
-            }
-            .task {
-                do {
-                   let result =  try await NetworkManager.shared.requestPerformance(date: "20240918", genreType: .musical, page: "1")
-                    print(result)
-                } catch {
-                    print("에러발생!")
-                }
-//                NetworkManager.shared.requestDetailNetwork { respons in
-//                    print(respons)
- //               }
             }
         } //:NAVIGATION
         
@@ -58,10 +42,12 @@ struct MainView: View {
 private extension MainView {
     //캘린더 스크롤 로직
     func calendarViewWithGeometry() -> some View {
-        // GeometryReader로 HorizontalCalendarView의 위치를 추적
         GeometryReader { geo in
-            HorizontalCalendarView(selectedDate: $selectedDate)
-                .onChange(of: geo.frame(in: .global).minY) { _ in
+            HorizontalCalendarView(selectedDate: $vm.output.setDate)
+                .onChange(of: vm.output.setDate) { newDate in
+                    vm.input.dateSet.send(newDate)
+                }
+                .onChange(of: geo.frame(in: .global).minY) { date in
                     // 새로운 구문으로 변경 - 두 개의 매개변수가 없음
                     let newValue = geo.frame(in: .global).minY
                     if newValue < 0 {
@@ -81,14 +67,14 @@ private extension MainView {
         ScrollView {
             LazyVStack(spacing: 0) {
                 calendarViewWithGeometry()
-                ForEach(list, id: \.self) { id in
+                ForEach(vm.output.showDatas, id: \.self) { id in
                     
                     cell(for: id)
                         .id(id)
                         .onTapGesture {
                             withAnimation {
                                 
-                                selectedCell = id
+                                vm.input.selectCell.send(id)
                                 
                             }
                         }
@@ -103,9 +89,8 @@ private extension MainView {
                 Spacer()
                     .frame(height: 6)
                 Circle()
-                    .fill(selectedCell == id ? .purple : .black)
+                    .fill(vm.output.selectCellIndex == id ? .purple : .black)
                     .frame(width: 15)
-                //.padding(.top, 10)
                 Spacer()
                     .frame(height: 6)
                 Rectangle()
@@ -113,7 +98,7 @@ private extension MainView {
                     .frame(width: 2)
                     .frame(maxHeight: .infinity)
             }
-            if selectedCell == id {
+            if vm.output.selectCellIndex == id {
                 detailView()
                     .transition(.move(edge: .trailing).combined(with: .opacity))
                     .padding([.bottom,.top], 10)
@@ -127,10 +112,10 @@ private extension MainView {
             
             
         }
-        .frame(height: selectedCell == id ? 280 : 120)
+        .frame(height: vm.output.selectCellIndex == id ? 280 : 120)
         .padding(.horizontal, 10)
         //.padding(.bottom, 5)
-        .animation(.easeInOut, value: selectedCell) // 애니메이션 추가
+        .animation(.easeInOut, value: vm.output.selectCellIndex) // 애니메이션 추가
     }
     // MARK: - 미선택한 뷰
     func defaultView() -> some View {
@@ -197,7 +182,7 @@ private extension MainView {
         .padding(.leading)
     }
     func detailButton() -> some View {
-        NavigationLink(destination: TextView(int: list[selectedCell!])) {
+        NavigationLink(destination: TextView(int: vm.output.showDatas[vm.output.selectCellIndex])) {
             Text("자세히 보기 >")
                 .font(.caption)
                 .padding()

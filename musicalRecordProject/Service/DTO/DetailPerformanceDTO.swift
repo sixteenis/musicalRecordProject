@@ -37,13 +37,12 @@ struct RelatedLink {
 
 class XMLDetailPerformanceParser: NSObject, XMLParserDelegate {
     
-    private var currentElement = ""
-    private var currentText = ""
+    private var currentElement: String = ""
+    private var currentText: String = ""
     
     private var currentPerformance: DetailPerformanceDTO?
     private var currentRelatedLink: RelatedLink?
-    private var styurls: [String] = []
-    private var relates: [RelatedLink] = []
+    private var relatedLinks: [RelatedLink] = []
     
     private var performances: [DetailPerformanceDTO] = []
     
@@ -83,11 +82,10 @@ class XMLDetailPerformanceParser: NSObject, XMLParserDelegate {
                 styurls: [],
                 relates: []
             )
-            styurls = []
-            relates = []
+            relatedLinks = []
         }
         
-        if elementName == "relate" {
+        if elementName == "related" {
             currentRelatedLink = RelatedLink(relatename: "", relateurl: "")
         }
     }
@@ -121,24 +119,24 @@ class XMLDetailPerformanceParser: NSObject, XMLParserDelegate {
         case "dtguidance": currentPerformance.dtguidance = currentText
         case "updatedate": currentPerformance.updatedate = currentText
         case "prfstate": currentPerformance.prfstate = currentText
-        
-        case "styurl":
-            styurls.append(currentText)
             
-        case "relatenm":
+        case "styurl":
+            currentPerformance.styurls.append(currentText)
+            
+        case "relatename":
             currentRelatedLink?.relatename = currentText
         case "relateurl":
             currentRelatedLink?.relateurl = currentText
             
-        case "relate":
+        case "related":
             if let relatedLink = currentRelatedLink {
-                relates.append(relatedLink)
+                relatedLinks.append(relatedLink)
             }
             
         case "db":
-            currentPerformance.styurls = styurls
-            currentPerformance.relates = relates
+            currentPerformance.relates = relatedLinks
             performances.append(currentPerformance)
+            self.currentPerformance = nil
         default:
             break
         }
@@ -151,6 +149,6 @@ class XMLDetailPerformanceParser: NSObject, XMLParserDelegate {
     
     // 파싱 에러 처리
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        print("XML parsing error: \(parseError.localizedDescription)")
+        print("XML 파싱 에러: \(parseError.localizedDescription)")
     }
 }
