@@ -71,16 +71,13 @@ private extension MainVM {
         dateFormatter.dateFormat = "yyyyMMdd"
         let dateString = dateFormatter.string(from: output.setDate)
         do {
-            let performanceList = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, page: "1")
+            // MARK: - page 변경해서 페이지네이션 기능 구현해줘야됨!
             
+             let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, page: "1").map {$0.transformperformanceModel()}
             DispatchQueue.main.async {
-                self.output.showDatas = performanceList.map { $0.transformperformanceModel() }
-                print("----")
-                print(self.output.showDatas)
+                self.output.showDatas = data
                 self.checkDetailPerformancData(model: self.output.showDatas[0])
             }
-            
-            //self.output.selectCellId = performanceList[0].transformperformanceModel().id
             
         } catch {
             print("오류 에러처리해주자!!!")
@@ -100,15 +97,16 @@ private extension MainVM {
     // MARK: - 디테일 데이터 없을 경우 네트워킹하기
     func updateDetailPerformanc(_ model: PerformanceModel) async {
         do {
-            let data = try await NetworkManager.shared.requestDetailPerformance(performanceId: model.simple.playDate).transformDetailModel()
+            let data = try await NetworkManager.shared.requestDetailPerformance(performanceId: model.simple.playId).transformDetailModel()
             if let index = self.output.showDatas.firstIndex(where: {$0.id == model.id}) {
-                self.output.showDatas[index].detail = data
-                self.output.selectCellId = model.id
+                DispatchQueue.main.async {
+                    self.output.showDatas[index].detail = data
+                    self.output.selectCellId = model.id
+                }
             }
         } catch {
             print("디테일 데이터 가져오기 에러처리 해주기")
-            
         }
     }
-     
+    
 }
