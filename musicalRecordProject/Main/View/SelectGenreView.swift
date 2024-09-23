@@ -7,8 +7,8 @@
 
 import SwiftUI
 struct SelectListView: View {
-    @Binding var selected: SelectType
-    let selectList = SelectType.allCases
+    @Binding var selected: Genre
+    let selectList = Genre.allCases
     var body: some View {
         HStack {
             ForEach(selectList, id: \.self) { type in
@@ -18,7 +18,7 @@ struct SelectListView: View {
         }
         //.padding(.trailing, 30)
     }
-    private func selectGenreButton(type: SelectType) -> some View {
+    private func selectGenreButton(type: Genre) -> some View {
         Button {
             selected = type
         } label: {

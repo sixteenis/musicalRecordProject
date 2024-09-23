@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MainView: View {
     @State private var isCalendarVisible: Bool = true
@@ -67,15 +68,12 @@ private extension MainView {
         ScrollView {
             LazyVStack(spacing: 0) {
                 calendarViewWithGeometry()
-                ForEach(vm.output.showDatas, id: \.self) { id in
-                    
-                    cell(for: id)
-                        .id(id)
+                ForEach(vm.output.showDatas, id: \.id) { data in
+                    cell(for: data)
+                        .id(data.id)
                         .onTapGesture {
                             withAnimation {
-                                
-                                vm.input.selectCell.send(id)
-                                
+                                vm.input.selectCell.send(data.id)
                             }
                         }
                 }
@@ -83,13 +81,13 @@ private extension MainView {
         }  //:SCROLL
         
     }
-    func cell(for id: Int) -> some View {
+    func cell(for data: PerformanceModel) -> some View {
         HStack {
             VStack(spacing:0) {
                 Spacer()
                     .frame(height: 6)
                 Circle()
-                    .fill(vm.output.selectCellIndex == id ? .purple : .black)
+                    .fill(vm.output.selectCellId == data.id ? .purple : .black)
                     .frame(width: 15)
                 Spacer()
                     .frame(height: 6)
@@ -98,45 +96,48 @@ private extension MainView {
                     .frame(width: 2)
                     .frame(maxHeight: .infinity)
             }
-            if vm.output.selectCellIndex == id {
-                detailView()
+            if vm.output.selectCellId == data.id {
+                detailView(data: data)
                     .transition(.move(edge: .trailing).combined(with: .opacity))
                     .padding([.bottom,.top], 10)
-                    
+                
                 
             } else {
-                defaultView()
+                defaultView(data: data.simple)
                     .transition(AnyTransition.scale.animation(.bouncy))
                     .padding([.bottom,.top], 5)
             }
             
             
         }
-        .frame(height: vm.output.selectCellIndex == id ? 280 : 120)
+        .frame(height: vm.output.selectCellId == data.id ? 280 : 120)
         .padding(.horizontal, 10)
         //.padding(.bottom, 5)
-        .animation(.easeInOut, value: vm.output.selectCellIndex) // 애니메이션 추가
+        .animation(.easeInOut, value: vm.output.selectCellId) // 애니메이션 추가
     }
     // MARK: - 미선택한 뷰
-    func defaultView() -> some View {
+    func defaultView(data: SimplePerformance) -> some View {
         HStack {
             VStack {
-                Text("3/17(수) ~ 03/28(일)")
+                Text(data.playDate)
                     .frame(maxWidth: .infinity,alignment: .leading)
                     .font(.subheadline)
                     .foregroundColor(Color.asSubFont)
                     .padding([.bottom,.top], 10)
-                Text("너와 함께한 시간 속에서")
+                Text(data.title)
                     .bold()
                     .frame(maxWidth: .infinity,alignment: .leading)
                     .font(.body)
-                Text("냠냠냠")
+                Text(data.place)
                     .frame(maxWidth: .infinity,alignment: .leading)
                 Spacer()
             }
             .padding(.leading)
             VStack {
-                Image(systemName: "star")
+                KFImage(URL(string: data.postURL)!)
+                    .placeholder { //플레이스 홀더 설정
+                        Image.postPlaceholder
+                    }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                     .resizable()
                     .frame(width: 100,height: 100, alignment: .top)
                     .background(Color.blue)
@@ -151,20 +152,20 @@ private extension MainView {
         
     }
     // MARK: - 선택한 경우 뷰
-    func detailView() -> some View {
+    func detailView(data: PerformanceModel) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
                 .fill(Color.asMainColor)
             VStack(spacing: 0) {
-                defaultView()
+                defaultView(data: data.simple)
                     .frame(height: 85)
                 actorProfileView()
                 actorProfileView()
                 actorProfileView()
                 actorProfileView()
                 //detailButton()
-                detailButton()
-                    .padding(.top)
+                //                detailButton()
+                //                    .padding(.top)
                 //                    .frame(height: 44)
                 //                    .frame(maxWidth: .infinity)
                 
@@ -181,23 +182,19 @@ private extension MainView {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.leading)
     }
-    func detailButton() -> some View {
-        NavigationLink(destination: TextView(int: vm.output.showDatas[vm.output.selectCellIndex])) {
-            Text("자세히 보기 >")
-                .font(.caption)
-                .padding()
-                .background(Color.background)
-                .foregroundColor(.asMainColor)
-                .cornerRadius(10)
-                .padding()
-        }
-        //        NavigationLink(destination: TextView(), isActive: $moveDetailView) {
-        //            let _ = print(list[selectedCell!])
-        
-        
-        //        }
-        
-    }
+    //    func detailButton() -> some View {
+    //        NavigationLink(destination: TextView(int: vm.output.showDatas[1])) {
+    //            Text("자세히 보기 >")
+    //                .font(.caption)
+    //                .padding()
+    //                .background(Color.background)
+    //                .foregroundColor(.asMainColor)
+    //                .cornerRadius(10)
+    //                .padding()
+    //        }
+    //
+    //
+    //    }
 }
 
 struct DetailButton: View {

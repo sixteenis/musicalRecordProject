@@ -14,15 +14,15 @@ final class MainVM: ViewModeltype {
     var input = Input()
     @Published var output = Output()
     struct Input {
-        let dateSet = PassthroughSubject<Date, Never>()
-        let showTypeSet = PassthroughSubject<SelectType, Never>()
-        let selectCell = PassthroughSubject<Int, Never>()
+        let dateSet = CurrentValueSubject<Date, Never>(Date())
+        let showTypeSet = CurrentValueSubject<Genre, Never>(.play)
+        let selectCell = PassthroughSubject<UUID, Never>()
     }
     struct Output {
         var setDate = Date()
-        var showType = SelectType.performance
-        var selectCellIndex = 0
-        var showDatas = [0,1,2,3,4,5,6,7,8,9,10]
+        var showType = Genre.play
+        var selectCellId: UUID = UUID()
+        var showDatas = PerformanceModel.mockupData
     }
     init() {
         transform()
@@ -39,14 +39,15 @@ final class MainVM: ViewModeltype {
                 self.output.showType = type
             }.store(in: &cancellables)
         input.selectCell
-            .sink { [weak self] index in
+            .sink { [weak self] id in
                 guard let self else { return }
-                self.output.selectCellIndex = index
+                self.output.selectCellId = id
             }.store(in: &cancellables)
+        
     }
     enum Action {
         case setDate(date: Date)
-        case setType(type: SelectType)
+        case setType(type: Genre)
     }
     func action(_ action: Action) {
         switch action {

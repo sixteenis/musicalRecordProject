@@ -7,10 +7,17 @@
 
 import Foundation
 
-enum Genre {
+enum Genre: CaseIterable {
     case play
     case musical
-    
+    var title: String {
+        switch self {
+        case .play:
+            "연극"
+        case .musical:
+            "뮤지컬"
+        }
+    }
     var codeString: String {
         switch self {
         case .play:

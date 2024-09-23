@@ -19,7 +19,6 @@
 		064245CF2C92CBEB00C9134D /* HorizontalCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064245CE2C92CBEB00C9134D /* HorizontalCalendarView.swift */; };
 		064245D12C92CDEB00C9134D /* SelectGenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064245D02C92CDEB00C9134D /* SelectGenreView.swift */; };
 		064245D42C92D01100C9134D /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064245D32C92D01100C9134D /* Color+.swift */; };
-		064245D72C92D20900C9134D /* SelectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064245D62C92D20900C9134D /* SelectType.swift */; };
 		064862962C944671003B544E /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862952C944671003B544E /* TicketView.swift */; };
 		064862982C944677003B544E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862972C944677003B544E /* SettingView.swift */; };
 		0648629D2C9446A0003B544E /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648629C2C9446A0003B544E /* TabBarView.swift */; };
@@ -39,6 +38,8 @@
 		067030DC2C9E89CE00190C92 /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DB2C9E89CE00190C92 /* MainVM.swift */; };
 		067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DD2CA019A300190C92 /* TicketStorageVM.swift */; };
 		067030E02CA01B1100190C92 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DF2CA01B1100190C92 /* TicketModel.swift */; };
+		067030E42CA12B2800190C92 /* PerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030E32CA12B2800190C92 /* PerformanceModel.swift */; };
+		067030E72CA1606000190C92 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 067030E62CA1606000190C92 /* Kingfisher */; };
 		067D495A2C935D1400C72463 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067D49592C935D1400C72463 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +57,6 @@
 		064245CE2C92CBEB00C9134D /* HorizontalCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCalendarView.swift; sourceTree = "<group>"; };
 		064245D02C92CDEB00C9134D /* SelectGenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGenreView.swift; sourceTree = "<group>"; };
 		064245D32C92D01100C9134D /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
-		064245D62C92D20900C9134D /* SelectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectType.swift; sourceTree = "<group>"; };
 		064862952C944671003B544E /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		064862972C944677003B544E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		0648629C2C9446A0003B544E /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -76,6 +76,7 @@
 		067030DB2C9E89CE00190C92 /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
 		067030DD2CA019A300190C92 /* TicketStorageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStorageVM.swift; sourceTree = "<group>"; };
 		067030DF2CA01B1100190C92 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
+		067030E32CA12B2800190C92 /* PerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceModel.swift; sourceTree = "<group>"; };
 		067D49592C935D1400C72463 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				067030E72CA1606000190C92 /* Kingfisher in Frameworks */,
 				067030D82C9E89AE00190C92 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,7 +142,7 @@
 		064245B92C92C7BF00C9134D /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				064245D52C92D1FB00C9134D /* Enum */,
+				067030E12CA12A8400190C92 /* Model */,
 				064245C82C92C95300C9134D /* View */,
 				064245BC2C92C7D400C9134D /* MainView.swift */,
 				067030DB2C9E89CE00190C92 /* MainVM.swift */,
@@ -192,7 +194,6 @@
 				067030C82C9C0CB600190C92 /* DTO */,
 				064862B02C95F461003B544E /* APIKey.swift */,
 				067030C62C9C0A2100190C92 /* NetworkManager.swift */,
-				067030CE2C9C3B3D00190C92 /* GenreType.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -222,14 +223,6 @@
 				064862AE2C959C68003B544E /* Image+.swift */,
 			);
 			path = "Extension+";
-			sourceTree = "<group>";
-		};
-		064245D52C92D1FB00C9134D /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-				064245D62C92D20900C9134D /* SelectType.swift */,
-			);
-			path = Enum;
 			sourceTree = "<group>";
 		};
 		064862942C944656003B544E /* Setting */ = {
@@ -275,6 +268,23 @@
 			path = DTO;
 			sourceTree = "<group>";
 		};
+		067030E12CA12A8400190C92 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				067030E22CA12A8D00190C92 /* Enum */,
+				067030E32CA12B2800190C92 /* PerformanceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		067030E22CA12A8D00190C92 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				067030CE2C9C3B3D00190C92 /* GenreType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -293,6 +303,7 @@
 			name = musicalRecordProject;
 			packageProductDependencies = (
 				067030D72C9E89AE00190C92 /* RealmSwift */,
+				067030E62CA1606000190C92 /* Kingfisher */,
 			);
 			productName = musicalRecordProject;
 			productReference = 064245A82C92C7B000C9134D /* musicalRecordProject.app */;
@@ -324,6 +335,7 @@
 			mainGroup = 0642459F2C92C7B000C9134D;
 			packageReferences = (
 				067030D62C9E89AE00190C92 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				067030E52CA1606000190C92 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 064245A92C92C7B000C9134D /* Products */;
 			projectDirPath = "";
@@ -368,7 +380,6 @@
 				0648629D2C9446A0003B544E /* TabBarView.swift in Sources */,
 				064245D42C92D01100C9134D /* Color+.swift in Sources */,
 				064245C62C92C87900C9134D /* PrimaryText.swift in Sources */,
-				064245D72C92D20900C9134D /* SelectType.swift in Sources */,
 				064245CD2C92CAD100C9134D /* ViewModeltype.swift in Sources */,
 				064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */,
 				064862962C944671003B544E /* TicketView.swift in Sources */,
@@ -377,6 +388,7 @@
 				067030D32C9C4BD900190C92 /* FrameExtenstion.swift in Sources */,
 				064862AF2C959C68003B544E /* Image+.swift in Sources */,
 				064245D12C92CDEB00C9134D /* SelectGenreView.swift in Sources */,
+				067030E42CA12B2800190C92 /* PerformanceModel.swift in Sources */,
 				064245AC2C92C7B000C9134D /* musicalRecordProjectApp.swift in Sources */,
 				067030D12C9C451E00190C92 /* PerformanceError.swift in Sources */,
 				064245C32C92C86F00C9134D /* ForegroundWrapper.swift in Sources */,
@@ -518,9 +530,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = musicalRecordProject/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -553,9 +567,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = musicalRecordProject/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -608,6 +624,14 @@
 				kind = branch;
 			};
 		};
+		067030E52CA1606000190C92 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -615,6 +639,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 067030D62C9E89AE00190C92 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		067030E62CA1606000190C92 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 067030E52CA1606000190C92 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
