@@ -14,20 +14,26 @@ final class MainVM: ViewModeltype {
     var input = Input()
     @Published var output = Output()
     struct Input {
-        let dateSet = CurrentValueSubject<Date, Never>(Date())
-        let showTypeSet = CurrentValueSubject<Genre, Never>(.play)
-        let selectCell = PassthroughSubject<UUID, Never>()
+        let viewOnTask = PassthroughSubject<Void,Never>()
+        let dateSet = CurrentValueSubject<Date, Never>(Date()) //날짜 선택
+        let showTypeSet = CurrentValueSubject<Genre, Never>(.play) // 공연 타입 선택
+        let selectCell = CurrentValueSubject<UUID, Never>(UUID()) // 셀 클릭 시
     }
     struct Output {
-        var setDate = Date()
-        var showType = Genre.play
-        var selectCellId: UUID = UUID()
-        var showDatas = PerformanceModel.mockupData
+        var setDate = Date() //날짜 세팅
+        var showType = Genre.play // 공연 타입 세팅
+        var selectCellId: UUID = UUID() // 현재 선택한 셀
+        var showDatas = [PerformanceModel]() // 현재 공연 데이터들
     }
     init() {
         transform()
     }
     func transform() {
+        input.viewOnTask
+            .sink { [weak self] _ in
+                guard let self else { return }
+                self.viewOnTask()
+            }.store(in: &cancellables)
         input.dateSet
             .sink { [weak self] date in
                 guard let self else { return }
@@ -45,19 +51,64 @@ final class MainVM: ViewModeltype {
             }.store(in: &cancellables)
         
     }
-    enum Action {
-        case setDate(date: Date)
-        case setType(type: Genre)
-    }
-    func action(_ action: Action) {
-        switch action {
-        case .setDate:
-            print("123")
-        case .setType:
-            print("타입선택")
-        //case .setType(type: <#T##SelectType#>)
+    
+    
+}
+// MARK: - 뷰가 뜰 때
+private extension MainVM {
+    func viewOnTask() {
+        if output.showDatas.isEmpty {
+            Task {
+                await self.updatePerformanceList()
+            }
         }
     }
-    
-    
+}
+private extension MainVM {
+    // MARK: - 공연 데이터 초기화 시켜주는 함수
+    func updatePerformanceList() async {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let dateString = dateFormatter.string(from: output.setDate)
+        do {
+            let performanceList = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, page: "1")
+            
+            DispatchQueue.main.async {
+                self.output.showDatas = performanceList.map { $0.transformperformanceModel() }
+                print("----")
+                print(self.output.showDatas)
+                self.checkDetailPerformancData(model: self.output.showDatas[0])
+            }
+            
+            //self.output.selectCellId = performanceList[0].transformperformanceModel().id
+            
+        } catch {
+            print("오류 에러처리해주자!!!")
+        }
+        
+    }
+    // MARK: - 디테일 데이터 유무 판별
+    func checkDetailPerformancData(model: PerformanceModel) {
+        if model.detail == nil { //디테일 부분이 빈경우
+            Task {
+                await self.updateDetailPerformanc(model)
+            }
+        } else { //이미 디테일 데이터를 가진 경우
+            self.output.selectCellId = model.id
+        }
+    }
+    // MARK: - 디테일 데이터 없을 경우 네트워킹하기
+    func updateDetailPerformanc(_ model: PerformanceModel) async {
+        do {
+            let data = try await NetworkManager.shared.requestDetailPerformance(performanceId: model.simple.playDate).transformDetailModel()
+            if let index = self.output.showDatas.firstIndex(where: {$0.id == model.id}) {
+                self.output.showDatas[index].detail = data
+                self.output.selectCellId = model.id
+            }
+        } catch {
+            print("디테일 데이터 가져오기 에러처리 해주기")
+            
+        }
+    }
+     
 }

@@ -18,7 +18,11 @@ struct PerformanceDTO {
     let genrenm: String // 공연 종류
     let openrun: String // ?
     let prfstate: String // 상태
-    
+    func transformperformanceModel() -> PerformanceModel {
+        let playDate = "\(self.prfpdfrom) ~ \(self.prfpdto)"
+        let model = PerformanceModel(simple: SimplePerformance(playId: mt20id, playDate: playDate, title: prfnm, place: fcltynm, postURL: poster))
+        return model
+    }
 }
 
 
@@ -94,12 +98,12 @@ class XMLPerformanceParser: NSObject, XMLParserDelegate {
     }
 
     // 파싱 완료
-    func parserDidEndDocument(_ parser: XMLParser) {
-        print("파싱 완료: \(performances.count)개의 공연 정보를 가져왔습니다.")
-        for performance in performances {
-            print(performance)
-        }
-    }
+//    func parserDidEndDocument(_ parser: XMLParser) {
+//        print("파싱 완료: \(performances.count)개의 공연 정보를 가져왔습니다.")
+//        for performance in performances {
+//            print(performance)
+//        }
+//    }
 
     // 에러 발생 시 호출
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {

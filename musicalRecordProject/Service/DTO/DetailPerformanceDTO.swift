@@ -9,6 +9,7 @@ import Foundation
 
 struct DetailPerformanceDTO {
     var mt20id: String
+    var mt10id: String
     var prfnm: String
     var prfpdfrom: String
     var prfpdto: String
@@ -28,6 +29,11 @@ struct DetailPerformanceDTO {
     var prfstate: String
     var styurls: [String]
     var relates: [RelatedLink]
+    
+    func transformDetailModel() -> DetailPerformance {
+        let model = DetailPerformance(placeId: self.mt10id, actors: self.prfcast, runtime: prfruntime, limitAge: self.prfage)
+        return model
+    }
 }
 
 struct RelatedLink {
@@ -62,6 +68,7 @@ class XMLDetailPerformanceParser: NSObject, XMLParserDelegate {
         if elementName == "db" {
             currentPerformance = DetailPerformanceDTO(
                 mt20id: "",
+                mt10id: "",
                 prfnm: "",
                 prfpdfrom: "",
                 prfpdto: "",
@@ -102,6 +109,7 @@ class XMLDetailPerformanceParser: NSObject, XMLParserDelegate {
         
         switch elementName {
         case "mt20id": currentPerformance.mt20id = currentText
+        case "mt10id": currentPerformance.mt10id = currentText
         case "prfnm": currentPerformance.prfnm = currentText
         case "prfpdfrom": currentPerformance.prfpdfrom = currentText
         case "prfpdto": currentPerformance.prfpdto = currentText

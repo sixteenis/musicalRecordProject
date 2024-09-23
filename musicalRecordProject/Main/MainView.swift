@@ -17,6 +17,7 @@ struct MainView: View {
             VStack(spacing: 10) {
                 cellList()
             } //:VSTACK
+
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     SelectListView(selected: $vm.output.showType)
@@ -30,8 +31,11 @@ struct MainView: View {
                         Text(vm.output.setDate.formatted())
                     }
                 }
-            }
+            }   
         } //:NAVIGATION
+        .task {
+            vm.input.viewOnTask.send(())
+        }
         
     }
 }
@@ -73,7 +77,7 @@ private extension MainView {
                         .id(data.id)
                         .onTapGesture {
                             withAnimation {
-                                vm.input.selectCell.send(data.id)
+                                    vm.input.selectCell.send(data.id)
                             }
                         }
                 }
@@ -96,7 +100,7 @@ private extension MainView {
                     .frame(width: 2)
                     .frame(maxHeight: .infinity)
             }
-            if vm.output.selectCellId == data.id {
+            if vm.output.selectCellId == data.id{
                 detailView(data: data)
                     .transition(.move(edge: .trailing).combined(with: .opacity))
                     .padding([.bottom,.top], 10)
@@ -134,7 +138,7 @@ private extension MainView {
             }
             .padding(.leading)
             VStack {
-                KFImage(URL(string: data.postURL)!)
+                KFImage(URL(string: data.postURL))
                     .placeholder { //플레이스 홀더 설정
                         Image.postPlaceholder
                     }.retry(maxCount: 3, interval: .seconds(5)) //재시도
