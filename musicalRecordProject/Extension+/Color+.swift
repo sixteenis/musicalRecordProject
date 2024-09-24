@@ -16,6 +16,7 @@ extension Color {
     static let asBlack = Color.black
     static let asSubFont = Color.subFont
     static let logoColor = Color.black
+    static let asBoardInFont = Color.white
 }
 extension Color {
   init(hex: String) {

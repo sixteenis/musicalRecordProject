@@ -47,7 +47,7 @@ final class MainVM: ViewModeltype {
         input.selectCell
             .sink { [weak self] id in
                 guard let self else { return }
-                self.output.selectCellId = id
+                checkDetailPerformancData(id: id)
             }.store(in: &cancellables)
         
     }
@@ -76,7 +76,7 @@ private extension MainVM {
              let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, page: "1").map {$0.transformperformanceModel()}
             DispatchQueue.main.async {
                 self.output.showDatas = data
-                self.checkDetailPerformancData(model: self.output.showDatas[0])
+                self.checkDetailPerformancData(id: self.output.showDatas[0].id)
             }
             
         } catch {
@@ -85,8 +85,10 @@ private extension MainVM {
         
     }
     // MARK: - 디테일 데이터 유무 판별
-    func checkDetailPerformancData(model: PerformanceModel) {
-        if model.detail == nil { //디테일 부분이 빈경우
+    func checkDetailPerformancData(id: UUID) {
+        let model = self.output.showDatas.filter { $0.id == id}.first
+        guard let model else { return }
+        if model.emptyDetailCheck { //디테일 부분이 빈경우
             Task {
                 await self.updateDetailPerformanc(model)
             }
@@ -96,11 +98,14 @@ private extension MainVM {
     }
     // MARK: - 디테일 데이터 없을 경우 네트워킹하기
     func updateDetailPerformanc(_ model: PerformanceModel) async {
+        print("통신 해야됨...")
         do {
+            print(model.simple.playId)
             let data = try await NetworkManager.shared.requestDetailPerformance(performanceId: model.simple.playId).transformDetailModel()
             if let index = self.output.showDatas.firstIndex(where: {$0.id == model.id}) {
                 DispatchQueue.main.async {
                     self.output.showDatas[index].detail = data
+                    self.output.showDatas[index].emptyDetailCheck = false
                     self.output.selectCellId = model.id
                 }
             }

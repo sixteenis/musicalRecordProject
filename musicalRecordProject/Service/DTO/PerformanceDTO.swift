@@ -20,7 +20,7 @@ struct PerformanceDTO {
     let prfstate: String // 상태
     func transformperformanceModel() -> PerformanceModel {
         let playDate = "\(self.prfpdfrom) ~ \(self.prfpdto)"
-        let model = PerformanceModel(simple: SimplePerformance(playId: mt20id, playDate: playDate, title: prfnm, place: fcltynm, postURL: poster))
+        let model = PerformanceModel(simple: SimplePerformance(playId: mt20id, playDate: playDate, title: prfnm, place: fcltynm, postURL: poster), detail: DetailPerformance())
         return model
     }
 }

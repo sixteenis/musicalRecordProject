@@ -17,7 +17,7 @@ struct MainView: View {
             VStack(spacing: 10) {
                 cellList()
             } //:VSTACK
-
+            
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     SelectListView(selected: $vm.output.showType)
@@ -31,7 +31,7 @@ struct MainView: View {
                         Text(vm.output.setDate.formatted())
                     }
                 }
-            }   
+            }
         } //:NAVIGATION
         .task {
             vm.input.viewOnTask.send(())
@@ -69,27 +69,29 @@ private extension MainView {
         .frame(height: 100) // CalendarView 높이를 고정 (적절한 높이로 설정)
     }
     func cellList() -> some View {
-        ScrollView {
-            LazyVStack(spacing: 0) {
-                calendarViewWithGeometry()
-                ForEach(vm.output.showDatas, id: \.id) { data in
-                    cell(for: data)
-                        .id(data.id)
-                        .onTapGesture {
-                            withAnimation {
+        GeometryReader { geo in
+            ScrollView {
+                LazyVStack(spacing: 0) {
+                    calendarViewWithGeometry()
+                    ForEach(vm.output.showDatas, id: \.id) { data in
+                        cell(for: data, width: geo.size.width, height: geo.size.height)
+                            .id(data.id)
+                            .onTapGesture {
+                                withAnimation {
                                     vm.input.selectCell.send(data.id)
+                                }
                             }
-                        }
-                }
-            }  //:VSTACK
-        }  //:SCROLL
+                    }
+                }  //:VSTACK
+            }  //:SCROLL
+        }
         
     }
-    func cell(for data: PerformanceModel) -> some View {
+    func cell(for data: PerformanceModel, width: CGFloat, height: CGFloat) -> some View {
         HStack {
-            VStack(spacing:0) {
+            VStack(spacing: 0) {
                 Spacer()
-                    .frame(height: 6)
+                    .frame(height: height * 0.024)
                 Circle()
                     .fill(vm.output.selectCellId == data.id ? .purple : .black)
                     .frame(width: 15)
@@ -101,39 +103,42 @@ private extension MainView {
                     .frame(maxHeight: .infinity)
             }
             if vm.output.selectCellId == data.id{
-                detailView(data: data)
+                detailView(data: data, height: height * 0.45)
                     .transition(.move(edge: .trailing).combined(with: .opacity))
                     .padding([.bottom,.top], 10)
                 
                 
             } else {
-                defaultView(data: data.simple)
+                defaultView(data: data.simple, height: height * 0.25)
                     .transition(AnyTransition.scale.animation(.bouncy))
                     .padding([.bottom,.top], 5)
             }
             
             
         }
-        .frame(height: vm.output.selectCellId == data.id ? 280 : 120)
+//        .frame(height: vm.output.selectCellId == data.id ? height * 0.45 : height * 0.25)
         .padding(.horizontal, 10)
         //.padding(.bottom, 5)
         .animation(.easeInOut, value: vm.output.selectCellId) // 애니메이션 추가
     }
     // MARK: - 미선택한 뷰
-    func defaultView(data: SimplePerformance) -> some View {
+    func defaultView(data: SimplePerformance, height: CGFloat) -> some View {
         HStack {
-            VStack {
+            VStack(spacing: 0) {
                 Text(data.playDate)
                     .frame(maxWidth: .infinity,alignment: .leading)
-                    .font(.subheadline)
+                    .font(.asSubFont)
                     .foregroundColor(Color.asSubFont)
                     .padding([.bottom,.top], 10)
                 Text(data.title)
                     .bold()
                     .frame(maxWidth: .infinity,alignment: .leading)
-                    .font(.body)
+                    .font(.asMainFont)
+                Spacer()
+                    .frame(height: 10)
                 Text(data.place)
                     .frame(maxWidth: .infinity,alignment: .leading)
+                    .font(.asSubFont)
                 Spacer()
             }
             .padding(.leading)
@@ -143,39 +148,74 @@ private extension MainView {
                         Image.postPlaceholder
                     }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                     .resizable()
-                    .frame(width: 100,height: 100, alignment: .top)
-                    .background(Color.blue)
-                    .padding(.top, 40)
+                    .frame(width: height * 0.65,height: height * 0.85, alignment: .top)
+                    .padding(.top, 30)
                     .padding(.trailing)
                 Spacer()
             }
         }
-        
-        
-        
+        .frame(height: height)
         
     }
     // MARK: - 선택한 경우 뷰
-    func detailView(data: PerformanceModel) -> some View {
+    func detailView(data: PerformanceModel, height: CGFloat) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
                 .fill(Color.asMainColor)
             VStack(spacing: 0) {
-                defaultView(data: data.simple)
-                    .frame(height: 85)
-                actorProfileView()
-                actorProfileView()
-                actorProfileView()
-                actorProfileView()
-                //detailButton()
-                //                detailButton()
-                //                    .padding(.top)
-                //                    .frame(height: 44)
-                //                    .frame(maxWidth: .infinity)
+                HStack {
+                    VStack {
+                        Text(data.simple.playDate)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                            .font(.asSubFont)
+                            .foregroundColor(Color.asBoardInFont)
+                            .padding(.top, 20)
+                            .padding(.bottom, 10)
+                        Text(data.simple.title)
+                            .bold()
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                            .font(.asMainFont)
+                        Spacer()
+                            .frame(height: 10)
+                        Text(data.simple.place)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                            .font(.asSubFont)
+                        Spacer()
+                            .frame(height: 30)
+                        Text("배우들 : \(data.detail.limitAge)")
+        
+                        Spacer()
+//                        struct DetailPerformance {
+//                            var placeId: String = ""
+//                            var actors: String = ""
+//                            var runtime: String = ""
+//                            var limitAge: String = ""
+//                        }
+                    }
+                    .padding(.leading)
+                    VStack(spacing: 0) {
+                        detailButton()
+                            .padding(.top, 20)
+                        Spacer()
+                            .frame(height: height * 0.1)
+                        KFImage(URL(string: data.simple.postURL))
+                            .placeholder { //플레이스 홀더 설정
+                                Image.postPlaceholder
+                            }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                            .resizable()
+                            .frame(width: height * 0.4,height: height * 0.65, alignment: .top)
+                            .background(Color.blue)
+                            .padding(.trailing)
+                        Spacer()
+                        //Spacer()
+                    } //:VSTACK
+                    
+                } //:HSTACK
                 
                 Spacer()
-            }
+            } //:VSTACK
         }
+        .frame(height: height)
         
     }
     func actorProfileView() -> some View {
@@ -186,19 +226,16 @@ private extension MainView {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.leading)
     }
-    //    func detailButton() -> some View {
-    //        NavigationLink(destination: TextView(int: vm.output.showDatas[1])) {
-    //            Text("자세히 보기 >")
-    //                .font(.caption)
-    //                .padding()
-    //                .background(Color.background)
-    //                .foregroundColor(.asMainColor)
-    //                .cornerRadius(10)
-    //                .padding()
-    //        }
-    //
-    //
-    //    }
+    func detailButton() -> some View {
+        NavigationLink(destination: DetailPerformanceView()) {
+            Text("자세히 보기 >")
+                .font(.asMainFont)
+                .foregroundColor(.asBoardInFont)
+                
+        }
+        
+        
+    }
 }
 
 struct DetailButton: View {

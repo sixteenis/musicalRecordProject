@@ -33,6 +33,7 @@ final class NetworkManager {
     }
     // MARK: - 한개의 공연의 디테일한 정보 통신
     func requestDetailPerformance(performanceId id: String) async throws -> DetailPerformanceDTO {
+        
         let urlString = APIKey.performanceURL + "/\(id)"
         var urlComponents = URLComponents(string: urlString)
         urlComponents?.queryItems = [
@@ -43,8 +44,10 @@ final class NetworkManager {
         request.httpMethod = "GET"
         
         let (data, response) = try await URLSession.shared.data(for: request)
+
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw PerformanceError.invalidResponse }
-        return XMLDetailPerformanceParser().parse(data: data).first!
+        guard let resultData = XMLDetailPerformanceParser().parse(data: data) else { throw PerformanceError.invalidData}
+        return resultData
     }
     // MARK: - 공연시설 정보 통신
     func requestFacility(facilityId id: String) async throws -> FacilityDTO {

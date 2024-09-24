@@ -10,8 +10,9 @@ import Foundation
 
 struct PerformanceModel: Identifiable {
     let id = UUID()
+    var emptyDetailCheck = true
     let simple: SimplePerformance
-    var detail: DetailPerformance?
+    var detail: DetailPerformance = DetailPerformance()
 }
 
 struct SimplePerformance {
@@ -22,8 +23,20 @@ struct SimplePerformance {
     let postURL: String
 }
 struct DetailPerformance {
-    let placeId: String
-    let actors: String
-    let runtime: String
-    let limitAge: String
+    var placeId: String
+    var actors: String
+    var runtime: String
+    var limitAge: String
+    init(placeId: String, actors: String, runtime: String, limitAge: String) {
+        self.placeId = placeId
+        self.actors = actors
+        self.runtime = runtime
+        self.limitAge = limitAge
+    }
+    init() {
+        self.placeId = ""
+        self.actors = ""
+        self.runtime = ""
+        self.limitAge = ""
+    }
 }

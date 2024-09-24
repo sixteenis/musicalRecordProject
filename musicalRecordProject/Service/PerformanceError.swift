@@ -11,4 +11,5 @@ enum PerformanceError: Error {
     case invalidResponse
     case unknown
     case invalidURL
+    case invalidData
 }

@@ -40,8 +40,24 @@
 		067030E02CA01B1100190C92 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DF2CA01B1100190C92 /* TicketModel.swift */; };
 		067030E42CA12B2800190C92 /* PerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030E32CA12B2800190C92 /* PerformanceModel.swift */; };
 		067030E72CA1606000190C92 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 067030E62CA1606000190C92 /* Kingfisher */; };
-		067D495A2C935D1400C72463 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067D49592C935D1400C72463 /* TextView.swift */; };
+		067030E82CA25E3400190C92 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 067030D72C9E89AE00190C92 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		067030EB2CA2968E00190C92 /* DetailPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030EA2CA2968E00190C92 /* DetailPerformanceView.swift */; };
+		067030EE2CA2A17D00190C92 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030ED2CA2A17D00190C92 /* Font+.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		067030E92CA25E3400190C92 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				067030E82CA25E3400190C92 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		064245A82C92C7B000C9134D /* musicalRecordProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musicalRecordProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +93,8 @@
 		067030DD2CA019A300190C92 /* TicketStorageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStorageVM.swift; sourceTree = "<group>"; };
 		067030DF2CA01B1100190C92 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		067030E32CA12B2800190C92 /* PerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceModel.swift; sourceTree = "<group>"; };
-		067D49592C935D1400C72463 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		067030EA2CA2968E00190C92 /* DetailPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPerformanceView.swift; sourceTree = "<group>"; };
+		067030ED2CA2A17D00190C92 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +130,6 @@
 		064245AA2C92C7B000C9134D /* musicalRecordProject */ = {
 			isa = PBXGroup;
 			children = (
-				067030CB2C9C140C00190C92 /* Info.plist */,
 				064245AB2C92C7B000C9134D /* musicalRecordProjectApp.swift */,
 				064245D22C92D00600C9134D /* Extension+ */,
 				064245C92C92CA0200C9134D /* Protocol */,
@@ -126,6 +142,7 @@
 				064245BA2C92C7C500C9134D /* Ticket */,
 				064245B92C92C7BF00C9134D /* Main */,
 				064245AF2C92C7B200C9134D /* Assets.xcassets */,
+				067030CB2C9C140C00190C92 /* Info.plist */,
 				064245B12C92C7B200C9134D /* Preview Content */,
 			);
 			path = musicalRecordProject;
@@ -146,7 +163,7 @@
 				064245C82C92C95300C9134D /* View */,
 				064245BC2C92C7D400C9134D /* MainView.swift */,
 				067030DB2C9E89CE00190C92 /* MainVM.swift */,
-				067D49592C935D1400C72463 /* TextView.swift */,
+				067030EC2CA2969C00190C92 /* DetailPerformance */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -221,6 +238,7 @@
 				067030D22C9C4BD900190C92 /* FrameExtenstion.swift */,
 				064245D32C92D01100C9134D /* Color+.swift */,
 				064862AE2C959C68003B544E /* Image+.swift */,
+				067030ED2CA2A17D00190C92 /* Font+.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -285,6 +303,14 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		067030EC2CA2969C00190C92 /* DetailPerformance */ = {
+			isa = PBXGroup;
+			children = (
+				067030EA2CA2968E00190C92 /* DetailPerformanceView.swift */,
+			);
+			path = DetailPerformance;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -295,6 +321,7 @@
 				064245A42C92C7B000C9134D /* Sources */,
 				064245A52C92C7B000C9134D /* Frameworks */,
 				064245A62C92C7B000C9134D /* Resources */,
+				067030E92CA25E3400190C92 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -366,16 +393,17 @@
 			files = (
 				067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */,
 				067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */,
+				067030EB2CA2968E00190C92 /* DetailPerformanceView.swift in Sources */,
 				064245C22C92C86F00C9134D /* ButtonWrapper.swift in Sources */,
 				067030D52C9C508000190C92 /* FacilityDTO.swift in Sources */,
 				064862B12C95F461003B544E /* APIKey.swift in Sources */,
+				067030EE2CA2A17D00190C92 /* Font+.swift in Sources */,
 				067030DC2C9E89CE00190C92 /* MainVM.swift in Sources */,
 				064862A42C9562A8003B544E /* TicketStorageView.swift in Sources */,
 				067030E02CA01B1100190C92 /* TicketModel.swift in Sources */,
 				067030CF2C9C3B3D00190C92 /* GenreType.swift in Sources */,
 				064862A72C9581DC003B544E /* PerformancePicker.swift in Sources */,
 				067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */,
-				067D495A2C935D1400C72463 /* TextView.swift in Sources */,
 				067030CA2C9C0CC100190C92 /* PerformanceDTO.swift in Sources */,
 				0648629D2C9446A0003B544E /* TabBarView.swift in Sources */,
 				064245D42C92D01100C9134D /* Color+.swift in Sources */,
@@ -530,6 +558,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = musicalRecordProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "내안의연극";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -567,6 +596,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = musicalRecordProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "내안의연극";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

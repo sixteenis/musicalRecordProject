@@ -15,8 +15,8 @@ enum PerformancePicker: CaseIterable {
     var title: String {
         switch self {
         case .all: "통합"
-        case .play: "연극"
-        case .musical: "뮤지컬"
+        case .play: "예정"
+        case .musical: "완료"
             
         }
     }
