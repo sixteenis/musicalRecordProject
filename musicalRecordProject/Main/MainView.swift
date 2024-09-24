@@ -21,6 +21,9 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     SelectListView(selected: $vm.output.showType)
+                        .onChange(of: vm.output.showType) { newType in
+                            vm.input.showTypeSet.send(newType)
+                        }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Image.search
@@ -155,6 +158,7 @@ private extension MainView {
             }
         }
         .frame(height: height)
+        .background(Color.asBackground)
         
     }
     // MARK: - 선택한 경우 뷰
@@ -182,7 +186,13 @@ private extension MainView {
                             .font(.asSubFont)
                         Spacer()
                             .frame(height: 30)
-                        Text("배우들 : \(data.detail.limitAge)")
+                        Text(data.detail.limitAge)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                        Text(data.detail.runtime)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                        Text(data.detail.actors)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                        
         
                         Spacer()
 //                        struct DetailPerformance {

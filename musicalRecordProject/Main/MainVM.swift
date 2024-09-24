@@ -29,21 +29,24 @@ final class MainVM: ViewModeltype {
         transform()
     }
     func transform() {
-        input.viewOnTask
+        input.viewOnTask // 뷰가 뜰때
             .sink { [weak self] _ in
                 guard let self else { return }
                 self.viewOnTask()
             }.store(in: &cancellables)
-        input.dateSet
+        input.dateSet //날짜 변경
             .sink { [weak self] date in
                 guard let self else { return }
                 self.output.setDate = date
+                self.seleectDateOrType()
             }.store(in: &cancellables)
-        input.showTypeSet
+        input.showTypeSet //타입 변경
             .sink { [weak self] type in
                 guard let self else { return }
                 self.output.showType = type
+                self.seleectDateOrType()
             }.store(in: &cancellables)
+        
         input.selectCell
             .sink { [weak self] id in
                 guard let self else { return }
@@ -54,7 +57,7 @@ final class MainVM: ViewModeltype {
     
     
 }
-// MARK: - 뷰가 뜰 때
+// MARK: - 새로운 리스트로 데이터 세팅
 private extension MainVM {
     func viewOnTask() {
         if output.showDatas.isEmpty {
@@ -63,6 +66,12 @@ private extension MainVM {
             }
         }
     }
+    func seleectDateOrType() {
+        Task {
+            await self.updatePerformanceList()
+        }
+    }
+    
 }
 private extension MainVM {
     // MARK: - 공연 데이터 초기화 시켜주는 함수
@@ -76,7 +85,9 @@ private extension MainVM {
              let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, page: "1").map {$0.transformperformanceModel()}
             DispatchQueue.main.async {
                 self.output.showDatas = data
-                self.checkDetailPerformancData(id: self.output.showDatas[0].id)
+                if !self.output.showDatas.isEmpty {
+                    self.checkDetailPerformancData(id: self.output.showDatas[0].id)
+                }
             }
             
         } catch {
@@ -98,9 +109,7 @@ private extension MainVM {
     }
     // MARK: - 디테일 데이터 없을 경우 네트워킹하기
     func updateDetailPerformanc(_ model: PerformanceModel) async {
-        print("통신 해야됨...")
         do {
-            print(model.simple.playId)
             let data = try await NetworkManager.shared.requestDetailPerformance(performanceId: model.simple.playId).transformDetailModel()
             if let index = self.output.showDatas.firstIndex(where: {$0.id == model.id}) {
                 DispatchQueue.main.async {
