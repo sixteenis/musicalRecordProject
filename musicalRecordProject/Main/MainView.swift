@@ -17,7 +17,6 @@ struct MainView: View {
             VStack(spacing: 10) {
                 cellList()
             } //:VSTACK
-            
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     SelectListView(selected: $vm.output.showType)
@@ -26,12 +25,28 @@ struct MainView: View {
                         }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Image.search
+                    Button {
+                        vm.input.searchTypeTap.send(!vm.output.searchType)
+                    } label: {
+                        if vm.output.searchType {
+                            Image.calendarImage
+                                .foregroundColor(.asBlack)
+                        } else {
+                            Image.search
+                                .foregroundColor(.asBlack)
+                        }
+                    }
+                    
+                        
                 }
                 ToolbarItem(placement: .principal) {
                     // 캘린더가 보이지 않으면 네비게이션에 표시
                     if !isCalendarVisible {
-                        Text(vm.output.setDate.formatted())
+                        if vm.output.searchType {
+                            Text(vm.output.searchText)
+                        } else {
+                            Text(vm.output.setDate.formatted())
+                        }
                     }
                 }
             }
@@ -51,7 +66,10 @@ private extension MainView {
     //캘린더 스크롤 로직
     func calendarViewWithGeometry() -> some View {
         GeometryReader { geo in
-            HorizontalCalendarView(selectedDate: $vm.output.setDate)
+            HorizontalCalendarView(selectedDate: $vm.output.setDate, showSearch: $vm.output.searchType, searchText: $vm.output.searchText)
+                .onSubmit {
+                    vm.input.searchTextTap.send(vm.output.searchText)
+                }
                 .onChange(of: vm.output.setDate) { newDate in
                     vm.input.dateSet.send(newDate)
                 }
@@ -76,6 +94,8 @@ private extension MainView {
             ScrollView {
                 LazyVStack(spacing: 0) {
                     calendarViewWithGeometry()
+                    Spacer()
+                        .frame(height: 10)
                     ForEach(vm.output.showDatas, id: \.id) { data in
                         cell(for: data, width: geo.size.width, height: geo.size.height)
                             .id(data.id)
@@ -96,14 +116,25 @@ private extension MainView {
                 Spacer()
                     .frame(height: height * 0.024)
                 Circle()
-                    .fill(vm.output.selectCellId == data.id ? .purple : .black)
                     .frame(width: 15)
-                Spacer()
-                    .frame(height: 6)
-                Rectangle()
-                    .fill(.black)
-                    .frame(width: 2)
-                    .frame(maxHeight: .infinity)
+                    .foregroundColor(vm.output.selectCellId == data.id ? Color.asMainColor : Color.asBackground) // 내부 색상
+                    .overlay(
+                        Circle()
+                            .stroke(Color.asMainColor, lineWidth: 2) // 테두리 색상
+                    )
+                
+                
+                // MARK: - 마지막 셀에 선을 안주는게 이쁠까??????? 고민해보고 수정 바람
+                if let lastData = vm.output.showDatas.last, lastData.id != data.id {
+                    Spacer()
+                        .frame(height: 6)
+                    Rectangle()
+                        .fill(Color.asMainColor)
+                        .frame(width: 2)
+                        .frame(maxHeight: .infinity)
+                } else {
+                    Spacer()
+                }
             }
             if vm.output.selectCellId == data.id{
                 detailView(data: data, height: height * 0.45)
@@ -119,7 +150,7 @@ private extension MainView {
             
             
         }
-//        .frame(height: vm.output.selectCellId == data.id ? height * 0.45 : height * 0.25)
+        //        .frame(height: vm.output.selectCellId == data.id ? height * 0.45 : height * 0.25)
         .padding(.horizontal, 10)
         //.padding(.bottom, 5)
         .animation(.easeInOut, value: vm.output.selectCellId) // 애니메이션 추가
@@ -193,14 +224,14 @@ private extension MainView {
                         Text(data.detail.actors)
                             .frame(maxWidth: .infinity,alignment: .leading)
                         
-        
+                        
                         Spacer()
-//                        struct DetailPerformance {
-//                            var placeId: String = ""
-//                            var actors: String = ""
-//                            var runtime: String = ""
-//                            var limitAge: String = ""
-//                        }
+                        //                        struct DetailPerformance {
+                        //                            var placeId: String = ""
+                        //                            var actors: String = ""
+                        //                            var runtime: String = ""
+                        //                            var limitAge: String = ""
+                        //                        }
                     }
                     .padding(.leading)
                     VStack(spacing: 0) {
@@ -241,7 +272,7 @@ private extension MainView {
             Text("자세히 보기 >")
                 .font(.asMainFont)
                 .foregroundColor(.asBoardInFont)
-                
+            
         }
         
         
@@ -275,39 +306,3 @@ struct DetailButton: View {
     }
 }
 
-//        ZStack {
-//            RoundedRectangle(cornerRadius: 30)
-//                .fill(Color.asMainColor)
-//                .opacity(0.5)
-//            //                .overlay(
-//            HStack {
-//                VStack {
-//                    Text("3/17(수) ~ 03/28(일)")
-//                        .frame(maxWidth: .infinity,alignment: .leading)
-//                        .font(.subheadline)
-//                        .foregroundColor(Color.asSubFont)
-//                        .padding([.bottom,.top], 10)
-//                    Text("너와 함께한 시간 속에서")
-//                        .bold()
-//                        .frame(maxWidth: .infinity,alignment: .leading)
-//                        .font(.body)
-//                    Text("냠냠asdasd냠")
-//                        .frame(maxWidth: .infinity,alignment: .leading)
-//                    Spacer()
-//                }
-//                .padding(.leading)
-//                VStack {
-//                    Image(systemName: "star")
-//                        .resizable()
-//                        .frame(width: 100,height: 100, alignment: .top)
-//                        .background(Color.blue)
-//                        .padding([.top,.trailing], 15)
-//                    Spacer()
-//                }
-//
-//            }
-//
-//
-//            //  )
-//
-//        } //:ZSTACK

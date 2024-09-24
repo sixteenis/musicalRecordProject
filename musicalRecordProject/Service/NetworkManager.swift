@@ -11,7 +11,7 @@ final class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     // MARK: - 여러개의 공연 데이터 통신
-    func requestPerformance(date: String, genreType: Genre, page: String) async throws -> [PerformanceDTO]{
+    func requestPerformance(date: String, genreType: Genre, title: String, page: String) async throws -> [PerformanceDTO]{
         let urlString = APIKey.performanceURL
         var urlComponents = URLComponents(string: urlString)
         urlComponents?.queryItems = [
@@ -21,6 +21,8 @@ final class NetworkManager {
             URLQueryItem(name: "cpage", value: page),
             URLQueryItem(name: "rows", value: "10"),
             URLQueryItem(name: "shcate", value: genreType.codeString),
+            URLQueryItem(name: "shprfnm", value: title),
+            
         ]
         guard let url = urlComponents?.url else { throw PerformanceError.invalidURL }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5)

@@ -13,4 +13,5 @@ extension Image {
     static let xMark = Image(systemName: "xmark")
     
     static let postPlaceholder = Image(systemName: "star")
+    static let calendarImage = Image(systemName: "calendar")
 }

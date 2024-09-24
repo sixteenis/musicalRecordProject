@@ -9,11 +9,17 @@ import SwiftUI
 
 struct HorizontalCalendarView: View {
     @Binding var selectedDate: Date
+    @Binding var showSearch: Bool
+    @Binding var searchText: String
     private let calendar = Calendar.current
     var body: some View {
         ZStack {
             VStack(alignment: .center, spacing: 10) {
-                monthView
+                if showSearch {
+                    searchView()
+                } else {
+                    monthView
+                }
                 Rectangle()
                     .fill(Color.background)
                     .clipShape(
@@ -39,6 +45,28 @@ struct HorizontalCalendarView: View {
         }
         .background(Color.asBackground)
     }
+    private func searchView() -> some View {
+        VStack(spacing: 0) {
+            ZStack(alignment: .trailing) { // TextField 안에 X 버튼 배치
+                TextField("공연 제목을 입력해 주세요.", text: $searchText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal, 20)
+                
+                // X 버튼을 TextField 안에 위치
+                if !searchText.isEmpty {
+                    Button(action: {
+                        searchText = "" // 버튼을 눌렀을 때 텍스트 초기화
+                    }) {
+                        Image.xMark
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.trailing, 30) // 버튼의 위치 조정 (TextField 안에서 오른쪽 여백)
+                }
+            }
+            .padding(.horizontal, 20) // 전체적으로 양쪽에 여백 추가
+        }
+    }
+    
     private var monthView: some View {
         HStack(spacing: 10) {
             Button(

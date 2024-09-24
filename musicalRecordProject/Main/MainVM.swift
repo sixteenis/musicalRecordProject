@@ -18,12 +18,18 @@ final class MainVM: ViewModeltype {
         let dateSet = CurrentValueSubject<Date, Never>(Date()) //날짜 선택
         let showTypeSet = CurrentValueSubject<Genre, Never>(.play) // 공연 타입 선택
         let selectCell = CurrentValueSubject<UUID, Never>(UUID()) // 셀 클릭 시
+        
+        let searchTextTap = CurrentValueSubject<String, Never>("") // 키보드 텍스트 값
+        let searchTypeTap = CurrentValueSubject<Bool, Never>(false)
+        
     }
     struct Output {
         var setDate = Date() //날짜 세팅
         var showType = Genre.play // 공연 타입 세팅
         var selectCellId: UUID = UUID() // 현재 선택한 셀
         var showDatas = [PerformanceModel]() // 현재 공연 데이터들
+        var searchText = ""
+        var searchType = false
     }
     init() {
         transform()
@@ -51,6 +57,23 @@ final class MainVM: ViewModeltype {
             .sink { [weak self] id in
                 guard let self else { return }
                 checkDetailPerformancData(id: id)
+            }.store(in: &cancellables)
+        
+        //서치바 리턴 할 경우
+        input.searchTextTap
+            //.debounce(for: .seconds(1), scheduler: RunLoop.main) //실시간 검색어 감지할 경우 이거 키자~
+            .sink { [weak self] text in
+                guard let self else { return }
+                print(text)
+            }.store(in: &cancellables)
+        //검색 타입 선택 시
+        input.searchTypeTap
+            .sink { [weak self] type in
+                guard let self else { return }
+                self.output.searchType = type
+                if type {
+                    self.output.searchText = ""
+                }
             }.store(in: &cancellables)
         
     }
@@ -82,7 +105,7 @@ private extension MainVM {
         do {
             // MARK: - page 변경해서 페이지네이션 기능 구현해줘야됨!
             
-             let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, page: "1").map {$0.transformperformanceModel()}
+            let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: "", page: "1").map {$0.transformperformanceModel()}
             DispatchQueue.main.async {
                 self.output.showDatas = data
                 if !self.output.showDatas.isEmpty {
