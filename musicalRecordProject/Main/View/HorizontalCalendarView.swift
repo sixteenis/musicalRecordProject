@@ -17,8 +17,10 @@ struct HorizontalCalendarView: View {
             VStack(alignment: .center, spacing: 10) {
                 if showSearch {
                     searchView()
+                        .frame(height: 30)
                 } else {
                     monthView
+                        .frame(height: 30)
                 }
                 Rectangle()
                     .fill(Color.background)
@@ -47,6 +49,8 @@ struct HorizontalCalendarView: View {
     }
     private func searchView() -> some View {
         VStack(spacing: 0) {
+            Spacer()
+                .frame(height: 5)
             ZStack(alignment: .trailing) { // TextField 안에 X 버튼 배치
                 TextField("공연 제목을 입력해 주세요.", text: $searchText)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -59,6 +63,7 @@ struct HorizontalCalendarView: View {
                     }) {
                         Image.xMark
                             .foregroundColor(.gray)
+                            .frame(width: 25, height: 25)
                     }
                     .padding(.trailing, 30) // 버튼의 위치 조정 (TextField 안에서 오른쪽 여백)
                 }

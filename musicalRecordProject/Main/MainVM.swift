@@ -64,15 +64,19 @@ final class MainVM: ViewModeltype {
             //.debounce(for: .seconds(1), scheduler: RunLoop.main) //실시간 검색어 감지할 경우 이거 키자~
             .sink { [weak self] text in
                 guard let self else { return }
-                print(text)
+                self.output.searchText = text
+                self.seleectDateOrType()
             }.store(in: &cancellables)
         //검색 타입 선택 시
         input.searchTypeTap
             .sink { [weak self] type in
                 guard let self else { return }
                 self.output.searchType = type
-                if type {
+                if !type { // 날짜로 보기 선택 시 텍스트 초기화
                     self.output.searchText = ""
+                    self.seleectDateOrType()
+                } else {
+                    self.output.showDatas = [PerformanceModel]()
                 }
             }.store(in: &cancellables)
         
@@ -105,7 +109,7 @@ private extension MainVM {
         do {
             // MARK: - page 변경해서 페이지네이션 기능 구현해줘야됨!
             
-            let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: "", page: "1").map {$0.transformperformanceModel()}
+            let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: output.searchText, page: "1").map {$0.transformperformanceModel()}
             DispatchQueue.main.async {
                 self.output.showDatas = data
                 if !self.output.showDatas.isEmpty {

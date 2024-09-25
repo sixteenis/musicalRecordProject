@@ -7,7 +7,8 @@
 
 import SwiftUI
 import Kingfisher
-
+// TODO: 키보드 올라올 시 셀드의 사이즈가 줄어드는거 크기 픽스로 변경하기
+// TODO: 포스터 이미지 사이즈 변경하기
 struct MainView: View {
     @State private var isCalendarVisible: Bool = true
     @StateObject private var vm = MainVM()
@@ -26,18 +27,24 @@ struct MainView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        vm.input.searchTypeTap.send(!vm.output.searchType)
+                        if isCalendarVisible {
+                            vm.input.searchTypeTap.send(!vm.output.searchType)
+                        }
                     } label: {
+                        
                         if vm.output.searchType {
                             Image.calendarImage
                                 .foregroundColor(.asBlack)
+                                .opacity(isCalendarVisible ? 1 : 0)
                         } else {
                             Image.search
                                 .foregroundColor(.asBlack)
+                                .opacity(isCalendarVisible ? 1 : 0)
                         }
+                        
                     }
                     
-                        
+                    
                 }
                 ToolbarItem(placement: .principal) {
                     // 캘린더가 보이지 않으면 네비게이션에 표시
@@ -45,7 +52,7 @@ struct MainView: View {
                         if vm.output.searchType {
                             Text(vm.output.searchText)
                         } else {
-                            Text(vm.output.setDate.formatted())
+                            Text(setDateString(date: vm.output.setDate))
                         }
                     }
                 }
@@ -63,6 +70,12 @@ struct MainView: View {
 }
 
 private extension MainView {
+    func setDateString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 M월"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
     //캘린더 스크롤 로직
     func calendarViewWithGeometry() -> some View {
         GeometryReader { geo in
@@ -90,24 +103,24 @@ private extension MainView {
         .frame(height: 100) // CalendarView 높이를 고정 (적절한 높이로 설정)
     }
     func cellList() -> some View {
-        GeometryReader { geo in
-            ScrollView {
-                LazyVStack(spacing: 0) {
-                    calendarViewWithGeometry()
-                    Spacer()
-                        .frame(height: 10)
-                    ForEach(vm.output.showDatas, id: \.id) { data in
-                        cell(for: data, width: geo.size.width, height: geo.size.height)
-                            .id(data.id)
-                            .onTapGesture {
-                                withAnimation {
-                                    vm.input.selectCell.send(data.id)
-                                }
+        
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                calendarViewWithGeometry()
+                Spacer()
+                    .frame(height: 15)
+                ForEach(vm.output.showDatas, id: \.id) { data in
+                    cell(for: data, width: CGFloat.infinity, height: 700)
+                        .id(data.id)
+                        .onTapGesture {
+                            withAnimation {
+                                vm.input.selectCell.send(data.id)
                             }
-                    }
-                }  //:VSTACK
-            }  //:SCROLL
-        }
+                        }
+                }
+            }  //:VSTACK
+        }  //:SCROLL
+        
         
     }
     func cell(for data: PerformanceModel, width: CGFloat, height: CGFloat) -> some View {
@@ -182,7 +195,7 @@ private extension MainView {
                         Image.postPlaceholder
                     }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                     .resizable()
-                    .frame(width: height * 0.65,height: height * 0.85, alignment: .top)
+                    .frame(width: height * 0.3 * 2,height: height * 0.3 * 3, alignment: .top)
                     .padding(.top, 30)
                     .padding(.trailing)
                 Spacer()
@@ -226,12 +239,6 @@ private extension MainView {
                         
                         
                         Spacer()
-                        //                        struct DetailPerformance {
-                        //                            var placeId: String = ""
-                        //                            var actors: String = ""
-                        //                            var runtime: String = ""
-                        //                            var limitAge: String = ""
-                        //                        }
                     }
                     .padding(.leading)
                     VStack(spacing: 0) {
@@ -244,7 +251,7 @@ private extension MainView {
                                 Image.postPlaceholder
                             }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                             .resizable()
-                            .frame(width: height * 0.4,height: height * 0.65, alignment: .top)
+                            .frame(width: height * 0.22 * 2,height: height * 0.22 * 3, alignment: .top)
                             .background(Color.blue)
                             .padding(.trailing)
                         Spacer()
