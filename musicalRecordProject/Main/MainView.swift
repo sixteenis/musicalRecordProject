@@ -7,8 +7,8 @@
 
 import SwiftUI
 import Kingfisher
-// TODO: 키보드 올라올 시 셀드의 사이즈가 줄어드는거 크기 픽스로 변경하기
-// TODO: 포스터 이미지 사이즈 변경하기
+// TODO: 연극이나 뮤지컬 클릭 시 스크롤 탑으로 해주기!
+
 struct MainView: View {
     @State private var isCalendarVisible: Bool = true
     @StateObject private var vm = MainVM()
@@ -20,10 +20,14 @@ struct MainView: View {
             } //:VSTACK
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    SelectListView(selected: $vm.output.showType)
-                        .onChange(of: vm.output.showType) { newType in
-                            vm.input.showTypeSet.send(newType)
-                        }
+                    if isCalendarVisible {
+                        SelectListView(selected: $vm.output.showType)
+                            .onChange(of: vm.output.showType) { newType in
+                                vm.input.showTypeSet.send(newType)
+                            }
+                    } else {
+                        EmptyView()
+                    }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {

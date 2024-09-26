@@ -14,4 +14,7 @@ extension Image {
     
     static let postPlaceholder = Image(systemName: "star")
     static let calendarImage = Image(systemName: "calendar")
+    static let exPost = Image("testImage")
+    static let downImage = Image(systemName: "chevron.down")
+    static let upImage = Image(systemName: "chevron.up")
 }

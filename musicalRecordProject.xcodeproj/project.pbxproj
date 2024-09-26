@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06347FDC2CA411FE0057001B /* HeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06347FDB2CA411FE0057001B /* HeaderType.swift */; };
+		06347FDE2CA432D30057001B /* ShowPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06347FDD2CA432D30057001B /* ShowPerformanceModel.swift */; };
+		06347FE02CA4EA270057001B /* DetailPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06347FDF2CA4EA270057001B /* DetailPerformanceView.swift */; };
 		064245AC2C92C7B000C9134D /* musicalRecordProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064245AB2C92C7B000C9134D /* musicalRecordProjectApp.swift */; };
 		064245B02C92C7B200C9134D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 064245AF2C92C7B200C9134D /* Assets.xcassets */; };
 		064245B32C92C7B200C9134D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 064245B22C92C7B200C9134D /* Preview Assets.xcassets */; };
@@ -41,7 +44,7 @@
 		067030E42CA12B2800190C92 /* PerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030E32CA12B2800190C92 /* PerformanceModel.swift */; };
 		067030E72CA1606000190C92 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 067030E62CA1606000190C92 /* Kingfisher */; };
 		067030E82CA25E3400190C92 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 067030D72C9E89AE00190C92 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		067030EB2CA2968E00190C92 /* DetailPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030EA2CA2968E00190C92 /* DetailPerformanceView.swift */; };
+		067030EB2CA2968E00190C92 /* EXDetailPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030EA2CA2968E00190C92 /* EXDetailPerformanceView.swift */; };
 		067030EE2CA2A17D00190C92 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030ED2CA2A17D00190C92 /* Font+.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +63,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06347FDB2CA411FE0057001B /* HeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderType.swift; sourceTree = "<group>"; };
+		06347FDD2CA432D30057001B /* ShowPerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPerformanceModel.swift; sourceTree = "<group>"; };
+		06347FDF2CA4EA270057001B /* DetailPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPerformanceView.swift; sourceTree = "<group>"; };
 		064245A82C92C7B000C9134D /* musicalRecordProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musicalRecordProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		064245AB2C92C7B000C9134D /* musicalRecordProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musicalRecordProjectApp.swift; sourceTree = "<group>"; };
 		064245AF2C92C7B200C9134D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,7 +99,7 @@
 		067030DD2CA019A300190C92 /* TicketStorageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStorageVM.swift; sourceTree = "<group>"; };
 		067030DF2CA01B1100190C92 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		067030E32CA12B2800190C92 /* PerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceModel.swift; sourceTree = "<group>"; };
-		067030EA2CA2968E00190C92 /* DetailPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPerformanceView.swift; sourceTree = "<group>"; };
+		067030EA2CA2968E00190C92 /* EXDetailPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXDetailPerformanceView.swift; sourceTree = "<group>"; };
 		067030ED2CA2A17D00190C92 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +116,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06347FDA2CA411F00057001B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06347FDB2CA411FE0057001B /* HeaderType.swift */,
+				06347FDD2CA432D30057001B /* ShowPerformanceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0642459F2C92C7B000C9134D = {
 			isa = PBXGroup;
 			children = (
@@ -141,8 +156,9 @@
 				064862942C944656003B544E /* Setting */,
 				064245BA2C92C7C500C9134D /* Ticket */,
 				064245B92C92C7BF00C9134D /* Main */,
-				064245AF2C92C7B200C9134D /* Assets.xcassets */,
+				067030EC2CA2969C00190C92 /* DetailPerformance */,
 				067030CB2C9C140C00190C92 /* Info.plist */,
+				064245AF2C92C7B200C9134D /* Assets.xcassets */,
 				064245B12C92C7B200C9134D /* Preview Content */,
 			);
 			path = musicalRecordProject;
@@ -163,7 +179,6 @@
 				064245C82C92C95300C9134D /* View */,
 				064245BC2C92C7D400C9134D /* MainView.swift */,
 				067030DB2C9E89CE00190C92 /* MainVM.swift */,
-				067030EC2CA2969C00190C92 /* DetailPerformance */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -306,7 +321,9 @@
 		067030EC2CA2969C00190C92 /* DetailPerformance */ = {
 			isa = PBXGroup;
 			children = (
-				067030EA2CA2968E00190C92 /* DetailPerformanceView.swift */,
+				06347FDA2CA411F00057001B /* Model */,
+				067030EA2CA2968E00190C92 /* EXDetailPerformanceView.swift */,
+				06347FDF2CA4EA270057001B /* DetailPerformanceView.swift */,
 			);
 			path = DetailPerformance;
 			sourceTree = "<group>";
@@ -393,7 +410,7 @@
 			files = (
 				067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */,
 				067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */,
-				067030EB2CA2968E00190C92 /* DetailPerformanceView.swift in Sources */,
+				067030EB2CA2968E00190C92 /* EXDetailPerformanceView.swift in Sources */,
 				064245C22C92C86F00C9134D /* ButtonWrapper.swift in Sources */,
 				067030D52C9C508000190C92 /* FacilityDTO.swift in Sources */,
 				064862B12C95F461003B544E /* APIKey.swift in Sources */,
@@ -408,6 +425,7 @@
 				0648629D2C9446A0003B544E /* TabBarView.swift in Sources */,
 				064245D42C92D01100C9134D /* Color+.swift in Sources */,
 				064245C62C92C87900C9134D /* PrimaryText.swift in Sources */,
+				06347FDC2CA411FE0057001B /* HeaderType.swift in Sources */,
 				064245CD2C92CAD100C9134D /* ViewModeltype.swift in Sources */,
 				064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */,
 				064862962C944671003B544E /* TicketView.swift in Sources */,
@@ -415,6 +433,8 @@
 				064862982C944677003B544E /* SettingView.swift in Sources */,
 				067030D32C9C4BD900190C92 /* FrameExtenstion.swift in Sources */,
 				064862AF2C959C68003B544E /* Image+.swift in Sources */,
+				06347FDE2CA432D30057001B /* ShowPerformanceModel.swift in Sources */,
+				06347FE02CA4EA270057001B /* DetailPerformanceView.swift in Sources */,
 				064245D12C92CDEB00C9134D /* SelectGenreView.swift in Sources */,
 				067030E42CA12B2800190C92 /* PerformanceModel.swift in Sources */,
 				064245AC2C92C7B000C9134D /* musicalRecordProjectApp.swift in Sources */,
@@ -565,7 +585,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -603,7 +623,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
