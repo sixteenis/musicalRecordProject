@@ -24,14 +24,14 @@ struct DetailPerformanceView: View {
         }
         .navigationTitle("냠")
         .navigationBarTitleDisplayMode(.inline)
-        //.navigationBarBackButtonHidden(true)
-        
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     print("누름")
                 } label: {
-                   Text("기록")
+                    Image.ticketPlus
+                        .resizable()
+                        .frame(width: 40, height: 40)
                 }
             }
         }
@@ -127,7 +127,7 @@ private extension DetailPerformanceView {
                         .font(.boldFont15)
                 }
             }
-                
+            
         }
     }
     func detailActorsInfor() -> some View {
@@ -149,7 +149,7 @@ private extension DetailPerformanceView {
                 .font(.title3)
                 .bold()
             Text("머머머 어쩌구 저쩌구")
-                
+            
         }
     }
 }
@@ -258,6 +258,6 @@ private extension DetailPerformanceView {
 //                    }
 //                }
 //        }
-//        
+//
 //    }
 //}

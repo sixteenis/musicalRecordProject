@@ -17,4 +17,5 @@ extension Image {
     static let exPost = Image("testImage")
     static let downImage = Image(systemName: "chevron.down")
     static let upImage = Image(systemName: "chevron.up")
+    static let ticketPlus = Image("ticketPlus")
 }
