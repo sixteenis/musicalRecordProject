@@ -24,7 +24,7 @@ struct DetailPerformanceView: View {
         }
         .navigationTitle("냠")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+        //.navigationBarBackButtonHidden(true)
         
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -45,8 +45,7 @@ private extension DetailPerformanceView {
     func postInfo() -> some View {
         VStack(alignment: .leading) {
             Text("작품정보")
-                .font(.title2)
-                .bold()
+                .font(.boldFont18)
             performancInfo()
         }
         .padding(.horizontal)
@@ -55,33 +54,37 @@ private extension DetailPerformanceView {
     func performancInfo() -> some View {
         HStack() {
             VStack(alignment: .leading) {
-                Text("공연기간")
-                    .asForeground(Color.asGrayFont)
-                Text("2024.07.12~2024.10.13")
-                Spacer()
-                    .frame(height: 20)
-                Text("공연장소")
-                    .asForeground(Color.asGrayFont)
-                Text("충무아트센터 대극장")
+                performancInfoText(main: "공연기간", content: "2024.07.13 ~ 08.15")
+                performancInfoText(main: "공연장소", content: "충무아트센터 대극장")
             }
             Spacer()
                 .frame(width: 10)
             Rectangle()
-                .frame(width: 1)
+                .frame(width: 1, height: 100)
             Spacer()
                 .frame(width: 20)
             VStack(alignment: .leading) {
-                Text("관람 연령")
-                    .asForeground(Color.asGrayFont)
-                Text("12세 이상")
-                Spacer()
-                    .frame(height: 20)
-                Text("러닝 타임")
-                    .asForeground(Color.asGrayFont)
-                Text("120분")
+                performancInfoText(main: "관람 연령", content: "12세 이상")
+                performancInfoText(main: "러닝 타임", content: "120분")
             }
+            
         } //:HSTACK
         
+        
+    }
+    func performancInfoText(main: String, content: String) -> some View {
+        VStack(alignment: .leading) {
+            Text(main)
+                .asForeground(Color.asGrayFont)
+                .font(.font16)
+            Spacer()
+                .frame(height: 10)
+            Text(content)
+                .font(.boldFont14)
+            Spacer()
+                .frame(height: 20)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
 }
@@ -89,8 +92,7 @@ private extension DetailPerformanceView {
     func actorInfo() -> some View {
         VStack(alignment: .leading) {
             Text("배우,제작진 정보")
-                .font(.title2)
-                .bold()
+                .font(.boldFont18)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
                 .frame(height: 10)
@@ -110,17 +112,19 @@ private extension DetailPerformanceView {
     func simpleActorsInfor() -> some View {
         VStack(alignment: .leading) {
             Text("배우")
-                .font(.title3)
-                .bold()
+                .font(.font16)
             HStack {
                 Text("박성민, 임수민, 냠냠이, 킁킁ㅁ;ㅣㄴ아리ㅏㅁ넝리ㅏ먼이ㅏ럼ㄴ아ㅣ러이")
                     .lineLimit(1)
+                    .font(.font14)
                 Spacer()
                 Button {
                     // Action
                     showDetail.toggle()
                 } label: {
                     Text("더보기")
+                        .asForeground(.font)
+                        .font(.boldFont15)
                 }
             }
                 
@@ -129,8 +133,7 @@ private extension DetailPerformanceView {
     func detailActorsInfor() -> some View {
         VStack(alignment: .leading) {
             Text("배우")
-                .font(.title3)
-                .bold()
+                .font(.font16)
             Text("박성민, 임수민, 냠냠이, 킁킁ㅁ;ㅣㄴ아리ㅏㅁ넝리ㅏ먼이ㅏ럼ㄴ아ㅣ러이")
             Spacer()
                 .frame(height: 10)
@@ -154,17 +157,14 @@ private extension DetailPerformanceView {
     func ticketInfo() -> some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("티켓 정보")
-                .font(.title2)
-                .bold()
+                .font(.boldFont18)
             Text("판매처")
-                .font(.title3)
-                .bold()
+                .font(.font16)
             Image(systemName: "star")
             Text("티켓 금액")
-                .font(.title3)
-                .bold()
+                .font(.font16)
             Text("1000억원")
-                .font(.title)
+                .font(.font14)
         }
         .padding(.horizontal)
         .frame(width: UIScreen.main.bounds.width, alignment: .leading)
