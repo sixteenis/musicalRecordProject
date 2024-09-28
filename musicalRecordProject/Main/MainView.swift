@@ -11,6 +11,7 @@ import Kingfisher
 
 struct MainView: View {
     @State private var isCalendarVisible: Bool = true
+    @State var tabBarVisibility: Visibility = .visible
     @StateObject private var vm = MainVM()
     
     var body: some View {
@@ -279,41 +280,42 @@ private extension MainView {
         .padding(.leading)
     }
     func detailButton() -> some View {
-        NavigationLink(destination: DetailPerformanceView()) {
+        NavigationLink(destination: DetailPerformanceView(tab: self)) {
             Text("자세히 보기 >")
                 .font(.asMainFont)
                 .foregroundColor(.asBoardInFont)
             
         }
+        .toolbar(tabBarVisibility, for: .tabBar)
         
         
     }
 }
 
-struct DetailButton: View {
-    var body: some View {
-        Button(action: {
-            // 여기에 디테일 뷰로 push하는 로직을 추가합니다.
-        }) {
-            HStack {
-                Text("자세히 보기")
-                    .foregroundColor(Color.purple)
-                Image(systemName: "chevron.right")
-                    .foregroundColor(Color.purple)
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 12)
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.purple, lineWidth: 1)
-            )
-            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
-        }
-        .padding(.horizontal, 20)
-        .padding(.bottom, 20)
-    }
-}
-
+//struct DetailButton: View {
+//    var body: some View {
+//        Button(action: {
+//            // 여기에 디테일 뷰로 push하는 로직을 추가합니다.
+//        }) {
+//            HStack {
+//                Text("자세히 보기")
+//                    .foregroundColor(Color.purple)
+//                Image(systemName: "chevron.right")
+//                    .foregroundColor(Color.purple)
+//            }
+//            .padding(.horizontal, 20)
+//            .padding(.vertical, 12)
+//            .frame(maxWidth: .infinity)
+//            .background(Color.white)
+//            .cornerRadius(10)
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 10)
+//                    .stroke(Color.purple, lineWidth: 1)
+//            )
+//            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+//        }
+//        .padding(.horizontal, 20)
+//        .padding(.bottom, 20)
+//    }
+//}
+//

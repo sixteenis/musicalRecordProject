@@ -14,6 +14,7 @@ struct TabBarView: View {
                 .tabItem {
                     Image(systemName: "star")
                 }
+                
             TicketStorageView()
                 .tabItem {
                     Image(systemName: "heart")

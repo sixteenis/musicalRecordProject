@@ -18,6 +18,7 @@ extension Color {
     static let logoColor = Color.black
     static let asBoardInFont = Color.white
     static let asGrayFont = Color.gray
+    static let grayBackground = Color(UIColor.systemGray6)
 }
 extension Color {
   init(hex: String) {

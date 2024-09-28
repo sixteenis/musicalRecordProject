@@ -46,6 +46,13 @@
 		067030E82CA25E3400190C92 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 067030D72C9E89AE00190C92 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		067030EB2CA2968E00190C92 /* EXDetailPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030EA2CA2968E00190C92 /* EXDetailPerformanceView.swift */; };
 		067030EE2CA2A17D00190C92 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030ED2CA2A17D00190C92 /* Font+.swift */; };
+		0675027C2CA7CCE500FB7DDE /* TicketMakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0675027B2CA7CCE500FB7DDE /* TicketMakeView.swift */; };
+		067502802CA7CDD600FB7DDE /* TabType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0675027F2CA7CDD600FB7DDE /* TabType.swift */; };
+		067502852CA7E47600FB7DDE /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 067502842CA7E47600FB7DDE /* Cosmos */; };
+		067502872CA7E4E100FB7DDE /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067502862CA7E4E100FB7DDE /* RatingView.swift */; };
+		067502892CA7F27500FB7DDE /* TicketState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067502882CA7F27500FB7DDE /* TicketState.swift */; };
+		0675028D2CA80C5800FB7DDE /* CustomTextEditorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */; };
+		0675028F2CA80F3800FB7DDE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0675028E2CA80F3800FB7DDE /* View+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +108,12 @@
 		067030E32CA12B2800190C92 /* PerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceModel.swift; sourceTree = "<group>"; };
 		067030EA2CA2968E00190C92 /* EXDetailPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXDetailPerformanceView.swift; sourceTree = "<group>"; };
 		067030ED2CA2A17D00190C92 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		0675027B2CA7CCE500FB7DDE /* TicketMakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMakeView.swift; sourceTree = "<group>"; };
+		0675027F2CA7CDD600FB7DDE /* TabType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabType.swift; sourceTree = "<group>"; };
+		067502862CA7E4E100FB7DDE /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		067502882CA7F27500FB7DDE /* TicketState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketState.swift; sourceTree = "<group>"; };
+		0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorStyle.swift; sourceTree = "<group>"; };
+		0675028E2CA80F3800FB7DDE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				067502852CA7E47600FB7DDE /* Cosmos in Frameworks */,
 				067030E72CA1606000190C92 /* Kingfisher in Frameworks */,
 				067030D82C9E89AE00190C92 /* RealmSwift in Frameworks */,
 			);
@@ -152,13 +166,13 @@
 				064245C52C92C87900C9134D /* CustomModifier */,
 				064245C12C92C86F00C9134D /* Wrapper */,
 				064862992C94467D003B544E /* TabBar */,
-				064245BE2C92C80100C9134D /* CustomView */,
 				064862942C944656003B544E /* Setting */,
 				064245BA2C92C7C500C9134D /* Ticket */,
 				064245B92C92C7BF00C9134D /* Main */,
 				067030EC2CA2969C00190C92 /* DetailPerformance */,
-				067030CB2C9C140C00190C92 /* Info.plist */,
+				0675027A2CA7CCC700FB7DDE /* TicketMake */,
 				064245AF2C92C7B200C9134D /* Assets.xcassets */,
+				067030CB2C9C140C00190C92 /* Info.plist */,
 				064245B12C92C7B200C9134D /* Preview Content */,
 			);
 			path = musicalRecordProject;
@@ -193,13 +207,6 @@
 				067030DF2CA01B1100190C92 /* TicketModel.swift */,
 			);
 			path = Ticket;
-			sourceTree = "<group>";
-		};
-		064245BE2C92C80100C9134D /* CustomView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CustomView;
 			sourceTree = "<group>";
 		};
 		064245C12C92C86F00C9134D /* Wrapper */ = {
@@ -254,6 +261,7 @@
 				064245D32C92D01100C9134D /* Color+.swift */,
 				064862AE2C959C68003B544E /* Image+.swift */,
 				067030ED2CA2A17D00190C92 /* Font+.swift */,
+				0675028E2CA80F3800FB7DDE /* View+.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -270,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				0648629C2C9446A0003B544E /* TabBarView.swift */,
+				0675027F2CA7CDD600FB7DDE /* TabType.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -328,6 +337,17 @@
 			path = DetailPerformance;
 			sourceTree = "<group>";
 		};
+		0675027A2CA7CCC700FB7DDE /* TicketMake */ = {
+			isa = PBXGroup;
+			children = (
+				0675027B2CA7CCE500FB7DDE /* TicketMakeView.swift */,
+				067502862CA7E4E100FB7DDE /* RatingView.swift */,
+				067502882CA7F27500FB7DDE /* TicketState.swift */,
+				0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */,
+			);
+			path = TicketMake;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,6 +368,7 @@
 			packageProductDependencies = (
 				067030D72C9E89AE00190C92 /* RealmSwift */,
 				067030E62CA1606000190C92 /* Kingfisher */,
+				067502842CA7E47600FB7DDE /* Cosmos */,
 			);
 			productName = musicalRecordProject;
 			productReference = 064245A82C92C7B000C9134D /* musicalRecordProject.app */;
@@ -380,6 +401,7 @@
 			packageReferences = (
 				067030D62C9E89AE00190C92 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				067030E52CA1606000190C92 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				067502832CA7E47600FB7DDE /* XCRemoteSwiftPackageReference "Cosmos" */,
 			);
 			productRefGroup = 064245A92C92C7B000C9134D /* Products */;
 			projectDirPath = "";
@@ -411,6 +433,7 @@
 				067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */,
 				067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */,
 				067030EB2CA2968E00190C92 /* EXDetailPerformanceView.swift in Sources */,
+				067502872CA7E4E100FB7DDE /* RatingView.swift in Sources */,
 				064245C22C92C86F00C9134D /* ButtonWrapper.swift in Sources */,
 				067030D52C9C508000190C92 /* FacilityDTO.swift in Sources */,
 				064862B12C95F461003B544E /* APIKey.swift in Sources */,
@@ -423,17 +446,22 @@
 				067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */,
 				067030CA2C9C0CC100190C92 /* PerformanceDTO.swift in Sources */,
 				0648629D2C9446A0003B544E /* TabBarView.swift in Sources */,
+				067502892CA7F27500FB7DDE /* TicketState.swift in Sources */,
 				064245D42C92D01100C9134D /* Color+.swift in Sources */,
+				0675027C2CA7CCE500FB7DDE /* TicketMakeView.swift in Sources */,
+				0675028D2CA80C5800FB7DDE /* CustomTextEditorStyle.swift in Sources */,
 				064245C62C92C87900C9134D /* PrimaryText.swift in Sources */,
 				06347FDC2CA411FE0057001B /* HeaderType.swift in Sources */,
 				064245CD2C92CAD100C9134D /* ViewModeltype.swift in Sources */,
 				064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */,
 				064862962C944671003B544E /* TicketView.swift in Sources */,
 				064245CF2C92CBEB00C9134D /* HorizontalCalendarView.swift in Sources */,
+				0675028F2CA80F3800FB7DDE /* View+.swift in Sources */,
 				064862982C944677003B544E /* SettingView.swift in Sources */,
 				067030D32C9C4BD900190C92 /* FrameExtenstion.swift in Sources */,
 				064862AF2C959C68003B544E /* Image+.swift in Sources */,
 				06347FDE2CA432D30057001B /* ShowPerformanceModel.swift in Sources */,
+				067502802CA7CDD600FB7DDE /* TabType.swift in Sources */,
 				06347FE02CA4EA270057001B /* DetailPerformanceView.swift in Sources */,
 				064245D12C92CDEB00C9134D /* SelectGenreView.swift in Sources */,
 				067030E42CA12B2800190C92 /* PerformanceModel.swift in Sources */,
@@ -682,6 +710,14 @@
 				minimumVersion = 8.0.3;
 			};
 		};
+		067502832CA7E47600FB7DDE /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 25.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -694,6 +730,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 067030E52CA1606000190C92 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		067502842CA7E47600FB7DDE /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 067502832CA7E47600FB7DDE /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

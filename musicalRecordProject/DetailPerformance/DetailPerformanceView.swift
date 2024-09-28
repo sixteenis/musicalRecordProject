@@ -8,8 +8,11 @@
 import SwiftUI
 import Kingfisher
 struct DetailPerformanceView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var showNextView = false
     @State private var showDetail = false
+    
+    
+    var tab: MainView
     var body: some View {
         ScrollView {
             postView(80)
@@ -27,18 +30,36 @@ struct DetailPerformanceView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    print("누름")
+                    // Action
+                    showNextView = true
                 } label: {
                     Image.ticketPlus
                         .resizable()
                         .frame(width: 40, height: 40)
                 }
+                .background(
+                    NavigationLink(destination: TicketMakeView(), isActive: $showNextView) {
+                        EmptyView() // 실제 링크를 표시하지 않음
+                    }
+                )
+                
             }
         }
+        .onAppear {
+            tab.tabBarVisibility = .hidden
+        }
+        .onDisappear {
+            if !showNextView {
+                tab.tabBarVisibility = .visible
+            }
+        }
+        
+        
+        
     }
+    
 }
 private extension DetailPerformanceView {
-    
 }
 // MARK: - 작품정보 부분
 private extension DetailPerformanceView {
@@ -213,7 +234,7 @@ private extension DetailPerformanceView {
     
 }
 #Preview {
-    DetailPerformanceView()
+    DetailPerformanceView(tab: MainView())
 }
 
 
