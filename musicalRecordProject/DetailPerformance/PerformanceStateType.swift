@@ -18,7 +18,7 @@ enum PerformanceStateType {
         case .open:
             "공연중"
         case .close:
-            "공연완료"
+            "공연종료"
         case .notYet:
             "공연예정"
         case .unowned:

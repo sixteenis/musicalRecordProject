@@ -37,8 +37,9 @@ struct DetailPerformance {
     var state: PerformanceStateType //현재상태
     var DetailPosts: [String]
     var relates: [RelatedLink]
+    var guidance: String
     
-    init(placeId: String, name: String, playDate: String, place: String, actors: String, actorArray: [String], teams: String, runtime: String, limitAge: String, ticketPrice: String, posterURL: String, state: PerformanceStateType, DetailPosts: [String], relates: [RelatedLink]) {
+    init(placeId: String, name: String, playDate: String, place: String, actors: String, actorArray: [String], teams: String, runtime: String, limitAge: String, ticketPrice: String, posterURL: String, state: PerformanceStateType, DetailPosts: [String], relates: [RelatedLink], guidance: String) {
         self.placeId = placeId
         self.name = name
         self.playDate = playDate
@@ -53,6 +54,7 @@ struct DetailPerformance {
         self.state = state
         self.DetailPosts = DetailPosts
         self.relates = relates
+        self.guidance = guidance
     }
     init() {
         self.placeId = ""
@@ -69,6 +71,7 @@ struct DetailPerformance {
         self.state = .close
         self.DetailPosts = []
         self.relates = []
+        self.guidance = ""
         
     }
 }

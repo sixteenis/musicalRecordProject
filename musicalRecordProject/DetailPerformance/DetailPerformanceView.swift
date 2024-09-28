@@ -23,6 +23,7 @@ struct DetailPerformanceView: View {
             Divider()
             ticketInfo()
             Divider()
+            openTime()
             inforPost()
         }
         .navigationTitle(data.name)
@@ -76,9 +77,10 @@ private extension DetailPerformanceView {
     func performancInfo() -> some View {
         HStack() {
             VStack(alignment: .leading) {
-                performancInfoText(main: "공연기간", content: "2024.07.13 ~ 08.15")
-                performancInfoText(main: "공연장소", content: "충무아트센터 대극장")
+                performancInfoText(main: "공연기간", content: data.playDate)
+                performancInfoText(main: "공연장소", content: data.place)
             }
+            .frame(width: 200)
             Spacer()
                 .frame(width: 10)
             Rectangle()
@@ -86,8 +88,9 @@ private extension DetailPerformanceView {
             Spacer()
                 .frame(width: 20)
             VStack(alignment: .leading) {
-                performancInfoText(main: "관람 연령", content: "12세 이상")
-                performancInfoText(main: "러닝 타임", content: "120분")
+                performancInfoText(main: "관람 연령", content: data.limitAge)
+                performancInfoText(main: "러닝 타임", content: data.runtime)
+                Spacer()
             }
             
         } //:HSTACK
@@ -136,7 +139,7 @@ private extension DetailPerformanceView {
             Text("배우")
                 .font(.font16)
             HStack {
-                Text("박성민, 임수민, 냠냠이, 킁킁ㅁ;ㅣㄴ아리ㅏㅁ넝리ㅏ먼이ㅏ럼ㄴ아ㅣ러이")
+                Text(data.actors)
                     .lineLimit(1)
                     .font(.font14)
                 Spacer()
@@ -156,36 +159,47 @@ private extension DetailPerformanceView {
         VStack(alignment: .leading) {
             Text("배우")
                 .font(.font16)
-            Text("박성민, 임수민, 냠냠이, 킁킁ㅁ;ㅣㄴ아리ㅏㅁ넝리ㅏ먼이ㅏ럼ㄴ아ㅣ러이")
+            Text(data.actors)
             Spacer()
                 .frame(height: 10)
             Text("제작진")
                 .font(.title3)
                 .bold()
-            Text("머머머 어쩌구 저쩌구")
-            Text("제작사")
-                .font(.title3)
-                .bold()
-            Text("머머머 어쩌구 저쩌구")
-            Text("기획사")
-                .font(.title3)
-                .bold()
-            Text("머머머 어쩌구 저쩌구")
-            
+            Text(data.teams)
+//            Text("제작사")
+//                .font(.title3)
+//                .bold()
+//            Text("머머머 어쩌구 저쩌구")
+//            Text("기획사")
+//                .font(.title3)
+//                .bold()
+//            Text("머머머 어쩌구 저쩌구")
         }
     }
 }
 private extension DetailPerformanceView {
+    func openTime() -> some View {
+        VStack {
+            Text("공연 안내")
+                .font(.boldFont18)
+            HStack {
+                Text("공연 시간 정보: ")
+                    .font(.font14)
+                Text(data.guidance)
+                    .font(.font14)
+            }
+        }
+    }
     func ticketInfo() -> some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("티켓 정보")
                 .font(.boldFont18)
-            Text("판매처")
-                .font(.font16)
-            Image(systemName: "star")
+//            Text("판매처")
+//                .font(.font16)
+//            Image(systemName: "star")
             Text("티켓 금액")
                 .font(.font16)
-            Text("1000억원")
+            Text(data.ticketPrice)
                 .font(.font14)
         }
         .padding(.horizontal)
@@ -195,20 +209,25 @@ private extension DetailPerformanceView {
 }
 // MARK: - 소개 포스트 부분
 private extension DetailPerformanceView {
+    @MainActor
     func postView(_ size: CGFloat) -> some View {
         VStack {
-            Image.exPost
+            KFImage(URL(string: data.posterURL))
+                .placeholder { //플레이스 홀더 설정
+                    Image.postPlaceholder
+                }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                 .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: size * 2, height: size * 3)
             Spacer()
                 .frame(height: 15)
             Capsule()
                 .frame(width: 80, height: 30)
-                .asForeground(.green)
+                .asForeground(data.state.backColor)
                 .overlay {
-                    Text("공연중")
+                    Text(data.state.title)
                 }
-            Text("정의의 여인들")
+            Text(data.name)
                 .font(.title2)
                 .fontWeight(.semibold)
                 .asForeground(.asBlack)
@@ -217,26 +236,23 @@ private extension DetailPerformanceView {
     
     @MainActor func inforPost() -> some View {
         VStack(spacing: 0) {
-            KFImage(URL(string: "http://www.kopis.or.kr/upload/pfmIntroImage/PF_PF248302_240903_1144300.jpg"))
-                .placeholder { //플레이스 홀더 설정
-                    Image.postPlaceholder
-                }.retry(maxCount: 3, interval: .seconds(5)) //재시도
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-            KFImage(URL(string: "http://www.kopis.or.kr/upload/pfmIntroImage/PF_PF248302_240903_1144300.jpg"))
-                .placeholder { //플레이스 홀더 설정
-                    Image.postPlaceholder
-                }.retry(maxCount: 3, interval: .seconds(5)) //재시도
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            ForEach(data.DetailPosts, id: \.self) {
+                KFImage(URL(string: $0))
+                    .placeholder { //플레이스 홀더 설정
+                        Image.postPlaceholder
+                    }.retry(maxCount: 3, interval: .seconds(5)) //재시도
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            }
+            
         }
         .padding(.horizontal, 10)
     }
     
 }
-//#Preview {
-//    DetailPerformanceView(tab: MainView())
-//}
+#Preview {
+    DetailPerformanceView(tab: MainView())
+}
 
 
 

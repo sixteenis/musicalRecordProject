@@ -34,13 +34,23 @@ struct DetailPerformanceDTO {
     // DetailPerformance 모델로 변환
     func transformDetailModel() -> DetailPerformance {
         let date = prfpdfrom + " ~ " + prfpdto
-        let actors = makeList(prfcast)
+        let actorsList = makeList(prfcast)
         let teams = makeList(prfcrew)
         let state = setState(prfstate)
-        return DetailPerformance(placeId: mt10id, name: prfnm, playDate: date, place: fcltynm, actors: prfcast, actorArray: actors, teams: prfcrew, runtime: prfruntime, limitAge: prfage, ticketPrice: pcseguidance, posterURL: poster, state: state, DetailPosts: styurls, relates: relates)
+        let actorsStr = checkIsEmptey(self.prfcast)
+        let teamsStr = checkIsEmptey(prfcrew)
+        
+        return DetailPerformance(placeId: mt10id, name: prfnm, playDate: date, place: fcltynm, actors: actorsStr, actorArray: actorsList, teams: teamsStr, runtime: prfruntime, limitAge: prfage, ticketPrice: pcseguidance, posterURL: poster, state: state, DetailPosts: styurls, relates: relates, guidance: dtguidance)
     }
 }
 private extension DetailPerformanceDTO {
+    func checkIsEmptey(_ str: String) -> String {
+        if str == "" {
+            return "정보없음"
+        } else {
+            return str
+        }
+    }
     func makeList(_ str: String) -> [String] {
         var tmp = ""
         if str.hasSuffix(" 등") {
