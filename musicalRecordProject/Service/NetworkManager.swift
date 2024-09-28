@@ -49,6 +49,7 @@ final class NetworkManager {
 
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw PerformanceError.invalidResponse }
         guard let resultData = XMLDetailPerformanceParser().parse(data: data) else { throw PerformanceError.invalidData}
+        dump(resultData)
         return resultData
     }
     // MARK: - 공연시설 정보 통신

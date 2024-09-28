@@ -10,7 +10,7 @@ import Kingfisher
 struct DetailPerformanceView: View {
     @State private var showNextView = false
     @State private var showDetail = false
-    
+    var data: DetailPerformance = DetailPerformance()
     
     var tab: MainView
     var body: some View {
@@ -25,7 +25,7 @@ struct DetailPerformanceView: View {
             Divider()
             inforPost()
         }
-        .navigationTitle("냠")
+        .navigationTitle(data.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -47,6 +47,7 @@ struct DetailPerformanceView: View {
         }
         .onAppear {
             tab.tabBarVisibility = .hidden
+            print(data)
         }
         .onDisappear {
             if !showNextView {
@@ -233,9 +234,9 @@ private extension DetailPerformanceView {
     }
     
 }
-#Preview {
-    DetailPerformanceView(tab: MainView())
-}
+//#Preview {
+//    DetailPerformanceView(tab: MainView())
+//}
 
 
 

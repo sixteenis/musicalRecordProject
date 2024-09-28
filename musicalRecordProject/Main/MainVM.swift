@@ -30,6 +30,7 @@ final class MainVM: ViewModeltype {
         var showDatas = [PerformanceModel]() // 현재 공연 데이터들
         var searchText = ""
         var searchType = false
+        var selectPost = DetailPerformance()
     }
     init() {
         transform()
@@ -132,6 +133,7 @@ private extension MainVM {
             }
         } else { //이미 디테일 데이터를 가진 경우
             self.output.selectCellId = model.id
+            self.output.selectPost = model.detail
         }
     }
     // MARK: - 디테일 데이터 없을 경우 네트워킹하기
@@ -141,6 +143,7 @@ private extension MainVM {
             if let index = self.output.showDatas.firstIndex(where: {$0.id == model.id}) {
                 DispatchQueue.main.async {
                     self.output.showDatas[index].detail = data
+                    self.output.selectPost = data
                     self.output.showDatas[index].emptyDetailCheck = false
                     self.output.selectCellId = model.id
                 }

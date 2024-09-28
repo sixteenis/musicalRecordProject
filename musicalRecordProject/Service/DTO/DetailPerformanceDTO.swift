@@ -10,38 +10,58 @@ import Foundation
 // 공연 상세 정보를 담는 DTO
 struct DetailPerformanceDTO {
     var mt20id: String
-    var mt10id: String
-    var prfnm: String
-    var prfpdfrom: String
-    var prfpdto: String
-    var fcltynm: String
-    var prfcast: String
-    var prfcrew: String
-    var prfruntime: String
-    var prfage: String
-    var entrpsnm: String
-    var pcseguidance: String
-    var poster: String
-    var area: String
-    var genrenm: String
-    var openrun: String
-    var dtguidance: String
-    var updatedate: String
-    var prfstate: String
-    var styurls: [String]
-    var relates: [RelatedLink]
+    var mt10id: String //공연 시설 id
+    var prfnm: String //포스트 이름
+    var prfpdfrom: String //시작일
+    var prfpdto: String //종료일
+    var fcltynm: String //공연시설명
+    var prfcast: String //출연진
+    var prfcrew: String //제작진
+    var prfruntime: String //런타임
+    var prfage: String //연령
+    var entrpsnm: String //제작사
+    var pcseguidance: String //티켓가격
+    var poster: String //포스트이미지
+    var area: String // 도시이름
+    var genrenm: String //장르
+    var openrun: String //오픈런
+    var dtguidance: String//
+    var updatedate: String//
+    var prfstate: String //현재상태
+    var styurls: [String] //소개이미지들
+    var relates: [RelatedLink] //관련링크들
     
     // DetailPerformance 모델로 변환
     func transformDetailModel() -> DetailPerformance {
-        return DetailPerformance(
-            placeId: mt10id,
-            actors: prfcast,
-            runtime: prfruntime,
-            limitAge: prfage
-        )
+        let date = prfpdfrom + " ~ " + prfpdto
+        let actors = makeList(prfcast)
+        let teams = makeList(prfcrew)
+        let state = setState(prfstate)
+        return DetailPerformance(placeId: mt10id, name: prfnm, playDate: date, place: fcltynm, actors: prfcast, actorArray: actors, teams: prfcrew, runtime: prfruntime, limitAge: prfage, ticketPrice: pcseguidance, posterURL: poster, state: state, DetailPosts: styurls, relates: relates)
     }
 }
-
+private extension DetailPerformanceDTO {
+    func makeList(_ str: String) -> [String] {
+        var tmp = ""
+        if str.hasSuffix(" 등") {
+            tmp = String(str.dropLast(2))
+        }
+        let actorList = tmp.split(separator: ", ").map { $0.trimmingCharacters(in: .whitespaces) }
+        return actorList
+    }
+    func setState(_ str: String) -> PerformanceStateType {
+        switch str {
+        case "공연예정":
+            return .notYet
+        case "공연중":
+            return .open
+        case "공연완료":
+            return .close
+        default:
+            return .unowned
+        }
+    }
+}
 // 관련 링크 정보를 담는 구조체
 struct RelatedLink {
     var relatename: String

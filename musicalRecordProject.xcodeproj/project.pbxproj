@@ -53,6 +53,7 @@
 		067502892CA7F27500FB7DDE /* TicketState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067502882CA7F27500FB7DDE /* TicketState.swift */; };
 		0675028D2CA80C5800FB7DDE /* CustomTextEditorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */; };
 		0675028F2CA80F3800FB7DDE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0675028E2CA80F3800FB7DDE /* View+.swift */; };
+		067502912CA81BFF00FB7DDE /* PerformanceStateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067502902CA81BFF00FB7DDE /* PerformanceStateType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -114,6 +115,7 @@
 		067502882CA7F27500FB7DDE /* TicketState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketState.swift; sourceTree = "<group>"; };
 		0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorStyle.swift; sourceTree = "<group>"; };
 		0675028E2CA80F3800FB7DDE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		067502902CA81BFF00FB7DDE /* PerformanceStateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceStateType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 				06347FDA2CA411F00057001B /* Model */,
 				067030EA2CA2968E00190C92 /* EXDetailPerformanceView.swift */,
 				06347FDF2CA4EA270057001B /* DetailPerformanceView.swift */,
+				067502902CA81BFF00FB7DDE /* PerformanceStateType.swift */,
 			);
 			path = DetailPerformance;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 			files = (
 				067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */,
 				067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */,
+				067502912CA81BFF00FB7DDE /* PerformanceStateType.swift in Sources */,
 				067030EB2CA2968E00190C92 /* EXDetailPerformanceView.swift in Sources */,
 				067502872CA7E4E100FB7DDE /* RatingView.swift in Sources */,
 				064245C22C92C86F00C9134D /* ButtonWrapper.swift in Sources */,
