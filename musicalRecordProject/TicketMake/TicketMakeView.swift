@@ -18,7 +18,7 @@ struct TicketMakeView: View {
     var data: DetailPerformance
     var date: String
     @ObservedObject var vm: TicketMakeVM
-    
+    @Environment(\.presentationMode) var presentationMode
     init(vm: TicketMakeVM, data: DetailPerformance, date: String) {
         self.vm = vm
         self.data = data
@@ -44,18 +44,28 @@ struct TicketMakeView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     // Action
-                    if !vm.output.data.ticekPrice.isEmpty {
+                    if !vm.output.data.ticekPrice.isEmpty && Int(vm.output.data.ticekPrice) != nil {
                         vm.input.saveButtonTap.send(())
                     }
                 } label: {
                     Text("저장")
-                        .asForeground(vm.output.data.ticekPrice.isEmpty ? .asPlaceholder : .asFont)
+                        .asForeground(vm.output.data.ticekPrice.isEmpty || Int(vm.output.data.ticekPrice) == nil ? .asPlaceholder : .asFont)
                 }
             }
         }
         .onAppear {
             self.vm.input.dataSet.send((data, date))
             debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
+        }
+        .alert(isPresented: $vm.output.saveCompletion) {
+            Alert(
+                title: Text("저장완료"),
+                message: Text(""),
+                dismissButton: .default(Text("확인")) {
+                    // 확인 버튼을 누르면 이전 뷰로 돌아가게 함
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            )
         }
     }
 }

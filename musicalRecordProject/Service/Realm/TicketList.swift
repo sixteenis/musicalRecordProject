@@ -48,6 +48,9 @@ final class TicketList: Object {
         self.date = model.date
         self.place = model.place
     }
+//    func transformSaveTicket() -> SaveTicketModel {
+//        return SaveTicketModel(imageRoute: "\(self.id)", nowState: self.nowState, title: self.title, selectedActors: self.selectActors, Rating: <#T##Double#>, review: <#T##String#>, code: <#T##String#>)
+//    }
     static func arrayToList(_ array: [String]) -> List<String> {
         let list = List<String>() // 빈 List 생성
         for element in array {

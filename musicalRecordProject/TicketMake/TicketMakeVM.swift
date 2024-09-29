@@ -22,7 +22,9 @@ final class TicketMakeVM: ViewModeltype {
         var data = TicketMakeModel()
         var ticketPrice = ""
         var imageData: Data = .empty
-        //var saveButtonTapped = false 다른 인붓이 있을 경우 이걸 통해 확인 유무 판별
+        //var saveButtonTapped = false 
+        var saveCompletion = false
+        
         
     }
     init() {
@@ -57,6 +59,7 @@ final class TicketMakeVM: ViewModeltype {
             .sink { [weak self] _ in
                 guard let self else { return }
                 TicketManager.shared.addTicket(self.output.data, imageData: self.output.imageData)
+                self.output.saveCompletion = true
             }.store(in: &cancellables)
     }
     

@@ -13,6 +13,7 @@ final class TicketManager {
     static let shared = TicketManager()
     private init() { }
     
+    // MARK: - 저장
     func addTicket(_ model: TicketMakeModel, imageData: Data) {
         let realmModel = TicketList(input: model)
         do {
@@ -26,8 +27,28 @@ final class TicketManager {
         }
         
     }
+    func getTicketList() -> [TicketList] {
+        let list = Array(realm.objects(TicketList.self))
+        return list
+    }
+    // MARK: - 이미지가져오기
+    func getImage(_ id: String) -> Image {
+        
+        return self.loadImageToDocument(filename: id) 
+        
+    }
+    func removeTicket(_ id: String) {
+        let realmId = try! ObjectId(string: id)
+        try! realm.write {
+          if let del = realm.object(ofType: TicketList.self, forPrimaryKey: realmId) {
+              realm.delete(del)
+              self.removeImageFromDocument(filename: id)
+          }
+        }
+    }
     
 }
+
 
 // MARK: - 파일매니저 부분
 private extension TicketManager {
@@ -43,20 +64,24 @@ private extension TicketManager {
             print("file save error!!!!", error)
         }
     }
-    func loadImageToDocument(filename: String) -> UIImage? {
+    
+    func loadImageToDocument(filename: String) -> Image {
         guard let document = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
-        ).first else { return nil}
+        ).first else { return Image.postPlaceholder }
         
         let fileURL = document.appendingPathComponent("\(filename).jpg")
         
+        // 파일이 존재할 경우
         if FileManager.default.fileExists(atPath: fileURL.path) {
-            return UIImage(contentsOfFile: fileURL.path)
-        } else {
-            
-            return UIImage(systemName: "star.fill")
+            if let uiImage = UIImage(contentsOfFile: fileURL.path) {
+                return Image(uiImage: uiImage) // UIImage를 SwiftUI의 Image로 변환
+            }
         }
+        
+        // 파일이 없을 경우 기본 시스템 이미지 반환
+        return Image.postPlaceholder
     }
     
     func removeImageFromDocument(filename: String) {

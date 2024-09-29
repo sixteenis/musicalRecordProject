@@ -18,4 +18,5 @@ extension Image {
     static let downImage = Image(systemName: "chevron.down")
     static let upImage = Image(systemName: "chevron.up")
     static let ticketPlus = Image("ticketPlus")
+    
 }

@@ -33,6 +33,7 @@
 		06609A792CA9393000F67C6B /* TicketMakeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A782CA9393000F67C6B /* TicketMakeVM.swift */; };
 		06609A7D2CA95ACC00F67C6B /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A7C2CA95ACC00F67C6B /* TicketManager.swift */; };
 		06609A802CA95B4D00F67C6B /* TicketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A7F2CA95B4D00F67C6B /* TicketList.swift */; };
+		06609A822CA97E8A00F67C6B /* SaveTicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A812CA97E8A00F67C6B /* SaveTicketModel.swift */; };
 		067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C62C9C0A2100190C92 /* NetworkManager.swift */; };
 		067030CA2C9C0CC100190C92 /* PerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C92C9C0CC100190C92 /* PerformanceDTO.swift */; };
 		067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030CC2C9C213C00190C92 /* DetailPerformanceDTO.swift */; };
@@ -43,7 +44,6 @@
 		067030D82C9E89AE00190C92 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 067030D72C9E89AE00190C92 /* RealmSwift */; };
 		067030DC2C9E89CE00190C92 /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DB2C9E89CE00190C92 /* MainVM.swift */; };
 		067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DD2CA019A300190C92 /* TicketStorageVM.swift */; };
-		067030E02CA01B1100190C92 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030DF2CA01B1100190C92 /* TicketModel.swift */; };
 		067030E42CA12B2800190C92 /* PerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030E32CA12B2800190C92 /* PerformanceModel.swift */; };
 		067030E72CA1606000190C92 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 067030E62CA1606000190C92 /* Kingfisher */; };
 		067030E82CA25E3400190C92 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 067030D72C9E89AE00190C92 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -102,6 +102,7 @@
 		06609A782CA9393000F67C6B /* TicketMakeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMakeVM.swift; sourceTree = "<group>"; };
 		06609A7C2CA95ACC00F67C6B /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
 		06609A7F2CA95B4D00F67C6B /* TicketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketList.swift; sourceTree = "<group>"; };
+		06609A812CA97E8A00F67C6B /* SaveTicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTicketModel.swift; sourceTree = "<group>"; };
 		067030C62C9C0A2100190C92 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		067030C92C9C0CC100190C92 /* PerformanceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDTO.swift; sourceTree = "<group>"; };
 		067030CB2C9C140C00190C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		067030D42C9C508000190C92 /* FacilityDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDTO.swift; sourceTree = "<group>"; };
 		067030DB2C9E89CE00190C92 /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
 		067030DD2CA019A300190C92 /* TicketStorageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStorageVM.swift; sourceTree = "<group>"; };
-		067030DF2CA01B1100190C92 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		067030E32CA12B2800190C92 /* PerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceModel.swift; sourceTree = "<group>"; };
 		067030EA2CA2968E00190C92 /* EXDetailPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXDetailPerformanceView.swift; sourceTree = "<group>"; };
 		067030ED2CA2A17D00190C92 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				0648629E2C94A4EC003B544E /* View */,
 				064862A32C9562A8003B544E /* TicketStorageView.swift */,
 				067030DD2CA019A300190C92 /* TicketStorageVM.swift */,
-				067030DF2CA01B1100190C92 /* TicketModel.swift */,
+				06609A812CA97E8A00F67C6B /* SaveTicketModel.swift */,
 			);
 			path = Ticket;
 			sourceTree = "<group>";
@@ -462,11 +462,11 @@
 				067502872CA7E4E100FB7DDE /* RatingView.swift in Sources */,
 				064245C22C92C86F00C9134D /* ButtonWrapper.swift in Sources */,
 				067030D52C9C508000190C92 /* FacilityDTO.swift in Sources */,
+				06609A822CA97E8A00F67C6B /* SaveTicketModel.swift in Sources */,
 				064862B12C95F461003B544E /* APIKey.swift in Sources */,
 				067030EE2CA2A17D00190C92 /* Font+.swift in Sources */,
 				067030DC2C9E89CE00190C92 /* MainVM.swift in Sources */,
 				064862A42C9562A8003B544E /* TicketStorageView.swift in Sources */,
-				067030E02CA01B1100190C92 /* TicketModel.swift in Sources */,
 				067030CF2C9C3B3D00190C92 /* GenreType.swift in Sources */,
 				064862A72C9581DC003B544E /* PerformancePicker.swift in Sources */,
 				067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */,

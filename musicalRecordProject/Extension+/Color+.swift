@@ -8,17 +8,22 @@
 import SwiftUI
 
 extension Color {
-    static let asMainColor = Color(hex:"ab94e6")
-    static let asMainBackground = Color(hex:"ab94e6")
+    static let asMainColor = Color(hex:"D1B2FF")
+    static let asMainBackground = Color(hex:"E3C4FF")
     static let asPlaceholder = Color.gray
-    static let asFont = Color.black
+    static let asFont = Color(hex:"242424")
     static let asBackground = Color.white
     static let asBlack = Color.black
     static let asSubFont = Color.subFont
     static let logoColor = Color.black
-    static let asBoardInFont = Color.white
+    static let asBoardInFont = Color(hex: "FFE8FF")
     static let asGrayFont = Color.gray
     static let grayBackground = Color(UIColor.systemGray6)
+    static let ticketBackground = Color(hex: "F3E8FF")
+    static let starColor = Color(hex:"D1B2FF")
+    static let ticketLine = Color(hex: "E6D7FF")
+    static let asredColor = Color(hex: "FF4D4F")
+    static let removeColor = Color(hex: "D32F2F")
 }
 extension Color {
   init(hex: String) {

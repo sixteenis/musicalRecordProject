@@ -66,6 +66,7 @@ private extension SettingView {
             .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
             .frame(height: 1)
             .padding(.horizontal, 20)
+            .asForeground(Color.ticketLine)
     }
     struct Line: Shape {
         func path(in rect: CGRect) -> Path {
@@ -132,18 +133,18 @@ private extension SettingView {
     func backView(widthSize: CGFloat, heightSize: CGFloat) -> some View {
         Rectangle()
             .padding([.horizontal, .top], 20)
-            .foregroundColor(.gray)
+            .foregroundColor(Color.ticketBackground)
             .overlay {
                 Circle()
-                    .fill(.white)
+                    .fill(Color.asBackground)
                     .offset(x: -widthSize * 2.5, y: -heightSize * 1.2)
                     .scaleEffect(0.2)
                 Circle()
-                    .fill(.white)
+                    .fill(Color.asBackground)
                     .offset(x: widthSize * 2.5, y: -heightSize * 1.2)
                     .scaleEffect(0.2)
                 Circle()
-                    .fill(.white)
+                    .fill(Color.asBackground)
                     .offset(y: -heightSize * 2.4)
                     .scaleEffect(0.2)
                 

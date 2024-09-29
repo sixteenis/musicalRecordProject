@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TicketState {
+enum TicketState: CaseIterable {
     case completion
     case schedule
     

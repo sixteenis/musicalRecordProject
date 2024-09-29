@@ -11,8 +11,7 @@ struct TicketStorageView: View {
     @State private var ticketWidth: CGFloat = 350
     @State private var ticketHeight: CGFloat = 150
     @State private var searchViewShow = false
-    @State private var searchText = ""
-    
+    @State private var removeButtonTap = false
     @StateObject private var vm = TicketStorageVM()
     
     var body: some View {
@@ -22,7 +21,7 @@ struct TicketStorageView: View {
                     .onChange(of: vm.output.selectPerformance) { newValue in
                         vm.input.selectedPerformance.send(newValue)
                     }
-                    
+                
                 if searchViewShow {
                     searchView()
                 }
@@ -32,12 +31,28 @@ struct TicketStorageView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
+                    if removeButtonTap {
+                        Text("완료")
+                            .asForeground(Color.asFont)
+                            .wrapToButton {
+                                removeButtonTap.toggle()
+                            }
+                    } else {
+                        Text("편집")
+                            .asForeground(Color.asFont)
+                            .wrapToButton {
+                                removeButtonTap.toggle()
+                            }
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
                     if searchViewShow {
                         Image.xMark
                             .foregroundColor(.logoColor)
                             .wrapToButton {
                                 searchViewShow.toggle()
-                                searchText = ""
+                                vm.input.searchText.send("")
                             }
                     } else {
                         Image.search
@@ -47,9 +62,21 @@ struct TicketStorageView: View {
                             }
                     }
                 }
-//                ToolbarItem(placement: .topBarLeading) {
-//                    Image.remove
-//                }
+                
+                
+            }
+            .onAppear {
+                vm.input.viewAppear.send(())
+            }
+            .alert("삭제하기", isPresented: $vm.output.removeAlert) {
+                Button("취소", role: .cancel) {
+                    // nothing needed here
+                }
+                Button("삭제하기", role: .destructive) {
+                    self.vm.input.RealRemoveTicket.send(())
+                }
+            } message: {
+                Text("삭제 시 복구 불가능합니다.")
             }
         } //:NAVIGATION
     }
@@ -59,9 +86,12 @@ struct TicketStorageView: View {
 private extension TicketStorageView {
     func searchView() -> some View {
         VStack(spacing: 5) {
-            TextField("공연 이름을 통해 검색하기", text: $searchText)
+            TextField("공연 이름을 통해 검색하기", text: $vm.output.searchText)
                 .textFieldStyle(RoundedBorderTextFieldStyle()) // 텍스트 필드 스타일
                 .padding(.horizontal, 20)
+                .onChange(of: vm.output.searchText) {
+                    self.vm.input.searchText.send($0)
+                }
             Divider()
         }
     }
@@ -71,8 +101,11 @@ private extension TicketStorageView {
     func ticketList() -> some View {
         ScrollView {
             LazyVStack {
-                ForEach($vm.output.ticketList) { ticket in
-                    TicketView(isFlipped: ticket.isBack, widthSize: $ticketWidth, heightSize: $ticketHeight)
+                ForEach($vm.output.ticketList, id: \.imageRoute) { ticket in
+                    TicketView(tikcet: ticket, widthSize: $ticketWidth, heightSize: $ticketHeight, removeState: $removeButtonTap) {
+                        self.vm.input.removeTicket.send(ticket.wrappedValue)
+                    }
+                    
                 }
             }
         }
