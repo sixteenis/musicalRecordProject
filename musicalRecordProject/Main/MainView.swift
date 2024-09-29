@@ -294,7 +294,7 @@ private extension MainView {
         .padding(.leading)
     }
     func detailButton() -> some View {
-        NavigationLink(destination: DetailPerformanceView(data: vm.output.selectPost, tab: self)) {
+        NavigationLink(destination: DetailPerformanceView(data: vm.output.selectPost,selecetDate: vm.output.selectDate, tab: self)) {
             Text("자세히 보기 >")
                 .font(.asMainFont)
                 .foregroundColor(.asBoardInFont)

@@ -6,23 +6,23 @@
 //
 
 import SwiftUI
-
+import Kingfisher
+import RealmSwift
 struct TicketMakeView: View {
-    @State private var mockUpActors = ["박성민": false, "임수민": false, "유진영": false, "김윤우": false,"휴": false, "잭": false]
-    @State private var selectedActors: [Bool]
-    @State private var isSelected = false
-    @State private var rating = 0.0
-    @State private var state = TicketState.completion
-    @State private var reviewText = ""
-    
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
     let inputBackColor = Color.grayBackground
     let inputHeight: CGFloat = 40
     let itemSpace: CGFloat = 20
     let colums = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-    init() {
-        _selectedActors = State(initialValue: Array(repeating: false, count: 6))
+    var data: DetailPerformance
+    var date: String
+    @ObservedObject var vm: TicketMakeVM
+    
+    init(vm: TicketMakeVM, data: DetailPerformance, date: String) {
+        self.vm = vm
+        self.data = data
+        self.date = date
     }
     var body: some View {
         GeometryReader { geo in
@@ -44,64 +44,105 @@ struct TicketMakeView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     // Action
-                    print("버튼 눌림")
+                    if !vm.output.data.ticekPrice.isEmpty {
+                        vm.input.saveButtonTap.send(())
+                    }
                 } label: {
                     Text("저장")
+                        .asForeground(vm.output.data.ticekPrice.isEmpty ? .asPlaceholder : .asFont)
                 }
             }
+        }
+        .onAppear {
+            self.vm.input.dataSet.send((data, date))
+            debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
         }
     }
 }
 
-#Preview {
-    TicketMakeView()
-}
+//#Preview {
+//    TicketMakeView()
+//}
 
 // MARK: - 상단 버튼 부분
 private extension TicketMakeView {
     func postView() -> some View {
         VStack(alignment: .center) {
-            Image.exPost
+            KFImage(URL(string: vm.output.data.image))
+                .placeholder { //플레이스 홀더 설정
+                    Image.postPlaceholder
+                }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                 .resizable()
+                .onSuccess {
+                    let imageData = $0.data()
+                    if let imageData {
+                        self.vm.output.imageData = imageData
+                    }
+                    
+                }
                 .frame(width: width * 0.4, height: width * 0.4 * 1.5)
-            if state == .completion {
-                RatingView(rating: $rating)
+                .padding(.top, 30)
+                .padding(.trailing)
+            
+            
+            if vm.output.data.state == .completion {
+                RatingView(rating: $vm.output.data.rating)
                     .frame(width: width * 0.1, height: 20)
                     .padding(.top, 10)
             }
         }
         
     }
+    // MARK: - 배우 선택 부분
     func inputView() -> some View {
         VStack(alignment: .leading) {
             Text("캐스팅")
                 .font(.boldFont16)
                 .padding(.leading, 5)
             LazyVGrid(columns: colums) {
-                ForEach(0..<10) { index in
+                ForEach(vm.output.data.actors, id: \.self) { actor in
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(inputBackColor)
+                        .fill(actor.isSelected ? Color.asMainColor : inputBackColor)
                         .frame(height: inputHeight)
                         .frame(minWidth: 40, maxWidth: 90)
                         .overlay {
-                            Text("박성민")
+                            Text(actor.name)
+                        }
+                        .onTapGesture {
+                            vm.input.selecetActor.send(actor.id)
                         }
                 }
                 
             }
             Spacer()
                 .frame(height: itemSpace)
-            if state == .completion {
+            Text("티켓가격")
+                .font(.boldFont16)
+                .padding(.leading, 5)
+            RoundedRectangle(cornerRadius: 15)
+                .fill(inputBackColor)
+                .frame(height: inputHeight)
+                .overlay {
+                    // MARK: - 금액입력시 ,랑 원 나오게 구현나중에 해보자...
+                    TextField("금액을 입력해주세요.", text: $vm.output.data.ticekPrice)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                }
+            Spacer()
+                .frame(height: itemSpace)
+            if vm.output.data.state == .completion {
                 Text("후기")
                     .font(.boldFont16)
                     .padding(.leading, 5)
-                TextEditor(text: $reviewText)
-                    .customStyleEditor(placeholder: "후기를 작성해주세요.", userInput: $reviewText)
+                TextEditor(text: $vm.output.data.review)
+                    .customStyleEditor(placeholder: "후기를 작성해주세요.", userInput: $vm.output.data.review)
                     .frame(height: 200)
                 
                 Spacer()
                     .frame(height: itemSpace)
             }
+            
+            
             Text("관람일자")
                 .font(.boldFont16)
                 .padding(.leading, 5)
@@ -109,7 +150,7 @@ private extension TicketMakeView {
                 .fill(inputBackColor)
                 .frame(height: inputHeight)
                 .overlay {
-                    Text("2024.09.28")
+                    Text(vm.output.data.date)
                 }
             Spacer()
                 .frame(height: itemSpace)
@@ -120,18 +161,7 @@ private extension TicketMakeView {
                 .fill(inputBackColor)
                 .frame(height: inputHeight)
                 .overlay {
-                    Text("영등포역 어쩌구")
-                }
-            Spacer()
-                .frame(height: itemSpace)
-            Text("티켓가격")
-                .font(.boldFont16)
-                .padding(.leading, 5)
-            RoundedRectangle(cornerRadius: 15)
-                .fill(inputBackColor)
-                .frame(height: inputHeight)
-                .overlay {
-                    Text("1000억원")
+                    Text(vm.output.data.place)
                 }
             
         }
@@ -145,11 +175,11 @@ private extension TicketMakeView {
                 .fill(Color.asMainColor)
                 .frame(width: 50, height: 30)
                 .overlay {
-                    Text(state.title)
+                    Text(vm.output.data.state.title)
                         .font(.boldFont14)
                         .asForeground(Color.white)
                 }
-            Text("발구르는 봉팔이에 연극")
+            Text(vm.output.data.title)
                 .font(.boldFont17)
                 .asForeground(.asFont)
         }
@@ -158,23 +188,22 @@ private extension TicketMakeView {
         
         
     }
-    func ButtonView(name: String) -> some View {
-        
-        Button {
-            // Action
-            isSelected.toggle()
-        } label: {
-            Text("Click Me")
-                .font(.title3)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(isSelected ? Color.purple : Color.white) // 선택되면 보라색, 그렇지 않으면 흰색
-                .cornerRadius(20)
-                .overlay(
-                    Capsule() // 캡슐 모양
-                        .stroke(isSelected ? Color.purple : Color.gray, lineWidth: 2)
-                )
-                .foregroundColor(isSelected ? .white : .black) // 글자색도 변경
-        }
-    }
+    //    func ButtonView(name: String) -> some View {
+    //        Button {
+    //            // Action
+    //            isSelected.toggle()
+    //        } label: {
+    //            Text("Click Me")
+    //                .font(.title3)
+    //                .padding()
+    //                .frame(maxWidth: .infinity)
+    //                .background(isSelected ? Color.purple : Color.white) // 선택되면 보라색, 그렇지 않으면 흰색
+    //                .cornerRadius(20)
+    //                .overlay(
+    //                    Capsule() // 캡슐 모양
+    //                        .stroke(isSelected ? Color.purple : Color.gray, lineWidth: 2)
+    //                )
+    //                .foregroundColor(isSelected ? .white : .black) // 글자색도 변경
+    //        }
+    //    }
 }

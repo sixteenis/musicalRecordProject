@@ -35,7 +35,7 @@ struct DetailPerformanceDTO {
     func transformDetailModel() -> DetailPerformance {
         let date = prfpdfrom + " ~ " + prfpdto
         let actorsList = makeList(prfcast)
-        let teams = makeList(prfcrew)
+        //let teams = makeList(prfcrew)
         let state = setState(prfstate)
         let actorsStr = checkIsEmptey(self.prfcast)
         let teamsStr = checkIsEmptey(prfcrew)
@@ -52,11 +52,14 @@ private extension DetailPerformanceDTO {
         }
     }
     func makeList(_ str: String) -> [String] {
-        var tmp = ""
+        var tmp = str
         if str.hasSuffix(" 등") {
             tmp = String(str.dropLast(2))
         }
-        let actorList = tmp.split(separator: ", ").map { $0.trimmingCharacters(in: .whitespaces) }
+        var actorList = tmp.split(separator: ", ").map { $0.trimmingCharacters(in: .whitespaces) }
+        if actorList.isEmpty {
+            actorList.append("정보없음")
+        }
         return actorList
     }
     func setState(_ str: String) -> PerformanceStateType {

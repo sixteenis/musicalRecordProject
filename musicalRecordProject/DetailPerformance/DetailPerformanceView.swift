@@ -11,7 +11,7 @@ struct DetailPerformanceView: View {
     @State private var showNextView = false
     @State private var showDetail = false
     var data: DetailPerformance = DetailPerformance()
-    
+    var selecetDate = ""
     var tab: MainView
     var body: some View {
         ScrollView {
@@ -44,7 +44,8 @@ struct DetailPerformanceView: View {
                         .frame(width: 40, height: 40)
                 }
                 .background(
-                    NavigationLink(destination: TicketMakeView(), isActive: $showNextView) {
+                    NavigationLink(destination: TicketMakeView(vm: TicketMakeVM(), data: data, date: selecetDate), isActive: $showNextView) {
+
                         EmptyView() // 실제 링크를 표시하지 않음
                     }
                 )
@@ -53,7 +54,6 @@ struct DetailPerformanceView: View {
         }
         .onAppear {
             tab.tabBarVisibility = .hidden
-            print(data)
         }
         .onDisappear {
             if !showNextView {

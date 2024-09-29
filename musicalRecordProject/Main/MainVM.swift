@@ -31,6 +31,7 @@ final class MainVM: ViewModeltype {
         var searchText = ""
         var searchType = false
         var selectPost = DetailPerformance()
+        var selectDate = ""
     }
     init() {
         transform()
@@ -44,8 +45,9 @@ final class MainVM: ViewModeltype {
         input.dateSet //날짜 변경
             .sink { [weak self] date in
                 guard let self else { return }
-                self.output.setDate = date
-                self.seleectDateOrType()
+                //날짜를 선택해서 변경시 하루가 감소해서 준다/??
+                    self.output.setDate = date
+                    self.seleectDateOrType()
             }.store(in: &cancellables)
         input.showTypeSet //타입 변경
             .sink { [weak self] type in
@@ -105,8 +107,15 @@ private extension MainVM {
     // MARK: - 공연 데이터 초기화 시켜주는 함수
     func updatePerformanceList() async {
         let dateFormatter = DateFormatter()
+        let selectDateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
+        selectDateFormatter.dateFormat = "yyyy년 M월 d일"
         let dateString = dateFormatter.string(from: output.setDate)
+        let selecetDateStr = selectDateFormatter.string(from: output.setDate)
+        DispatchQueue.main.async {
+            self.output.selectDate = selecetDateStr
+        }
+        
         do {
             // MARK: - page 변경해서 페이지네이션 기능 구현해줘야됨!
             

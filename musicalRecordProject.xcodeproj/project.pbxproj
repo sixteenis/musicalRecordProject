@@ -30,6 +30,9 @@
 		064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862AA2C958515003B544E /* CustomSegmentedControl.swift */; };
 		064862AF2C959C68003B544E /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862AE2C959C68003B544E /* Image+.swift */; };
 		064862B12C95F461003B544E /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064862B02C95F461003B544E /* APIKey.swift */; };
+		06609A792CA9393000F67C6B /* TicketMakeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A782CA9393000F67C6B /* TicketMakeVM.swift */; };
+		06609A7D2CA95ACC00F67C6B /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A7C2CA95ACC00F67C6B /* TicketManager.swift */; };
+		06609A802CA95B4D00F67C6B /* TicketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A7F2CA95B4D00F67C6B /* TicketList.swift */; };
 		067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C62C9C0A2100190C92 /* NetworkManager.swift */; };
 		067030CA2C9C0CC100190C92 /* PerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C92C9C0CC100190C92 /* PerformanceDTO.swift */; };
 		067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030CC2C9C213C00190C92 /* DetailPerformanceDTO.swift */; };
@@ -96,6 +99,9 @@
 		064862AA2C958515003B544E /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		064862AE2C959C68003B544E /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		064862B02C95F461003B544E /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		06609A782CA9393000F67C6B /* TicketMakeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMakeVM.swift; sourceTree = "<group>"; };
+		06609A7C2CA95ACC00F67C6B /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
+		06609A7F2CA95B4D00F67C6B /* TicketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketList.swift; sourceTree = "<group>"; };
 		067030C62C9C0A2100190C92 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		067030C92C9C0CC100190C92 /* PerformanceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDTO.swift; sourceTree = "<group>"; };
 		067030CB2C9C140C00190C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 		064245C52C92C87900C9134D /* CustomModifier */ = {
 			isa = PBXGroup;
 			children = (
+				0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */,
 				064245C42C92C87900C9134D /* PrimaryText.swift */,
 			);
 			path = CustomModifier;
@@ -233,6 +240,7 @@
 		064245C72C92C88200C9134D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				06609A7E2CA95AD500F67C6B /* Realm */,
 				067030D02C9C451D00190C92 /* PerformanceError.swift */,
 				067030C82C9C0CB600190C92 /* DTO */,
 				064862B02C95F461003B544E /* APIKey.swift */,
@@ -304,6 +312,15 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		06609A7E2CA95AD500F67C6B /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				06609A7C2CA95ACC00F67C6B /* TicketManager.swift */,
+				06609A7F2CA95B4D00F67C6B /* TicketList.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		067030C82C9C0CB600190C92 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,10 +363,10 @@
 			isa = PBXGroup;
 			children = (
 				0675027B2CA7CCE500FB7DDE /* TicketMakeView.swift */,
+				06609A782CA9393000F67C6B /* TicketMakeVM.swift */,
+				067502922CA82FE400FB7DDE /* TicketMakeModel.swift */,
 				067502862CA7E4E100FB7DDE /* RatingView.swift */,
 				067502882CA7F27500FB7DDE /* TicketState.swift */,
-				0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */,
-				067502922CA82FE400FB7DDE /* TicketMakeModel.swift */,
 			);
 			path = TicketMake;
 			sourceTree = "<group>";
@@ -438,6 +455,7 @@
 			files = (
 				067030DE2CA019A300190C92 /* TicketStorageVM.swift in Sources */,
 				067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */,
+				06609A792CA9393000F67C6B /* TicketMakeVM.swift in Sources */,
 				067502932CA82FE400FB7DDE /* TicketMakeModel.swift in Sources */,
 				067502912CA81BFF00FB7DDE /* PerformanceStateType.swift in Sources */,
 				067030EB2CA2968E00190C92 /* EXDetailPerformanceView.swift in Sources */,
@@ -470,7 +488,9 @@
 				064862AF2C959C68003B544E /* Image+.swift in Sources */,
 				06347FDE2CA432D30057001B /* ShowPerformanceModel.swift in Sources */,
 				067502802CA7CDD600FB7DDE /* TabType.swift in Sources */,
+				06609A802CA95B4D00F67C6B /* TicketList.swift in Sources */,
 				06347FE02CA4EA270057001B /* DetailPerformanceView.swift in Sources */,
+				06609A7D2CA95ACC00F67C6B /* TicketManager.swift in Sources */,
 				064245D12C92CDEB00C9134D /* SelectGenreView.swift in Sources */,
 				067030E42CA12B2800190C92 /* PerformanceModel.swift in Sources */,
 				064245AC2C92C7B000C9134D /* musicalRecordProjectApp.swift in Sources */,
