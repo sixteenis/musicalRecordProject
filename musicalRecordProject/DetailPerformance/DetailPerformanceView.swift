@@ -17,13 +17,18 @@ struct DetailPerformanceView: View {
         ScrollView {
             postView(80)
             Divider()
+            Spacer()
+                .frame(height: 20)
             postInfo()
             Divider()
-            actorInfo()
-            Divider()
+            Spacer()
+                .frame(height: 20)
             ticketInfo()
             Divider()
-            openTime()
+            Spacer()
+                .frame(height: 20)
+            actorInfo()
+            Divider()
             inforPost()
         }
         .navigationTitle(data.name)
@@ -137,11 +142,14 @@ private extension DetailPerformanceView {
     func simpleActorsInfor() -> some View {
         VStack(alignment: .leading) {
             Text("배우")
+                .asForeground(Color.asGrayFont)
                 .font(.font16)
+            Spacer()
+                .frame(height: 10)
             HStack {
                 Text(data.actors)
                     .lineLimit(1)
-                    .font(.font14)
+                    .font(.boldFont14)
                 Spacer()
                 Button {
                     // Action
@@ -149,7 +157,7 @@ private extension DetailPerformanceView {
                 } label: {
                     Text("더보기")
                         .asForeground(.font)
-                        .font(.boldFont15)
+                        .font(.boldFont14)
                 }
             }
             
@@ -157,50 +165,31 @@ private extension DetailPerformanceView {
     }
     func detailActorsInfor() -> some View {
         VStack(alignment: .leading) {
-            Text("배우")
-                .font(.font16)
-            Text(data.actors)
+            performancInfoText(main: "배우", content: data.actors)
             Spacer()
                 .frame(height: 10)
-            Text("제작진")
-                .font(.title3)
-                .bold()
-            Text(data.teams)
-//            Text("제작사")
-//                .font(.title3)
-//                .bold()
-//            Text("머머머 어쩌구 저쩌구")
-//            Text("기획사")
-//                .font(.title3)
-//                .bold()
-//            Text("머머머 어쩌구 저쩌구")
+            performancInfoText(main: "제작진", content: data.teams)
+            //            Text("제작사")
+            //                .font(.title3)
+            //                .bold()
+            //            Text("머머머 어쩌구 저쩌구")
+            //            Text("기획사")
+            //                .font(.title3)
+            //                .bold()
+            //            Text("머머머 어쩌구 저쩌구")
         }
     }
 }
 private extension DetailPerformanceView {
-    func openTime() -> some View {
-        VStack {
-            Text("공연 안내")
-                .font(.boldFont18)
-            HStack {
-                Text("공연 시간 정보: ")
-                    .font(.font14)
-                Text(data.guidance)
-                    .font(.font14)
-            }
-        }
-    }
     func ticketInfo() -> some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("티켓 정보")
+            Text("공연정보")
                 .font(.boldFont18)
-//            Text("판매처")
-//                .font(.font16)
-//            Image(systemName: "star")
-            Text("티켓 금액")
-                .font(.font16)
-            Text(data.ticketPrice)
-                .font(.font14)
+            //            Text("판매처")
+            //                .font(.font16)
+            //            Image(systemName: "star")
+            performancInfoText(main: "공연일정", content: data.guidance)
+            performancInfoText(main: "티켓금액", content: data.ticketPrice)
         }
         .padding(.horizontal)
         .frame(width: UIScreen.main.bounds.width, alignment: .leading)
@@ -222,10 +211,12 @@ private extension DetailPerformanceView {
             Spacer()
                 .frame(height: 15)
             Capsule()
-                .frame(width: 80, height: 30)
+                .frame(width: 70, height: 30)
                 .asForeground(data.state.backColor)
                 .overlay {
                     Text(data.state.title)
+                        .font(.boldFont13)
+                        .asForeground(Color.white)
                 }
             Text(data.name)
                 .font(.title2)

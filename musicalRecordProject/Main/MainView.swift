@@ -75,7 +75,7 @@ struct MainView: View {
 }
 
 private extension MainView {
-    func setDateString(date: Date) -> String {
+        func setDateString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 M월"
         let dateString = dateFormatter.string(from: date)
@@ -210,8 +210,25 @@ private extension MainView {
         .background(Color.asBackground)
         
     }
+    // MARK: - 선택한 뷰에 텍스트
+    func performancInfoText(main: String, content: String) -> some View {
+        VStack(alignment: .leading) {
+            Text(main)
+                .asForeground(Color.asBoardInFont)
+                .font(.font15)
+            Spacer()
+                .frame(height: 5)
+            Text(content)
+                .font(.font14)
+            Spacer()
+                .frame(height: 15)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
     // MARK: - 선택한 경우 뷰
     func detailView(data: PerformanceModel, height: CGFloat) -> some View {
+        
         ZStack {
             RoundedRectangle(cornerRadius: 30)
                 .fill(Color.asMainColor)
@@ -235,12 +252,9 @@ private extension MainView {
                             .font(.asSubFont)
                         Spacer()
                             .frame(height: 30)
-                        Text(data.detail.limitAge)
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                        Text(data.detail.runtime)
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                        Text(data.detail.actors)
-                            .frame(maxWidth: .infinity,alignment: .leading)
+                        performancInfoText(main: "관람연령", content: data.detail.limitAge)
+                        performancInfoText(main: "런타임", content: data.detail.runtime)
+                        performancInfoText(main: "배우", content: data.detail.actors)
                         
                         
                         Spacer()
