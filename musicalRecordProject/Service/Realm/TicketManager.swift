@@ -27,6 +27,16 @@ final class TicketManager {
         }
         
     }
+    func getTicket(id: String) -> TicketList{
+        let realmId = try! ObjectId(string: id)
+        try! realm.write {
+            if let item = realm.object(ofType: TicketList.self, forPrimaryKey: realmId) {
+                return item
+            }
+            return TicketList()
+        }
+        return TicketList()
+    }
     func getTicketList() -> [TicketList] {
         let list = Array(realm.objects(TicketList.self))
         return list
@@ -34,16 +44,27 @@ final class TicketManager {
     // MARK: - 이미지가져오기
     func getImage(_ id: String) -> Image {
         
-        return self.loadImageToDocument(filename: id) 
+        return self.loadImageToDocument(filename: id)
         
     }
     func removeTicket(_ id: String) {
         let realmId = try! ObjectId(string: id)
         try! realm.write {
-          if let del = realm.object(ofType: TicketList.self, forPrimaryKey: realmId) {
-              realm.delete(del)
-              self.removeImageFromDocument(filename: id)
-          }
+            if let del = realm.object(ofType: TicketList.self, forPrimaryKey: realmId) {
+                realm.delete(del)
+                self.removeImageFromDocument(filename: id)
+            }
+        }
+    }
+    func setReviewTicket(_ id: String, rating: Double, review: String) {
+        let realmId = try! ObjectId(string: id)
+        let ticket = realm.objects(TicketList.self).where {
+            $0.id == realmId
+        }.first!
+        try! realm.write{
+            ticket.nowState = TicketState.completion.title
+            ticket.rating = rating
+            ticket.review = review
         }
     }
     

@@ -40,6 +40,17 @@ struct TicketMakeModel {
         self.place = ""
         self.ticekPrice = ""
     }
+//    init(model: SaveTicketModel) {
+//        self.image = model.imageRoute
+//        self.rating = model.Rating
+//        self.state = model.nowState
+//        self.title = model.title
+//        self.actors = model.selectedActors
+//        self.review = ""
+//        self.date = ""
+//        self.place = ""
+//        self.ticekPrice = ""
+//    }
     
     static func isPastDate(_ dateString: String) -> TicketState {
         // 날짜 형식 정의 (2024년 9월 7일)

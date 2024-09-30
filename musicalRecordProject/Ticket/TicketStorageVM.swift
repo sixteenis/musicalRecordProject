@@ -18,6 +18,8 @@ final class TicketStorageVM: ViewModeltype {
         let searchText = CurrentValueSubject<String, Never>("")
         let removeTicket = PassthroughSubject<SaveTicketModel, Never>()
         let RealRemoveTicket = PassthroughSubject<Void, Never>()
+        let reviewButtonTap = PassthroughSubject<SaveTicketModel, Never>()
+        let acceptReview = PassthroughSubject<UpadteTicketModel, Never>()
     }
     struct Output {
         var selectPerformance = PerformancePicker.all
@@ -25,6 +27,8 @@ final class TicketStorageVM: ViewModeltype {
         var searchText = ""
         var removeAlert = false
         var removeTicketId = ""
+        var showButtonSheet = false
+        var writeReivewModel = ""
     }
     init() {
         transform()
@@ -62,7 +66,20 @@ final class TicketStorageVM: ViewModeltype {
                     self.output.ticketList.remove(at: index)
                 }
             }.store(in: &cancellables)
-        
+        input.reviewButtonTap
+            .sink { [weak self] ticket in
+                guard let self else { return }
+                self.output.showButtonSheet.toggle()
+                self.output.writeReivewModel = ticket.imageRoute
+                print(self.output.writeReivewModel)
+            }.store(in: &cancellables)
+        input.acceptReview
+            .sink { [weak self] review in
+                guard let self else { return }
+                TicketManager.shared.setReviewTicket(self.output.writeReivewModel, rating: review.rationg, review: review.review)
+                self.output.ticketList =  self.getTicketList()
+                
+            }.store(in: &cancellables)
     }
 }
 

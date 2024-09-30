@@ -65,6 +65,12 @@ struct TicketStorageView: View {
                 
                 
             }
+            .sheet(isPresented: $vm.output.showButtonSheet) {
+                ReviewView() { review in
+                    vm.input.acceptReview.send(review)
+                }
+                    .presentationDetents([.medium])
+            }
             .onAppear {
                 vm.input.viewAppear.send(())
             }
@@ -104,6 +110,8 @@ private extension TicketStorageView {
                 ForEach($vm.output.ticketList, id: \.imageRoute) { ticket in
                     TicketView(tikcet: ticket, widthSize: $ticketWidth, heightSize: $ticketHeight, removeState: $removeButtonTap) {
                         self.vm.input.removeTicket.send(ticket.wrappedValue)
+                    } reviewCompletion: {
+                        self.vm.input.reviewButtonTap.send(ticket.wrappedValue)
                     }
                     
                 }

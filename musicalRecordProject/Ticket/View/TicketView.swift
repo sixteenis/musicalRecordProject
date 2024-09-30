@@ -12,7 +12,8 @@ struct TicketView: View {
     @Binding var widthSize: CGFloat
     @Binding var heightSize: CGFloat
     @Binding var removeState: Bool
-    var completion: (() -> ())?
+    var removeCompletion: (() -> ())?
+    var reviewCompletion: (() -> ())?
     var body: some View {
         VStack {
             if tikcet.isReverse {
@@ -36,7 +37,7 @@ struct TicketView: View {
                             .asForeground(Color.removeColor)
                         //.offset(x: widthSize / 2, y: -heightSize / 2)
                             .frame(width: 25, height: 30)
-                            
+                        
                     }
                 }
                 
@@ -47,10 +48,14 @@ struct TicketView: View {
         .rotation3DEffect(.degrees(tikcet.isReverse ? 180 : 0), axis: (x: 0, y: -1, z: 0))
         .animation(.easeInOut(duration: 0.6), value: tikcet.isReverse)
         .onTapGesture {
-            if !removeState {
-                tikcet.isReverse.toggle()
+            let _ = print(tikcet.isReverse)
+            if removeState {
+                removeCompletion?()
+            } else if tikcet.nowState == .schedule {
+                
             } else {
-                completion?()
+                tikcet.isReverse.toggle()
+                
             }
         }
         .frame(width: widthSize, height: heightSize)
@@ -72,6 +77,7 @@ private extension TicketView {
                     .cornerRadius(10)
                 VStack(alignment: .leading) {
                     Text(ticket.title)
+                        .asForeground(Color.asFont)
                         .frame(width: widthSize / 2,alignment: .leading)
                         .padding(.bottom, 5)
                     Text(ticket.selectedActors)
@@ -80,10 +86,28 @@ private extension TicketView {
                     Spacer()
                     JustShowRatingView(rating: ticket.Rating)
                         .padding(.bottom, 10)
+                    if ticket.nowState == .schedule {
+                        HStack(alignment: .center) {
+                            Spacer()
+                                .frame(width: widthSize / 8)
+                            RoundedRectangle(cornerRadius: 10)
+                                .asForeground(Color.asMainColor)
+                                .frame(width: widthSize / 3, height: heightSize / 5)
+                                .overlay {
+                                    Text("후기 작성")
+                                        .asForeground(Color.asBoardInFont)
+                                }
+                                .wrapToButton {
+                                    self.reviewCompletion?()
+                                }
+                        }
+                        .padding(.bottom)
+                    }
                 }
-                .padding(.top, 10)
+                .padding([.top,.leading], 10)
                 Spacer()
-            }
+            } //:HSTACK
+            
             
         }
         .overlay {
@@ -115,19 +139,20 @@ private extension TicketView {
                 .fill(Color.ticketBackground)
                 .cornerRadius(10)
             HStack {
-                VStack(alignment: .leading) {
-                    Text(ticket.review)
-                    Spacer()
-                }
-                .padding(.leading, 15)
-                Spacer()
+                
+                Text(ticket.review)
+                    .asForeground(Color.asFont)
+                    .font(.font13)
+                    .frame(width: widthSize * 0.6, height: heightSize)
+                    .padding(.leading, 15)
                 lineView()
                 VStack(spacing: 10) {
                     Image("QR")
                         .resizable()
                         .frame(width: qrSize,height: qrSize)
                     Text(ticket.code)
-                        .font(.caption)
+                        .asForeground(Color.asSubFont)
+                        .font(.font11)
                 }
                 .padding(.trailing, 15)
                 .padding(.leading, 3)

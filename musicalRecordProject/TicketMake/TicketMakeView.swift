@@ -55,7 +55,6 @@ struct TicketMakeView: View {
         }
         .onAppear {
             self.vm.input.dataSet.send((data, date))
-            debugPrint(Realm.Configuration.defaultConfiguration.fileURL ?? "")
         }
         .alert(isPresented: $vm.output.saveCompletion) {
             Alert(

@@ -17,6 +17,7 @@ final class TicketMakeVM: ViewModeltype {
         let selecetActor = PassthroughSubject<UUID, Never>()
         let ticketPrice = PassthroughSubject<String, Never>() // 티켓 금액 입력
         let saveButtonTap = PassthroughSubject<Void, Never>()
+        //let updateTicketSet = CurrentValueSubject<SaveTicketModel, Never>()
     }
     struct Output {
         var data = TicketMakeModel()

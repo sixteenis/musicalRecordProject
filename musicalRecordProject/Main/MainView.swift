@@ -122,6 +122,9 @@ private extension MainView {
                                 vm.input.selectCell.send(data.id)
                             }
                         }
+                        .onAppear {
+                            vm.input.showLastItem.send(data)
+                        }
                 }
             }  //:VSTACK
         }  //:SCROLL

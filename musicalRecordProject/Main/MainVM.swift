@@ -12,6 +12,8 @@ import Combine
 final class MainVM: ViewModeltype {
     var cancellables = Set<AnyCancellable>()
     var input = Input()
+    var page = 1
+    var isPageCan = true
     @Published var output = Output()
     struct Input {
         let viewOnTask = PassthroughSubject<Void,Never>()
@@ -21,6 +23,7 @@ final class MainVM: ViewModeltype {
         
         let searchTextTap = CurrentValueSubject<String, Never>("") // 키보드 텍스트 값
         let searchTypeTap = CurrentValueSubject<Bool, Never>(false)
+        let showLastItem = PassthroughSubject<PerformanceModel, Never>()
         
     }
     struct Output {
@@ -82,6 +85,16 @@ final class MainVM: ViewModeltype {
                     self.output.showDatas = [PerformanceModel]()
                 }
             }.store(in: &cancellables)
+        input.showLastItem
+            .sink { [weak self] item in
+                guard let self else { return }
+                let index = self.output.showDatas.count
+                if self.output.showDatas[index - 3].id == item.id {
+                    if self.isPageCan {
+                        addPerform()
+                    }
+                }
+            }.store(in: &cancellables)
         
     }
     
@@ -101,10 +114,34 @@ private extension MainVM {
             await self.updatePerformanceList()
         }
     }
+    func addPerform() {
+        Task {
+            await self.addperformanceList()
+        }
+    }
     
 }
 private extension MainVM {
     // MARK: - 공연 데이터 초기화 시켜주는 함수
+    func addperformanceList() async {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let dateString = dateFormatter.string(from: output.setDate)
+
+        do {
+            let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: output.searchText, page: String(page)).map {$0.transformperformanceModel()}
+            DispatchQueue.main.async {
+                self.page += 1
+                if data.isEmpty {
+                    self.isPageCan = false
+                } else {
+                    self.output.showDatas.append(contentsOf: data)
+                }
+            }
+        } catch {
+            self.isPageCan = false
+        }
+    }
     func updatePerformanceList() async {
         let dateFormatter = DateFormatter()
         let selectDateFormatter = DateFormatter()
@@ -114,13 +151,15 @@ private extension MainVM {
         let selecetDateStr = selectDateFormatter.string(from: output.setDate)
         DispatchQueue.main.async {
             self.output.selectDate = selecetDateStr
+            self.page = 1
+            self.isPageCan = true
         }
         
         do {
             // MARK: - page 변경해서 페이지네이션 기능 구현해줘야됨!
-            
-            let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: output.searchText, page: "1").map {$0.transformperformanceModel()}
+            let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: output.searchText, page: String(page)).map {$0.transformperformanceModel()}
             DispatchQueue.main.async {
+                self.page += 1
                 self.output.showDatas = data
                 if !self.output.showDatas.isEmpty {
                     self.checkDetailPerformancData(id: self.output.showDatas[0].id)
