@@ -9,6 +9,7 @@ import Foundation
 
 final class NetworkManager {
     static let shared = NetworkManager()
+    
     private init() {}
     // MARK: - 여러개의 공연 데이터 통신
     func requestPerformance(date: String, genreType: Genre, title: String, page: String) async throws -> [PerformanceDTO]{

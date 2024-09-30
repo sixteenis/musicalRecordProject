@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct TicketStorageView: View {
-    @State private var ticketWidth: CGFloat = 350
-    @State private var ticketHeight: CGFloat = 150
+    @State private var ticketWidth: CGFloat = UIScreen.main.bounds.width - 60
+    @State private var ticketHeight: CGFloat = UIScreen.main.bounds.height / 6
+    @State private var fullWidth = UIScreen.main.bounds.width
     @State private var searchViewShow = false
     @State private var removeButtonTap = false
     @StateObject private var vm = TicketStorageVM()
@@ -17,7 +18,7 @@ struct TicketStorageView: View {
     var body: some View {
         NavigationView {
             VStack {
-                CustomSegmentedControl(selected: $vm.output.selectPerformance, width: 300)
+                CustomSegmentedControl(selected: $vm.output.selectPerformance, width: fullWidth)
                     .onChange(of: vm.output.selectPerformance) { newValue in
                         vm.input.selectedPerformance.send(newValue)
                     }

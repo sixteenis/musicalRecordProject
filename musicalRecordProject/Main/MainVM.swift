@@ -89,7 +89,7 @@ final class MainVM: ViewModeltype {
             .sink { [weak self] item in
                 guard let self else { return }
                 let index = self.output.showDatas.count
-                if self.output.showDatas[index - 3].id == item.id {
+                if index >= 5 && self.output.showDatas[index - 4].id == item.id {
                     if self.isPageCan {
                         addPerform()
                     }
@@ -151,15 +151,13 @@ private extension MainVM {
         let selecetDateStr = selectDateFormatter.string(from: output.setDate)
         DispatchQueue.main.async {
             self.output.selectDate = selecetDateStr
-            self.page = 1
-            self.isPageCan = true
         }
-        
         do {
             // MARK: - page 변경해서 페이지네이션 기능 구현해줘야됨!
-            let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: output.searchText, page: String(page)).map {$0.transformperformanceModel()}
+            let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: output.searchText, page: "1").map {$0.transformperformanceModel()}
             DispatchQueue.main.async {
-                self.page += 1
+                self.page = 2
+                self.isPageCan = true
                 self.output.showDatas = data
                 if !self.output.showDatas.isEmpty {
                     self.checkDetailPerformancData(id: self.output.showDatas[0].id)

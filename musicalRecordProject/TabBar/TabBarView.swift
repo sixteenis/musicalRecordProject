@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct TabBarView: View {
+    
     var body: some View {
         TabView {
             MainView()
                 .tabItem {
-                    Image(systemName: "star")
+                    Image(systemName: "house")
                 }
                 
             TicketStorageView()
                 .tabItem {
-                    Image(systemName: "heart")
+                    Image(systemName: "ticket")
                 }
             SettingView()
                 .tabItem {  
-                    Image(systemName: "heart.fill")
+                    Image(systemName: "gearshape")
                 }
         }
     }

@@ -36,6 +36,9 @@
 		06609A822CA97E8A00F67C6B /* SaveTicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A812CA97E8A00F67C6B /* SaveTicketModel.swift */; };
 		06609A8B2CA9D80700F67C6B /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A8A2CA9D80700F67C6B /* ReviewView.swift */; };
 		06609A8D2CAA2B1400F67C6B /* UpadteTicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A8C2CAA2B1400F67C6B /* UpadteTicketModel.swift */; };
+		06609A8F2CAAB85000F67C6B /* UserManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A8E2CAAB85000F67C6B /* UserManger.swift */; };
+		06609A922CAAB87800F67C6B /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A912CAAB87800F67C6B /* UserDefault.swift */; };
+		06609A942CAACA0800F67C6B /* ProcessingPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A932CAACA0800F67C6B /* ProcessingPolicyView.swift */; };
 		067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C62C9C0A2100190C92 /* NetworkManager.swift */; };
 		067030CA2C9C0CC100190C92 /* PerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C92C9C0CC100190C92 /* PerformanceDTO.swift */; };
 		067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030CC2C9C213C00190C92 /* DetailPerformanceDTO.swift */; };
@@ -107,6 +110,9 @@
 		06609A812CA97E8A00F67C6B /* SaveTicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTicketModel.swift; sourceTree = "<group>"; };
 		06609A8A2CA9D80700F67C6B /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		06609A8C2CAA2B1400F67C6B /* UpadteTicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpadteTicketModel.swift; sourceTree = "<group>"; };
+		06609A8E2CAAB85000F67C6B /* UserManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManger.swift; sourceTree = "<group>"; };
+		06609A912CAAB87800F67C6B /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		06609A932CAACA0800F67C6B /* ProcessingPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingPolicyView.swift; sourceTree = "<group>"; };
 		067030C62C9C0A2100190C92 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		067030C92C9C0CC100190C92 /* PerformanceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDTO.swift; sourceTree = "<group>"; };
 		067030CB2C9C140C00190C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -246,6 +252,7 @@
 		064245C72C92C88200C9134D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				06609A902CAAB87000F67C6B /* User */,
 				06609A7E2CA95AD500F67C6B /* Realm */,
 				067030D02C9C451D00190C92 /* PerformanceError.swift */,
 				067030C82C9C0CB600190C92 /* DTO */,
@@ -288,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				064862972C944677003B544E /* SettingView.swift */,
+				06609A932CAACA0800F67C6B /* ProcessingPolicyView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -325,6 +333,15 @@
 				06609A7F2CA95B4D00F67C6B /* TicketList.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		06609A902CAAB87000F67C6B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				06609A912CAAB87800F67C6B /* UserDefault.swift */,
+				06609A8E2CAAB85000F67C6B /* UserManger.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		067030C82C9C0CB600190C92 /* DTO */ = {
@@ -463,6 +480,7 @@
 				067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */,
 				06609A792CA9393000F67C6B /* TicketMakeVM.swift in Sources */,
 				067502932CA82FE400FB7DDE /* TicketMakeModel.swift in Sources */,
+				06609A942CAACA0800F67C6B /* ProcessingPolicyView.swift in Sources */,
 				067502912CA81BFF00FB7DDE /* PerformanceStateType.swift in Sources */,
 				067030EB2CA2968E00190C92 /* EXDetailPerformanceView.swift in Sources */,
 				067502872CA7E4E100FB7DDE /* RatingView.swift in Sources */,
@@ -472,6 +490,7 @@
 				06609A8B2CA9D80700F67C6B /* ReviewView.swift in Sources */,
 				064862B12C95F461003B544E /* APIKey.swift in Sources */,
 				067030EE2CA2A17D00190C92 /* Font+.swift in Sources */,
+				06609A8F2CAAB85000F67C6B /* UserManger.swift in Sources */,
 				067030DC2C9E89CE00190C92 /* MainVM.swift in Sources */,
 				064862A42C9562A8003B544E /* TicketStorageView.swift in Sources */,
 				067030CF2C9C3B3D00190C92 /* GenreType.swift in Sources */,
@@ -490,6 +509,7 @@
 				064862962C944671003B544E /* TicketView.swift in Sources */,
 				064245CF2C92CBEB00C9134D /* HorizontalCalendarView.swift in Sources */,
 				06609A8D2CAA2B1400F67C6B /* UpadteTicketModel.swift in Sources */,
+				06609A922CAAB87800F67C6B /* UserDefault.swift in Sources */,
 				0675028F2CA80F3800FB7DDE /* View+.swift in Sources */,
 				064862982C944677003B544E /* SettingView.swift in Sources */,
 				067030D32C9C4BD900190C92 /* FrameExtenstion.swift in Sources */,
@@ -642,7 +662,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = musicalRecordProject/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "내안의연극";
+				INFOPLIST_KEY_CFBundleDisplayName = "내안의공연";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -680,7 +700,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = musicalRecordProject/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "내안의연극";
+				INFOPLIST_KEY_CFBundleDisplayName = "내안의공연";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

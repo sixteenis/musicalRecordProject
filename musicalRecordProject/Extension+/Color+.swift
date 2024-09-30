@@ -24,6 +24,8 @@ extension Color {
     static let ticketLine = Color(hex: "E6D7FF")
     static let asredColor = Color(hex: "FF4D4F")
     static let removeColor = Color(hex: "D32F2F")
+    static let ticketButtonColor = Color(hex: "5C3D99")
+    static let uiColorasMainColor = UIColor(red: 209, green: 178, blue: 255, alpha: 1)
 }
 extension Color {
   init(hex: String) {
