@@ -90,7 +90,7 @@ private extension TicketManager {
         guard let document = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
-        ).first else { return Image.postPlaceholder }
+        ).first else { return Image.postPlaceholder.resizable() }
         
         let fileURL = document.appendingPathComponent("\(filename).jpg")
         

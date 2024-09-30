@@ -24,8 +24,7 @@ struct musicalRecordProjectApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            TabBarView()
-                .accentColor(.asBlack)
+            SplashView()
             
         }
     }

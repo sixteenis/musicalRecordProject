@@ -204,6 +204,7 @@ private extension DetailPerformanceView {
             KFImage(URL(string: data.posterURL))
                 .placeholder { //플레이스 홀더 설정
                     Image.postPlaceholder
+                        .resizable()
                 }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -231,6 +232,7 @@ private extension DetailPerformanceView {
                 KFImage(URL(string: $0))
                     .placeholder { //플레이스 홀더 설정
                         Image.postPlaceholder
+                            .resizable()
                     }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                     .resizable()
                     .aspectRatio(contentMode: .fill)

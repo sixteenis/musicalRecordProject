@@ -201,6 +201,7 @@ private extension MainView {
                 KFImage(URL(string: data.postURL))
                     .placeholder { //플레이스 홀더 설정
                         Image.postPlaceholder
+                            .resizable()
                     }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                     .resizable()
                     .frame(width: height * 0.3 * 2,height: height * 0.3 * 3, alignment: .top)
@@ -271,6 +272,7 @@ private extension MainView {
                         KFImage(URL(string: data.simple.postURL))
                             .placeholder { //플레이스 홀더 설정
                                 Image.postPlaceholder
+                                    .resizable()
                             }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                             .resizable()
                             .frame(width: height * 0.22 * 2,height: height * 0.22 * 3, alignment: .top)

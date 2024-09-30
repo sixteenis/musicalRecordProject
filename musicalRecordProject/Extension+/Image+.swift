@@ -12,7 +12,7 @@ extension Image {
     static let remove = Image(systemName: "trash")
     static let xMark = Image(systemName: "xmark")
     
-    static let postPlaceholder = Image(systemName: "star")
+    static let postPlaceholder = Image("postPlaceholder")
     static let calendarImage = Image(systemName: "calendar")
     static let exPost = Image("testImage")
     static let downImage = Image(systemName: "chevron.down")

@@ -80,6 +80,7 @@ private extension TicketMakeView {
             KFImage(URL(string: vm.output.data.image))
                 .placeholder { //플레이스 홀더 설정
                     Image.postPlaceholder
+                        .resizable()
                 }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                 .resizable()
                 .onSuccess {
