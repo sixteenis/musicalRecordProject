@@ -35,38 +35,55 @@ struct SettingView: View {
                                 .frame(width: widthSize * 0.7, height: heightSize * 0.15)
                             Spacer()
                                 .frame(height: heightSize * 0.05)
-                            Button {
-                                // Action
-                                policyView.toggle()
-                            } label: {
-                                HStack {
-                                    Text("개인정보처리방침")
-                                        .padding(.leading, 35)
-                                    Spacer()
-                                    Image(systemName: "greaterthan")
-                                        .padding(.trailing, 35)
-                                }
-                                .asForeground(Color.ticketButtonColor)
-                            }
+//                            Button {
+//                                // Action
+//                                policyView.toggle()
+//                            } label: {
+//                                HStack {
+//                                    Text("개인정보처리방침")
+//                                        .padding(.leading, 35)
+//                                    Spacer()
+//                                    Image(systemName: "greaterthan")
+//                                        .padding(.trailing, 35)
+//                                }
+//                                .asForeground(Color.ticketButtonColor)
+//                            }
                             Spacer()
                                 .frame(height: heightSize * 0.35)
-                            Button {
-                                if let url = URL(string: "https://www.kopis.or.kr") {
+                            HStack(spacing: 0) {
+                                Button {
+                                    if let url = URL(string: "https://www.kopis.or.kr") {
                                         UIApplication.shared.open(url)
                                     }
+                                    
+                                } label: {
+                                    VStack {
+                                        Text("공연 정보 출처")
+                                            .asForeground(Color.ticketButtonColor)
+                                            .font(.font12)
+                                        Text("(재)예술경영지원센터 공연예술통합전산망")
+                                            .asForeground(Color.ticketButtonColor)
+                                            .font(.font10)
+                                    }
+                                }
+                                Rectangle()
+                                    .frame(width: 1, height: 20)
+                                    .padding(.horizontal, 10)
+                                    .asForeground(Color.ticketButtonColor)
                                 
-                            } label: {
-                                VStack {
-                                    Text("공연 정보 출처")
-                                        .asForeground(Color.ticketButtonColor)
-                                        .font(.font14)
-                                    Text("(재)예술경영지원센터 공연예술통합전산망")
+
+                                Button {
+                                    // Action
+                                    policyView.toggle()
+                                } label: {
+                                    Text("개인정보처리방침")
                                         .asForeground(Color.ticketButtonColor)
                                         .font(.font12)
                                 }
-                            }
+                            } //:VSTACK
                             Spacer()
                                 .frame(height: heightSize * 0.16)
+                                
                         }
                         .padding(30)
                         .fixedSize(horizontal: false, vertical: true) // 높이 고정

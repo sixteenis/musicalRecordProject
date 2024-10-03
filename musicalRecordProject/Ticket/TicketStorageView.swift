@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TicketStorageView: View {
-    @State private var ticketWidth: CGFloat = UIScreen.main.bounds.width - 60
+    @State private var ticketWidth: CGFloat = UIScreen.main.bounds.width - 40
     @State private var ticketHeight: CGFloat = UIScreen.main.bounds.height / 6
     @State private var fullWidth = UIScreen.main.bounds.width
     @State private var searchViewShow = false
@@ -67,7 +67,7 @@ struct TicketStorageView: View {
                 
             }
             .sheet(isPresented: $vm.output.showButtonSheet) {
-                ReviewView() { review in
+                ReviewView(title: vm.output.showTitle) { review in
                     vm.input.acceptReview.send(review)
                 }
                     .presentationDetents([.medium])

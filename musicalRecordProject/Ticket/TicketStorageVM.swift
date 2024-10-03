@@ -29,6 +29,7 @@ final class TicketStorageVM: ViewModeltype {
         var removeTicketId = ""
         var showButtonSheet = false
         var writeReivewModel = ""
+        var showTitle = ""
     }
     init() {
         transform()
@@ -71,6 +72,7 @@ final class TicketStorageVM: ViewModeltype {
                 guard let self else { return }
                 self.output.showButtonSheet.toggle()
                 self.output.writeReivewModel = ticket.imageRoute
+                self.output.showTitle = ticket.title
                 print(self.output.writeReivewModel)
             }.store(in: &cancellables)
         input.acceptReview

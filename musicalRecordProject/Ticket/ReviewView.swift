@@ -11,15 +11,16 @@ struct ReviewView: View {
     @Environment(\.dismiss) var dismiss
     @State var ration = 0.0
     @State var text = ""
-    var title: String = "직녀와 여우를 사랑한죄"
+    var title: String = ""
     var completion: ((UpadteTicketModel) -> ())?
     var body: some View {
         VStack(spacing: 0) {
             Text(title)
+                .lineLimit(1)
                 .font(.font18)
                 .asForeground(Color.asFont)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top)
+                .padding()
             VStack(alignment: .leading) {
                 Text("평점")
                     .font(.boldFont16)
@@ -56,6 +57,3 @@ struct ReviewView: View {
     }
 }
 
-#Preview {
-    ReviewView()
-}
