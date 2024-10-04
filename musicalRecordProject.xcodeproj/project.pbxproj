@@ -40,6 +40,7 @@
 		06609A922CAAB87800F67C6B /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A912CAAB87800F67C6B /* UserDefault.swift */; };
 		06609A942CAACA0800F67C6B /* ProcessingPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A932CAACA0800F67C6B /* ProcessingPolicyView.swift */; };
 		06609A962CAAF05F00F67C6B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A952CAAF05F00F67C6B /* SplashView.swift */; };
+		06609A9A2CAFB0DE00F67C6B /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A992CAFB0DE00F67C6B /* AnalysisView.swift */; };
 		067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C62C9C0A2100190C92 /* NetworkManager.swift */; };
 		067030CA2C9C0CC100190C92 /* PerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C92C9C0CC100190C92 /* PerformanceDTO.swift */; };
 		067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030CC2C9C213C00190C92 /* DetailPerformanceDTO.swift */; };
@@ -115,6 +116,7 @@
 		06609A912CAAB87800F67C6B /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		06609A932CAACA0800F67C6B /* ProcessingPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingPolicyView.swift; sourceTree = "<group>"; };
 		06609A952CAAF05F00F67C6B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		06609A992CAFB0DE00F67C6B /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
 		067030C62C9C0A2100190C92 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		067030C92C9C0CC100190C92 /* PerformanceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDTO.swift; sourceTree = "<group>"; };
 		067030CB2C9C140C00190C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -194,8 +196,9 @@
 				064245B92C92C7BF00C9134D /* Main */,
 				067030EC2CA2969C00190C92 /* DetailPerformance */,
 				0675027A2CA7CCC700FB7DDE /* TicketMake */,
-				064245AF2C92C7B200C9134D /* Assets.xcassets */,
+				06609A982CAFB0C100F67C6B /* Analysis */,
 				067030CB2C9C140C00190C92 /* Info.plist */,
+				064245AF2C92C7B200C9134D /* Assets.xcassets */,
 				064245B12C92C7B200C9134D /* Preview Content */,
 			);
 			path = musicalRecordProject;
@@ -255,6 +258,7 @@
 		064245C72C92C88200C9134D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				06609A972CAFAE2C00F67C6B /* NaverMap */,
 				06609A902CAAB87000F67C6B /* User */,
 				06609A7E2CA95AD500F67C6B /* Realm */,
 				067030D02C9C451D00190C92 /* PerformanceError.swift */,
@@ -345,6 +349,21 @@
 				06609A8E2CAAB85000F67C6B /* UserManger.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		06609A972CAFAE2C00F67C6B /* NaverMap */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NaverMap;
+			sourceTree = "<group>";
+		};
+		06609A982CAFB0C100F67C6B /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				06609A992CAFB0DE00F67C6B /* AnalysisView.swift */,
+			);
+			path = Analysis;
 			sourceTree = "<group>";
 		};
 		067030C82C9C0CB600190C92 /* DTO */ = {
@@ -510,6 +529,7 @@
 				06347FDC2CA411FE0057001B /* HeaderType.swift in Sources */,
 				064245CD2C92CAD100C9134D /* ViewModeltype.swift in Sources */,
 				064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */,
+				06609A9A2CAFB0DE00F67C6B /* AnalysisView.swift in Sources */,
 				064862962C944671003B544E /* TicketView.swift in Sources */,
 				064245CF2C92CBEB00C9134D /* HorizontalCalendarView.swift in Sources */,
 				06609A8D2CAA2B1400F67C6B /* UpadteTicketModel.swift in Sources */,
