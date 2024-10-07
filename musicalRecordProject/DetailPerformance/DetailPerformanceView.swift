@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import MapKit
+
 import Kingfisher
+
 struct DetailPerformanceView: View {
+    private let width = UIScreen.main.bounds.width
+    private let height = UIScreen.main.bounds.height
     @State private var showNextView = false
     @State private var showDetail = false
+    @State private var showMap = false
+    @State private var placeData = PlaceModel()
+    @State private var region = MKCoordinateRegion()
     var data: DetailPerformance = DetailPerformance()
     var selecetDate = ""
     var tab: MainView
@@ -45,7 +53,7 @@ struct DetailPerformanceView: View {
                 }
                 .background(
                     NavigationLink(destination: TicketMakeView(vm: TicketMakeVM(), data: data, date: selecetDate), isActive: $showNextView) {
-
+                        
                         EmptyView() // 실제 링크를 표시하지 않음
                     }
                 )
@@ -58,6 +66,16 @@ struct DetailPerformanceView: View {
         .onDisappear {
             if !showNextView {
                 tab.tabBarVisibility = .visible
+            }
+        }
+        .task {
+            do {
+                let result = try await NetworkManager.shared.requestFacility(facilityId: data.placeId)
+                self.placeData = result.transformPlaceModel()
+                region.center = CLLocationCoordinate2D(latitude: self.placeData.latitude, longitude: self.placeData.longitude)
+                region.span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            } catch {
+                print("공연장 가져오기 오류 발생")
             }
         }
         
@@ -118,6 +136,7 @@ private extension DetailPerformanceView {
     }
     
 }
+// MARK: - 배우, 제작진 뷰 부분
 private extension DetailPerformanceView {
     func actorInfo() -> some View {
         VStack(alignment: .leading) {
@@ -180,19 +199,85 @@ private extension DetailPerformanceView {
         }
     }
 }
+// MARK: - 공연장 뷰 부분
 private extension DetailPerformanceView {
     func ticketInfo() -> some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("공연정보")
                 .font(.boldFont18)
-            //            Text("판매처")
-            //                .font(.font16)
-            //            Image(systemName: "star")
+            
             performancInfoText(main: "공연일정", content: data.guidance)
             performancInfoText(main: "티켓금액", content: data.ticketPrice)
+            placeView()
         }
         .padding(.horizontal)
         .frame(width: UIScreen.main.bounds.width, alignment: .leading)
+        
+    }
+    @ViewBuilder
+    func placeView() -> some View {
+        
+        if showMap {
+            detailPlace()
+        } else {
+            simplePlace()
+        }
+        
+    }
+    func simplePlace() -> some View {
+        VStack(alignment: .leading) {
+            Text("공연장 위치")
+                .asForeground(Color.asGrayFont)
+                .font(.font16)
+            Spacer()
+                .frame(height: 10)
+            HStack {
+                Text(placeData.address)
+                    .lineLimit(1)
+                    .asForeground(Color.asFont)
+                    .font(.boldFont14)
+                Spacer()
+                Button {
+                    // Action
+                    showMap.toggle()
+                } label: {
+                    Text("지도보기")
+                        .asForeground(.font)
+                        .font(.boldFont14)
+                }
+                
+            }
+        }
+        
+    }
+    func detailPlace() -> some View {
+        VStack(alignment: .leading) {
+            Text("공연장 위치")
+                .asForeground(Color.asGrayFont)
+                .font(.font16)
+            Spacer()
+                .frame(height: 10)
+            Text(self.placeData.address)
+                .asForeground(Color.asFont)
+                .font(.boldFont14)
+            Spacer()
+                .frame(height: 10)
+            mapView()
+        }
+        .frame(width: width, alignment: .leading)
+    }
+    func mapView() -> some View {
+        VStack {
+            Map(coordinateRegion: self.$region, annotationItems: [Location(coordinates: CLLocationCoordinate2D(latitude: self.placeData.latitude, longitude: self.placeData.longitude))]) { location in
+                //MapMarker(coordinate: location.coordinates, tint: .blue)
+                MapAnnotation(coordinate: location.coordinates) {
+                    CustomMapMarker()
+                }
+            }
+            .frame(width: width - 30, height: 200)
+                
+        }
+        
         
     }
 }

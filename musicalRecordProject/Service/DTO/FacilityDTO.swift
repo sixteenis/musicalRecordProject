@@ -31,6 +31,12 @@ struct FacilityDTO {
     var elevbarrier: String // 장애인 엘리베이터 여부
     var parkinglot: String // 주차장 여부
     var performancePlaces: [PerformancePlace] // 공연장 세부 정보
+    func transformPlaceModel() -> PlaceModel {
+        let la = Double(self.la) ?? 37.5666791
+        let lo = Double(self.lo) ?? 126.9782914
+        let model = PlaceModel(facilityName: self.fcltynm, address: self.adres, latitude: la, longitude: lo)
+        return model
+    }
 }
 
 struct PerformancePlace {
