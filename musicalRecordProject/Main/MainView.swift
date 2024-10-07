@@ -15,7 +15,7 @@ struct MainView: View {
     @StateObject private var vm = MainVM()
     
     var body: some View {
-        NavigationView {
+        NavigationWrapper {
             VStack(spacing: 10) {
                 cellList()
             } //:VSTACK

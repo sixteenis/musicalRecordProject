@@ -13,7 +13,7 @@ struct SettingView: View {
     @State private var tickets: [TicketList] = [TicketList]()
     @State private var policyView = false
     var body: some View {
-        NavigationView {
+        NavigationWrapper {
             GeometryReader { geometry in
                 let widthSize = geometry.size.width
                 let heightSize = geometry.size.height

@@ -16,7 +16,7 @@ struct TicketStorageView: View {
     @StateObject private var vm = TicketStorageVM()
     
     var body: some View {
-        NavigationView {
+        NavigationWrapper {
             VStack {
                 CustomSegmentedControl(selected: $vm.output.selectPerformance, width: fullWidth)
                     .onChange(of: vm.output.selectPerformance) { newValue in
