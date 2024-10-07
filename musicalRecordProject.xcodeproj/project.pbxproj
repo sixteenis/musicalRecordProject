@@ -41,6 +41,9 @@
 		06609A942CAACA0800F67C6B /* ProcessingPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A932CAACA0800F67C6B /* ProcessingPolicyView.swift */; };
 		06609A962CAAF05F00F67C6B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A952CAAF05F00F67C6B /* SplashView.swift */; };
 		06609A9A2CAFB0DE00F67C6B /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A992CAFB0DE00F67C6B /* AnalysisView.swift */; };
+		06609AE02CB3B59500F67C6B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609ADF2CB3B59500F67C6B /* TestView.swift */; };
+		06609AE32CB3B8C000F67C6B /* CustomMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609AE22CB3B8C000F67C6B /* CustomMapMarker.swift */; };
+		06609AE52CB3BC2300F67C6B /* PlaceMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609AE42CB3BC2300F67C6B /* PlaceMapView.swift */; };
 		067030C72C9C0A2100190C92 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C62C9C0A2100190C92 /* NetworkManager.swift */; };
 		067030CA2C9C0CC100190C92 /* PerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030C92C9C0CC100190C92 /* PerformanceDTO.swift */; };
 		067030CD2C9C213C00190C92 /* DetailPerformanceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067030CC2C9C213C00190C92 /* DetailPerformanceDTO.swift */; };
@@ -117,6 +120,9 @@
 		06609A932CAACA0800F67C6B /* ProcessingPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingPolicyView.swift; sourceTree = "<group>"; };
 		06609A952CAAF05F00F67C6B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		06609A992CAFB0DE00F67C6B /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
+		06609ADF2CB3B59500F67C6B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		06609AE22CB3B8C000F67C6B /* CustomMapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapMarker.swift; sourceTree = "<group>"; };
+		06609AE42CB3BC2300F67C6B /* PlaceMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMapView.swift; sourceTree = "<group>"; };
 		067030C62C9C0A2100190C92 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		067030C92C9C0CC100190C92 /* PerformanceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDTO.swift; sourceTree = "<group>"; };
 		067030CB2C9C140C00190C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 			children = (
 				064245AB2C92C7B000C9134D /* musicalRecordProjectApp.swift */,
 				06609A952CAAF05F00F67C6B /* SplashView.swift */,
+				06609AE12CB3B8AC00F67C6B /* CustomView */,
 				064245D22C92D00600C9134D /* Extension+ */,
 				064245C92C92CA0200C9134D /* Protocol */,
 				064245C72C92C88200C9134D /* Service */,
@@ -200,6 +207,7 @@
 				067030CB2C9C140C00190C92 /* Info.plist */,
 				064245AF2C92C7B200C9134D /* Assets.xcassets */,
 				064245B12C92C7B200C9134D /* Preview Content */,
+				06609ADF2CB3B59500F67C6B /* TestView.swift */,
 			);
 			path = musicalRecordProject;
 			sourceTree = "<group>";
@@ -366,6 +374,14 @@
 			path = Analysis;
 			sourceTree = "<group>";
 		};
+		06609AE12CB3B8AC00F67C6B /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				06609AE22CB3B8C000F67C6B /* CustomMapMarker.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		067030C82C9C0CB600190C92 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +416,7 @@
 				067030EA2CA2968E00190C92 /* EXDetailPerformanceView.swift */,
 				06347FDF2CA4EA270057001B /* DetailPerformanceView.swift */,
 				067502902CA81BFF00FB7DDE /* PerformanceStateType.swift */,
+				06609AE42CB3BC2300F67C6B /* PlaceMapView.swift */,
 			);
 			path = DetailPerformance;
 			sourceTree = "<group>";
@@ -522,6 +539,7 @@
 				0648629D2C9446A0003B544E /* TabBarView.swift in Sources */,
 				067502892CA7F27500FB7DDE /* TicketState.swift in Sources */,
 				064245D42C92D01100C9134D /* Color+.swift in Sources */,
+				06609AE02CB3B59500F67C6B /* TestView.swift in Sources */,
 				0675027C2CA7CCE500FB7DDE /* TicketMakeView.swift in Sources */,
 				0675028D2CA80C5800FB7DDE /* CustomTextEditorStyle.swift in Sources */,
 				064245C62C92C87900C9134D /* PrimaryText.swift in Sources */,
@@ -531,12 +549,14 @@
 				064862AB2C958515003B544E /* CustomSegmentedControl.swift in Sources */,
 				06609A9A2CAFB0DE00F67C6B /* AnalysisView.swift in Sources */,
 				064862962C944671003B544E /* TicketView.swift in Sources */,
+				06609AE32CB3B8C000F67C6B /* CustomMapMarker.swift in Sources */,
 				064245CF2C92CBEB00C9134D /* HorizontalCalendarView.swift in Sources */,
 				06609A8D2CAA2B1400F67C6B /* UpadteTicketModel.swift in Sources */,
 				06609A922CAAB87800F67C6B /* UserDefault.swift in Sources */,
 				0675028F2CA80F3800FB7DDE /* View+.swift in Sources */,
 				064862982C944677003B544E /* SettingView.swift in Sources */,
 				067030D32C9C4BD900190C92 /* FrameExtenstion.swift in Sources */,
+				06609AE52CB3BC2300F67C6B /* PlaceMapView.swift in Sources */,
 				064862AF2C959C68003B544E /* Image+.swift in Sources */,
 				06347FDE2CA432D30057001B /* ShowPerformanceModel.swift in Sources */,
 				067502802CA7CDD600FB7DDE /* TabType.swift in Sources */,
