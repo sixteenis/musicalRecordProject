@@ -201,7 +201,6 @@
 				064245D22C92D00600C9134D /* Extension+ */,
 				064245C92C92CA0200C9134D /* Protocol */,
 				064245C72C92C88200C9134D /* Service */,
-				064245C52C92C87900C9134D /* CustomModifier */,
 				064245C12C92C86F00C9134D /* Wrapper */,
 				064862992C94467D003B544E /* TabBar */,
 				064862942C944656003B544E /* Setting */,
@@ -254,20 +253,13 @@
 		064245C12C92C86F00C9134D /* Wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				064245C42C92C87900C9134D /* PrimaryText.swift */,
+				0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */,
 				064245BF2C92C86F00C9134D /* ButtonWrapper.swift */,
 				064245C02C92C86F00C9134D /* ForegroundWrapper.swift */,
 				06609AEA2CB3FF7900F67C6B /* NavigationWrapper.swift */,
 			);
 			path = Wrapper;
-			sourceTree = "<group>";
-		};
-		064245C52C92C87900C9134D /* CustomModifier */ = {
-			isa = PBXGroup;
-			children = (
-				0675028C2CA80C5800FB7DDE /* CustomTextEditorStyle.swift */,
-				064245C42C92C87900C9134D /* PrimaryText.swift */,
-			);
-			path = CustomModifier;
 			sourceTree = "<group>";
 		};
 		064245C72C92C88200C9134D /* Service */ = {

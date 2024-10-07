@@ -80,7 +80,7 @@ struct HorizontalCalendarView: View {
                 },
                 label: {
                     Image(systemName: "chevron.left")
-                        .foregroundColor(.asBlack)
+                        .asForeground(.asBlack)
                     
                 }
             )
@@ -95,7 +95,7 @@ struct HorizontalCalendarView: View {
                 },
                 label: {
                     Image(systemName: "chevron.right")
-                        .foregroundColor(.asBlack)
+                        .asForeground(.asBlack)
                 }
             )
         }

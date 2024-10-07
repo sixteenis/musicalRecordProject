@@ -7,17 +7,36 @@
 
 import SwiftUI
 import Kingfisher
+import Combine
 // TODO: 연극이나 뮤지컬 클릭 시 스크롤 탑으로 해주기!
-
 struct MainView: View {
     @State private var isCalendarVisible: Bool = true
     @State var tabBarVisibility: Visibility = .visible
     @StateObject private var vm = MainVM()
-    
+    let width = UIScreen.main.bounds.width
     var body: some View {
         NavigationWrapper {
             VStack(spacing: 10) {
-                cellList()
+                //cellList()
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        calendarViewWithGeometry()
+                        Spacer()
+                            .frame(height: 15)
+                        ForEach(vm.output.showDatas, id: \.id) { data in
+                            cell(for: data, width: width, height: 700)
+                                .id(data.id)
+                                .onTapGesture {
+                                    withAnimation {
+                                        vm.input.selectCell.send(data.id)
+                                    }
+                                }
+                                .onAppear {
+                                    vm.input.showLastItem.send(data)
+                                }
+                        }
+                    }  //:VSTACK
+                }  //:SCROLL
             } //:VSTACK
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -107,30 +126,6 @@ private extension MainView {
         }
         .frame(height: 100) // CalendarView 높이를 고정 (적절한 높이로 설정)
     }
-    func cellList() -> some View {
-        
-        ScrollView {
-            LazyVStack(spacing: 0) {
-                calendarViewWithGeometry()
-                Spacer()
-                    .frame(height: 15)
-                ForEach(vm.output.showDatas, id: \.id) { data in
-                    cell(for: data, width: CGFloat.infinity, height: 700)
-                        .id(data.id)
-                        .onTapGesture {
-                            withAnimation {
-                                vm.input.selectCell.send(data.id)
-                            }
-                        }
-                        .onAppear {
-                            vm.input.showLastItem.send(data)
-                        }
-                }
-            }  //:VSTACK
-        }  //:SCROLL
-        
-        
-    }
     func cell(for data: PerformanceModel, width: CGFloat, height: CGFloat) -> some View {
         HStack {
             VStack(spacing: 0) {
@@ -157,7 +152,7 @@ private extension MainView {
                     Spacer()
                 }
             }
-            if vm.output.selectCellId == data.id{
+            if vm.output.selectCellId == data.id {
                 detailView(data: data, height: height * 0.45)
                     .transition(.move(edge: .trailing).combined(with: .opacity))
                     .padding([.bottom,.top], 10)
@@ -204,6 +199,7 @@ private extension MainView {
                             .resizable()
                     }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                     .resizable()
+                    .setProcessor(DownsamplingImageProcessor(size: CGSize(width: height * 0.6, height: height * 0.9))) //이미지 용량이 너무 커서 메모리 용량 많이 잡아먹는 이슈 발생
                     .frame(width: height * 0.3 * 2,height: height * 0.3 * 3, alignment: .top)
                     .padding(.top, 30)
                     .padding(.trailing)

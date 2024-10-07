@@ -64,9 +64,11 @@ struct DetailPerformanceView: View {
             tab.tabBarVisibility = .hidden
         }
         .onDisappear {
+            // MARK: - 탭바 숨기기 이슈~~~
             if !showNextView {
                 tab.tabBarVisibility = .visible
             }
+            print("없어짐")
         }
         .task {
             do {
@@ -292,6 +294,7 @@ private extension DetailPerformanceView {
                         .resizable()
                 }.retry(maxCount: 3, interval: .seconds(5)) //재시도
                 .resizable()
+                .setProcessor(DownsamplingImageProcessor(size: CGSize(width: width, height: height))) //이미지 용량이 너무 커서 메모리 용량 많이 잡아먹는 이슈 발생
                 .aspectRatio(contentMode: .fill)
                 .frame(width: size * 2, height: size * 3)
             Spacer()

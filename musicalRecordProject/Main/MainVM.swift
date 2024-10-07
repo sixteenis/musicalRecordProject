@@ -10,11 +10,17 @@ import Combine
 
 
 final class MainVM: ViewModeltype {
-    var cancellables = Set<AnyCancellable>()
+    var cancellables: Set<AnyCancellable>
     var input = Input()
     var page = 1
     var isPageCan = true
     @Published var output = Output()
+    
+    init() {
+        self.cancellables = Set<AnyCancellable>()
+        transform()
+    }
+    
     struct Input {
         let viewOnTask = PassthroughSubject<Void,Never>()
         let dateSet = CurrentValueSubject<Date, Never>(Date()) //날짜 선택
@@ -36,9 +42,6 @@ final class MainVM: ViewModeltype {
         var selectPost = DetailPerformance()
         var selectDate = ""
     }
-    init() {
-        transform()
-    }
     func transform() {
         input.viewOnTask // 뷰가 뜰때
             .sink { [weak self] _ in
@@ -49,8 +52,8 @@ final class MainVM: ViewModeltype {
             .sink { [weak self] date in
                 guard let self else { return }
                 //날짜를 선택해서 변경시 하루가 감소해서 준다/??
-                    self.output.setDate = date
-                    self.seleectDateOrType()
+                self.output.setDate = date
+                self.seleectDateOrType()
             }.store(in: &cancellables)
         input.showTypeSet //타입 변경
             .sink { [weak self] type in
@@ -67,7 +70,7 @@ final class MainVM: ViewModeltype {
         
         //서치바 리턴 할 경우
         input.searchTextTap
-            //.debounce(for: .seconds(1), scheduler: RunLoop.main) //실시간 검색어 감지할 경우 이거 키자~
+        //.debounce(for: .seconds(1), scheduler: RunLoop.main) //실시간 검색어 감지할 경우 이거 키자~
             .sink { [weak self] text in
                 guard let self else { return }
                 self.output.searchText = text
@@ -127,7 +130,7 @@ private extension MainVM {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
         let dateString = dateFormatter.string(from: output.setDate)
-
+        
         do {
             let data = try await NetworkManager.shared.requestPerformance(date: dateString, genreType: output.showType, title: output.searchText, page: String(page)).map {$0.transformperformanceModel()}
             DispatchQueue.main.async {
@@ -142,6 +145,7 @@ private extension MainVM {
             self.isPageCan = false
         }
     }
+    // MARK: - 날짜 변경같이 데이터들의 값을 아예 갈아엎는 경우
     func updatePerformanceList() async {
         let dateFormatter = DateFormatter()
         let selectDateFormatter = DateFormatter()
