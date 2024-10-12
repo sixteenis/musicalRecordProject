@@ -10,7 +10,7 @@ import Combine
 final class TicketMakeVM: ViewModeltype {
     var cancellables = Set<AnyCancellable>()
     var input = Input()
-    var data = DetailPerformance()
+    private var data = DetailPerformance()
     @Published var output = Output()
     struct Input {
         let dataSet = CurrentValueSubject<(DetailPerformance,String), Never>((DetailPerformance(),""))

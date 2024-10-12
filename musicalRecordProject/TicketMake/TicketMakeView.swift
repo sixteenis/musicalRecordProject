@@ -9,12 +9,12 @@ import SwiftUI
 import Kingfisher
 import RealmSwift
 struct TicketMakeView: View {
-    let width = UIScreen.main.bounds.width
-    let height = UIScreen.main.bounds.height
-    let inputBackColor = Color.grayBackground
-    let inputHeight: CGFloat = 40
-    let itemSpace: CGFloat = 20
-    let colums = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    private let width = UIScreen.main.bounds.width
+    private let height = UIScreen.main.bounds.height
+    private let inputBackColor = Color.grayBackground
+    private let inputHeight: CGFloat = 40
+    private let itemSpace: CGFloat = 20
+    private let colums = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     var data: DetailPerformance
     var date: String
     @ObservedObject var vm: TicketMakeVM

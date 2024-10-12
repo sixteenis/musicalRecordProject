@@ -13,7 +13,7 @@ struct MainView: View {
     @State private var isCalendarVisible: Bool = true
     @State var tabBarVisibility: Visibility = .visible
     @StateObject private var vm = MainVM()
-    let width = UIScreen.main.bounds.width
+    private let width = UIScreen.main.bounds.width
     var body: some View {
         NavigationWrapper {
             VStack(spacing: 10) {

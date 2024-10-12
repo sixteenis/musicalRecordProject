@@ -12,8 +12,8 @@ import Combine
 final class MainVM: ViewModeltype {
     var cancellables: Set<AnyCancellable>
     var input = Input()
-    var page = 1
-    var isPageCan = true
+    private var page = 1
+    private var isPageCan = true
     @Published var output = Output()
     
     init() {
