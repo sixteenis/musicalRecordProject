@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import Combine
+
 // TODO: 연극이나 뮤지컬 클릭 시 스크롤 탑으로 해주기!
 struct MainView: View {
     @State private var isCalendarVisible: Bool = true
