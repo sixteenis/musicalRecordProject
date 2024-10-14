@@ -54,7 +54,6 @@ final class LocalNotificationManager {
     
     func scheduleNotifications() -> Void {
         for notification in notifications {
-            //🗓️ 날짜 설정
             var triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: notification.date)
             triggerDate.hour = 8
             triggerDate.minute = 0
