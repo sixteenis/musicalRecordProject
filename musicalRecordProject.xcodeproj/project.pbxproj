@@ -34,6 +34,7 @@
 		065670B92CBBF15D00CF58CB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 065670B82CBBF15D00CF58CB /* FirebaseCrashlytics */; };
 		065670BB2CBBF15D00CF58CB /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 065670BA2CBBF15D00CF58CB /* FirebaseMessaging */; };
 		065670BD2CBBF17F00CF58CB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 065670BC2CBBF17F00CF58CB /* FirebaseAnalytics */; };
+		065670CE2CBCEE0B00CF58CB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065670CD2CBCEE0B00CF58CB /* Notification.swift */; };
 		06609A792CA9393000F67C6B /* TicketMakeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A782CA9393000F67C6B /* TicketMakeVM.swift */; };
 		06609A7D2CA95ACC00F67C6B /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A7C2CA95ACC00F67C6B /* TicketManager.swift */; };
 		06609A802CA95B4D00F67C6B /* TicketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06609A7F2CA95B4D00F67C6B /* TicketList.swift */; };
@@ -116,6 +117,7 @@
 		064862AE2C959C68003B544E /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		064862B02C95F461003B544E /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		065670B52CBBEEA200CF58CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		065670CD2CBCEE0B00CF58CB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		06609A782CA9393000F67C6B /* TicketMakeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMakeVM.swift; sourceTree = "<group>"; };
 		06609A7C2CA95ACC00F67C6B /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
 		06609A7F2CA95B4D00F67C6B /* TicketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketList.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		064245C72C92C88200C9134D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				065670CC2CBCEE0300CF58CB /* Notification */,
 				06609A902CAAB87000F67C6B /* User */,
 				06609A7E2CA95AD500F67C6B /* Realm */,
 				067030D02C9C451D00190C92 /* PerformanceError.swift */,
@@ -346,6 +349,14 @@
 				064862A62C9581DC003B544E /* PerformancePicker.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		065670CC2CBCEE0300CF58CB /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				065670CD2CBCEE0B00CF58CB /* Notification.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		06609A7E2CA95AD500F67C6B /* Realm */ = {
@@ -584,6 +595,7 @@
 				06609AE32CB3B8C000F67C6B /* CustomMapMarker.swift in Sources */,
 				064245CF2C92CBEB00C9134D /* HorizontalCalendarView.swift in Sources */,
 				06609A8D2CAA2B1400F67C6B /* UpadteTicketModel.swift in Sources */,
+				065670CE2CBCEE0B00CF58CB /* Notification.swift in Sources */,
 				06609A922CAAB87800F67C6B /* UserDefault.swift in Sources */,
 				0675028F2CA80F3800FB7DDE /* View+.swift in Sources */,
 				064862982C944677003B544E /* SettingView.swift in Sources */,

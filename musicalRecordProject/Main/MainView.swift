@@ -15,6 +15,7 @@ struct MainView: View {
     @State var tabBarVisibility: Visibility = .visible
     @StateObject private var vm = MainVM()
     private let width = UIScreen.main.bounds.width
+    
     var body: some View {
         NavigationWrapper {
             VStack(spacing: 10) {
