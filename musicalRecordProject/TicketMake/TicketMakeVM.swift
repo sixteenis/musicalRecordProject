@@ -11,6 +11,7 @@ final class TicketMakeVM: ViewModeltype {
     var cancellables = Set<AnyCancellable>()
     var input = Input()
     private var data = DetailPerformance()
+    private let notificationManager = LocalNotificationManager()
     @Published var output = Output()
     struct Input {
         let dataSet = CurrentValueSubject<(DetailPerformance,String), Never>((DetailPerformance(),""))
@@ -23,7 +24,7 @@ final class TicketMakeVM: ViewModeltype {
         var data = TicketMakeModel()
         var ticketPrice = ""
         var imageData: Data = .empty
-        //var saveButtonTapped = false 
+        //var saveButtonTapped = false
         var saveCompletion = false
         
         
@@ -59,6 +60,17 @@ final class TicketMakeVM: ViewModeltype {
         input.saveButtonTap
             .sink { [weak self] _ in
                 guard let self else { return }
+                print(self.output.data.title)
+                //                notificationManager.requestPermission()
+                print(self.output.data.state)
+                
+                DispatchQueue.global().async { [weak self] in
+                    guard let self else { return }
+                    if self.output.data.state == .schedule {
+                        self.notificationManager.addNotification(title: self.output.data.title, date: self.output.data.date)
+                        self.notificationManager.schedule()
+                    }
+                }
                 TicketManager.shared.addTicket(self.output.data, imageData: self.output.imageData)
                 self.output.saveCompletion = true
             }.store(in: &cancellables)
