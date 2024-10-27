@@ -5,7 +5,7 @@
 ## 📱 **주요 기능**
 | 홈 | 공연 상세 | 티켓보관함 | 설정 |
 |---------------|---------------|---------------|---------------|
-| <img src="https://github.com/user-attachments/assets/c3c10236-e11b-48da-a82e-a81f2e4690b5" width="200" /> | <img src="https://github.com/user-attachments/assets/606b5a71-71ed-4980-8e7d-89682b79f440" width="200" /> | <img src="https://github.com/user-attachments/assets/450a58dc-8468-4d79-8822-2bef8e58fe02" width="200" /> | <img src="https://github.com/user-attachments/assets/44a2fcf0-bb93-4c88-a6e8-e2f04677bbdb" width="200" /> |
+| <img src="https://github.com/user-attachments/assets/c3c10236-e11b-48da-a82e-a81f2e4690b5" width="150" /> | <img src="https://github.com/user-attachments/assets/606b5a71-71ed-4980-8e7d-89682b79f440" width="150" /> | <img src="https://github.com/user-attachments/assets/450a58dc-8468-4d79-8822-2bef8e58fe02" width="150" /> | <img src="https://github.com/user-attachments/assets/44a2fcf0-bb93-4c88-a6e8-e2f04677bbdb" width="150" /> |
 > 🔥 날마다 진행 중인 공연 조회
     
 > 🔍 날짜/제목 검색으로 공연 조회 
