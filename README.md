@@ -3,9 +3,9 @@
 <br>
 
 ## 📱 **주요 기능**
-| 홈 | 티켓보관함 | 설정 |
-|---------------|---------------|---------------|
-
+| 홈 | 공연 상세 | 티켓보관함 | 설정 |
+|---------------|---------------|---------------|---------------|
+| <img src="https://github.com/user-attachments/assets/c3c10236-e11b-48da-a82e-a81f2e4690b5" width="200" /> | <img src="https://github.com/user-attachments/assets/606b5a71-71ed-4980-8e7d-89682b79f440" width="200" /> | <img src="https://github.com/user-attachments/assets/450a58dc-8468-4d79-8822-2bef8e58fe02" width="200" /> | <img src="https://github.com/user-attachments/assets/44a2fcf0-bb93-4c88-a6e8-e2f04677bbdb" width="200" /> |
 > 🔥 날마다 진행 중인 공연 조회
     
 > 🔍 날짜/제목 검색으로 공연 조회 
@@ -66,12 +66,9 @@
     
     
 ---
+### Card-flip Animation 활용 Custom 티켓 뷰 구현
+- rotation3DEffect, scaleEffect 메서드를 활용하여 티켓 UI 구현
+- animation 메서드를 활용하여 전환 시 자연스러운 애니메이션 구현
+
 ### FirebaseCashlytics 
 - 앱의 안전성과 런타임 중 발생하는 크래시, 오류를 실시간으로 모니터링 진행하여 사용자 경험과 빠른 문제 해결
-  
-(추후 추가예정)
-<br>    
-
-## 🚨 트러블 슈팅 (공사중)
-### 런타임 시 과도한 메모리 사용하는 문제
-
