@@ -3,9 +3,32 @@
 <br>
 
 ## 📱 **주요 기능**
-| 홈 | 공연 상세 | 티켓보관함 | 설정 |
-|---------------|---------------|---------------|---------------|
-| <img src="https://github.com/user-attachments/assets/c3c10236-e11b-48da-a82e-a81f2e4690b5" width="150" /> | <img src="https://github.com/user-attachments/assets/606b5a71-71ed-4980-8e7d-89682b79f440" width="150" /> | <img src="https://github.com/user-attachments/assets/450a58dc-8468-4d79-8822-2bef8e58fe02" width="150" /> | <img src="https://github.com/user-attachments/assets/44a2fcf0-bb93-4c88-a6e8-e2f04677bbdb" width="150" /> |
+<div style="text-align: center;", align="center">
+    <table style="margin: 0 auto; text-align: center;">
+        <tr>
+            <th style="padding: 10px;">홈</th>
+            <th style="padding: 10px;">공연 상세</th>
+            <th style="padding: 10px;">티켓보관함</th>
+            <th style="padding: 10px;">설정</th>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <img src="https://github.com/user-attachments/assets/c3c10236-e11b-48da-a82e-a81f2e4690b5" width="150" />
+            </td>
+            <td style="text-align: center;">
+                <img src="https://github.com/user-attachments/assets/606b5a71-71ed-4980-8e7d-89682b79f440" width="150" />
+            </td>
+            <td style="text-align: center;">
+                <img src="https://github.com/user-attachments/assets/450a58dc-8468-4d79-8822-2bef8e58fe02" width="150" />
+            </td>
+            <td style="text-align: center;">
+                <img src="https://github.com/user-attachments/assets/44a2fcf0-bb93-4c88-a6e8-e2f04677bbdb" width="150" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+
 > 🔥 날마다 진행 중인 공연 조회
     
 > 🔍 날짜/제목 검색으로 공연 조회 
