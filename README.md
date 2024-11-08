@@ -78,17 +78,33 @@
 
 ## 🚨 트러블 슈팅
 ### 런타임 시 과도한 메모리 사용
-
-| 해결전 메모리 | 해결후 메모리 |
-|---------------|---------------|
-| <img width="120" alt="스크린샷 2024-11-08 15 29 20" src="https://github.com/user-attachments/assets/4f1ecfec-ee59-48b4-b195-fb995268fc3e"> | <img width="120" alt="스크린샷 2024-11-08 15 29 38" src="https://github.com/user-attachments/assets/2a964cac-59d6-4a9a-a17d-aa3736376cab"> |
+<div style="text-align: center;", align="center">
+    <table style="margin: 0 auto; text-align: center;">
+        <tr>
+            <th style="padding: 10px;">해결전 메모리</th>
+            <th style="padding: 10px;">해결후 메모리</th>
+            <th style="padding: 10px;">해결전 이미지용량</th>
+            <th style="padding: 10px;">해결후 이미지용량</th>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <img width="120" alt="스크린샷 2024-11-08 15 29 20" src="https://github.com/user-attachments/assets/4f1ecfec-ee59-48b4-b195-fb995268fc3e">
+            </td>
+            <td style="text-align: center;">
+                <img width="120" alt="스크린샷 2024-11-08 15 29 38" src="https://github.com/user-attachments/assets/2a964cac-59d6-4a9a-a17d-aa3736376cab">
+            </td>
+            <td style="text-align: center;">
+                <img width="300" alt="스크린샷 2024-11-08 17 37 18" src="https://github.com/user-attachments/assets/edafc550-95d1-40c4-abef-c78fbe77b52e">
+            </td>
+            <td style="text-align: center;">
+                <img width="300" alt="스크린샷 2024-11-08 17 44 16" src="https://github.com/user-attachments/assets/fd7ceb9d-c910-4467-8fad-f5c8cbb59e2e">
+            </td>
+        </tr>
+    </table>
+</div>
 
 - 문제 🤔
     - 디버깅을 통해 공연 정보 API에서 앱에 맞지 않는 용량의 이미지를 전달해주고 있다는 문제로 인해 과도한 메모리를 사용 중인 것을 확인
-
-| 해결 전 | 해결 후 |
-|---------------|---------------|
-| <img width="300" alt="스크린샷 2024-11-08 17 37 18" src="https://github.com/user-attachments/assets/edafc550-95d1-40c4-abef-c78fbe77b52e"> | <img width="300" alt="스크린샷 2024-11-08 17 44 16" src="https://github.com/user-attachments/assets/fd7ceb9d-c910-4467-8fad-f5c8cbb59e2e"> |
 
 - 해결 🫢
     - Image resizing과 앱에 필요한 적합한 사이즈로 downSampling을 진행하여 이전 이미지 용량 대비 90% 감소한 용량 사용
