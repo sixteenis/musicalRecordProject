@@ -63,7 +63,7 @@
 
 - `SwiftUI` / `Combine`/ `MapKit`
 - `MVVM` + `InOut Pattern` 
-- `URLSeeion` + `Concurrency` +  `XML Parser`
+- `URLSession` + `Concurrency` +  `XML Parser`
 - `Realm`/`UserDefault`
 - `FirebaseCashlytics`  
 - `Kingfisher`/  `Cosmos`
